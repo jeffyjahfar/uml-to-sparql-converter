@@ -1,14 +1,13 @@
 package com.uw.css.xmi_parser;
 
-import com.sdmetrics.model.MetaModel;
-import com.sdmetrics.model.Model;
-import com.sdmetrics.model.XMIReader;
-import com.sdmetrics.model.XMITransformations;
+import com.sdmetrics.model.*;
 import com.sdmetrics.util.XMLParser;
 import com.uw.css.utils.Utils;
 
+import java.util.Iterator;
+
 public class PatternUMLParser {
-    String dirBase = Utils.TEST_MODEL_DIR;
+    String dirBase = Utils.UTIL_DIR;
     String umlDirBase= Utils.TEST_UML_DIR;
     MetaModel mm;
     XMLParser parser;
@@ -36,7 +35,7 @@ public class PatternUMLParser {
     }
     public void parseTestXMIFile() throws Exception {
         parser = new XMLParser();
-        parseFiles("UML_2.5.1_metamodel.xmi", "testXMITransformations04.xml",
+        parseFiles("metamodel2.xml", "xmiTrans2_0.xml",
                 "proxy_pattern.xmi");
     }
 
@@ -44,7 +43,20 @@ public class PatternUMLParser {
         PatternUMLParser patternUMLParser = new PatternUMLParser();
         try {
             patternUMLParser.parseTestXMIFile();
-            patternUMLParser.model.getMetaModel();
+//            patternUMLParser.model.getMetaModel();
+            Iterator<ModelElement> iterator = patternUMLParser.model.iterator();
+            while (iterator.hasNext()){
+                ModelElement modelElement = iterator.next();
+                MetaModelElement type = modelElement.getType();
+                switch (type.getName()){
+                    case "baseclass":
+                        break;
+                    case "class":
+                        break;
+                }
+
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
