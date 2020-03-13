@@ -1,0 +1,6 @@
+SELECT ?ClassA ?ClassB 
+ WHERE {
+ ?ClassA  a http://rdf.webofcode.org/woc/Class;
+?ClassB  a http://rdf.webofcode.org/woc/Class;
+?ClassA http://rdf.webofcode.org/woc/extends ClassB.
+}

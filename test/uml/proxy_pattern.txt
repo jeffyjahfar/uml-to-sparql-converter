@@ -1,0 +1,11 @@
+SELECT ?Request ?Client ?Subject ?Proxy ?RealSubject 
+ WHERE {
+ ?Request  a http://rdf.webofcode.org/woc/Method;
+?Client  a http://rdf.webofcode.org/woc/Class;
+?Subject  a http://rdf.webofcode.org/woc/Class;
+?Proxy  a http://rdf.webofcode.org/woc/Class;
+?RealSubject  a http://rdf.webofcode.org/woc/Class;
+?Subject http://rdf.webofcode.org/woc/extends Proxy.
+?Subject http://rdf.webofcode.org/woc/extends RealSubject.
+
+}

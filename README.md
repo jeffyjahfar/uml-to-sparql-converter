@@ -1,1 +1,0 @@
-# uml-to-sparql-converter

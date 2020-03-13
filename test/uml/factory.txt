@@ -1,0 +1,14 @@
+SELECT ?FactoryMethod ?AnOperation ?FactoryMethod ?Product ?ConcreteProduct ?Creator ?ConcreteCreator 
+ WHERE {
+ ?FactoryMethod  a http://rdf.webofcode.org/woc/Method;
+?AnOperation  a http://rdf.webofcode.org/woc/Method;
+?FactoryMethod  a http://rdf.webofcode.org/woc/Method;
+?Product  a http://rdf.webofcode.org/woc/Class;
+?ConcreteProduct  a http://rdf.webofcode.org/woc/Class;
+?Creator  a http://rdf.webofcode.org/woc/Class;
+?ConcreteCreator  a http://rdf.webofcode.org/woc/Class;
+?Product http://rdf.webofcode.org/woc/extends ConcreteProduct.
+?ConcreteProduct http://rdf.webofcode.org/woc/hasDependency ConcreteCreator.
+?Creator http://rdf.webofcode.org/woc/extends ConcreteCreator.
+
+}
