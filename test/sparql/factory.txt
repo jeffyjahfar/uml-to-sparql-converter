@@ -1,0 +1,16 @@
+SELECT DISTINCT ?factory
+WHERE {
+  ?abstractClass a woc:Class ;
+                 woc:hasModifier woc:Abstract .
+  ?factory a woc:Class;
+           woc:hasMethod ?method .
+  ?method woc:hasReturnType/woc:extends* ?abstractClass .
+  FILTER NOT EXISTS {
+    ?factory woc:hasMethod ?anotherMethod .
+    ?anotherMethod woc:hasReturnType ?type ;
+                   woc:hasModifier woc:Public .
+    FILTER NOT EXISTS {
+    	?type woc:extends* ?abstractClass .
+    }
+  }
+}

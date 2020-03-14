@@ -5,7 +5,14 @@ SELECT ?Request ?Client ?Subject ?Proxy ?RealSubject
 ?Subject  a http://rdf.webofcode.org/woc/Class;
 ?Proxy  a http://rdf.webofcode.org/woc/Class;
 ?RealSubject  a http://rdf.webofcode.org/woc/Class;
-?Subject http://rdf.webofcode.org/woc/extends Proxy.
-?Subject http://rdf.webofcode.org/woc/extends RealSubject.
+?Subject http://rdf.webofcode.org/woc/hasMethod ?Request.
+?Proxy http://rdf.webofcode.org/woc/hasMethod ?Request.
+?RealSubject http://rdf.webofcode.org/woc/hasMethod ?Request.
+?Subject http://rdf.webofcode.org/woc/extends ?Proxy.
+?Subject http://rdf.webofcode.org/woc/extends ?RealSubject.
+?Subject http://rdf.webofcode.org/woc/references ?Client.
+?RealSubject http://rdf.webofcode.org/woc/references ?Proxy.
+?Subject http://rdf.webofcode.org/woc/references ?RealSubject.
+?Subject http://rdf.webofcode.org/woc/references ?RealSubject.
 
 }

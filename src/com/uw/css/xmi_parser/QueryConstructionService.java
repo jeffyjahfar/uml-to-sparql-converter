@@ -37,7 +37,7 @@ public class QueryConstructionService {
             Component toItem = relationshipItem.getToItem();
             query = query.concat("?").concat(fromItem.name).concat(" ");
             query = query.concat(resolveRelationshipWOCType(relationshipItem.getName())).concat(" ");
-            query = query.concat(toItem.name).concat(".\n");
+            query = query.concat("?").concat(toItem.name).concat(".\n");
         }
         //close where clause
         query = query.concat("\n}");
@@ -51,7 +51,12 @@ public class QueryConstructionService {
                 return Ontology.EXTENDS_PROPERTY.toString();
             case dependency:
                 return Ontology.DEPENDENCY_PROPERTY.toString();
-
+            case association:
+                return Ontology.REFERENCES_PROPERTY.toString();
+            case operation:
+                return Ontology.HAS_METHOD_PROPERTY.toString();
+            case property:
+                return Ontology.HAS_FIELD_PROPERTY.toString();
         }
         return "";
     }

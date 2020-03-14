@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.0" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1">
+	<xmi:Documentation exporter="StarUML" exporterVersion="2.0"/>
+	<uml:Model xmi:id="AAAAAAFwkQcgVE6G0Co=" xmi:type="uml:Model" name="RootModel">
+		<packagedElement xmi:id="AAAAAAFF+qBWK6M3Z8Y=" name="Model" visibility="public" xmi:type="uml:Model"/>
+		<packagedElement xmi:id="AAAAAAFwkQbuvE6EDJ0=" name="factory" visibility="public" xmi:type="uml:Package">
+			<packagedElement xmi:id="AAAAAAFwkQbuvE56FbA=" name="Product" visibility="public" isAbstract="true" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false"/>
+			<packagedElement xmi:id="AAAAAAFwkQbuvE582u4=" name="ConcreteProduct" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<generalization xmi:id="AAAAAAFwkQbuvE57lHk=" visibility="public" xmi:type="uml:Generalization" specific="AAAAAAFwkQbuvE582u4=" general="AAAAAAFwkQbuvE56FbA="/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAFwkQbuvE5/sKU=" name="Creator" visibility="public" isAbstract="true" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedOperation xmi:id="AAAAAAFwkQbuvE59/FM=" name="FactoryMethod" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="true" xmi:type="uml:Operation"/>
+				<ownedOperation xmi:id="AAAAAAFwkQbuvE5+gj8=" name="AnOperation" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="true" xmi:type="uml:Operation"/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAFwkQbuvE6DByw=" name="ConcreteCreator" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedMember xmi:id="AAAAAAFwkQbuvE6BhZs=" visibility="public" xmi:type="uml:Dependency" client="AAAAAAFwkQbuvE6DByw=" supplier="AAAAAAFwkQbuvE582u4="/>
+				<ownedOperation xmi:id="AAAAAAFwkQbuvE6C5IA=" name="FactoryMethod" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation"/>
+				<generalization xmi:id="AAAAAAFwkQbuvE6Ajuw=" visibility="public" xmi:type="uml:Generalization" specific="AAAAAAFwkQbuvE6DByw=" general="AAAAAAFwkQbuvE5/sKU="/>
+			</packagedElement>
+		</packagedElement>
+	</uml:Model>
+</xmi:XMI>
