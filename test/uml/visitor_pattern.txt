@@ -1,0 +1,36 @@
+SELECT ?Visitor ?VisitConcreteElementA ?VisitConcreteElementB ?Accept ?OperationA ?OperationB ?Visitor ?ConcreteVisitor1 ?ConcreteVisitor2 ?ObjectStructure ?Element ?ConcreteElementA ?ConcreteElementB 
+ WHERE {
+ ?Visitor  a http://rdf.webofcode.org/woc/Interface;
+?VisitConcreteElementA  a http://rdf.webofcode.org/woc/Method;
+?VisitConcreteElementB  a http://rdf.webofcode.org/woc/Method;
+?Accept  a http://rdf.webofcode.org/woc/Method;
+?OperationA  a http://rdf.webofcode.org/woc/Method;
+?OperationB  a http://rdf.webofcode.org/woc/Method;
+?Visitor  a http://rdf.webofcode.org/woc/Class;
+?ConcreteVisitor1  a http://rdf.webofcode.org/woc/Class;
+?ConcreteVisitor2  a http://rdf.webofcode.org/woc/Class;
+?ObjectStructure  a http://rdf.webofcode.org/woc/Class;
+?Element  a http://rdf.webofcode.org/woc/Class;
+?ConcreteElementA  a http://rdf.webofcode.org/woc/Class;
+?ConcreteElementB  a http://rdf.webofcode.org/woc/Class;
+?Visitor http://rdf.webofcode.org/woc/hasMethod ?VisitConcreteElementA.
+?Visitor http://rdf.webofcode.org/woc/hasMethod ?VisitConcreteElementB.
+?ConcreteVisitor1 http://rdf.webofcode.org/woc/hasMethod ?VisitConcreteElementA.
+?ConcreteVisitor1 http://rdf.webofcode.org/woc/hasMethod ?VisitConcreteElementB.
+?ConcreteVisitor2 http://rdf.webofcode.org/woc/hasMethod ?VisitConcreteElementA.
+?ConcreteVisitor2 http://rdf.webofcode.org/woc/hasMethod ?VisitConcreteElementB.
+?Element http://rdf.webofcode.org/woc/hasMethod ?Accept.
+?ConcreteElementA http://rdf.webofcode.org/woc/hasMethod ?Accept.
+?ConcreteElementA http://rdf.webofcode.org/woc/hasMethod ?OperationA.
+?ConcreteElementB http://rdf.webofcode.org/woc/hasMethod ?Accept.
+?ConcreteElementB http://rdf.webofcode.org/woc/hasMethod ?OperationB.
+?Visitor http://rdf.webofcode.org/woc/hasMethod ?VisitConcreteElementA.
+?Visitor http://rdf.webofcode.org/woc/hasMethod ?VisitConcreteElementB.
+?ConcreteVisitor2 http://rdf.webofcode.org/woc/extends ?Visitor.
+?ConcreteElementA http://rdf.webofcode.org/woc/extends ?Element.
+?ConcreteElementB http://rdf.webofcode.org/woc/extends ?Element.
+?ObjectStructure http://rdf.webofcode.org/woc/references ?Element.
+?ConcreteVisitor1 http://rdf.webofcode.org/woc/implements ?Visitor.
+?ConcreteVisitor2 http://rdf.webofcode.org/woc/implements ?Visitor.
+
+}

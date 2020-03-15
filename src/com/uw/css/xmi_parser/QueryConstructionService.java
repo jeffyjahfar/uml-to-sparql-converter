@@ -57,6 +57,8 @@ public class QueryConstructionService {
                 return Ontology.HAS_METHOD_PROPERTY.toString();
             case property:
                 return Ontology.HAS_FIELD_PROPERTY.toString();
+            case interfacerealization:
+                return Ontology.IMPLEMENTS_PROPERTY.toString();
         }
         return "";
     }
@@ -67,6 +69,8 @@ public class QueryConstructionService {
                 return Ontology.CLASS_ENTITY.toString();
             case "operation":
                 return Ontology.METHOD_ENTITY.toString();
+            case "interface":
+                return Ontology.INTERFACE_ENTITY.toString();
             default:
                 throw new IllegalStateException("Unexpected value: " + typename);
         }

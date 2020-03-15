@@ -72,6 +72,22 @@ public class ModelElementResolverService {
         getSupplierRelations(relationshipItems,modelElement);
         getOwnedOperations(relationshipItems,modelElement);
         getAssociationRelations(relationshipItems,modelElement);
+        getInterfaceImplementationRelations(relationshipItems,modelElement);
+    }
+
+    private void getInterfaceImplementationRelations(List<RelationshipItem> relationshipItems, ModelElement modelElement) {
+        if(modelElement.getType().getName().equals(Relationships.interfacerealization.name())){
+            Collection<ModelElement> implementations = modelElement.getRelations("interfacerealizations");
+            ModelElement owner = modelElement.getRefAttribute("contract");
+            Iterator<ModelElement> iterator = implementations.iterator();
+            Component toItem = new Component(owner.getName(),owner.getType().getName(),false);
+            if(iterator.hasNext()){
+                ModelElement child = iterator.next();
+                Component fromItem = new Component(child.getName(),child.getType().getName(),false);
+                RelationshipItem relationshipItem = new RelationshipItem(modelElement.getType().getName(),fromItem,toItem);
+                relationshipItems.add(relationshipItem);
+            }
+        }
     }
 
     private void getGeneralizationRelations(List<RelationshipItem> relationshipItems, ModelElement modelElement) {
@@ -82,7 +98,7 @@ public class ModelElementResolverService {
                 Collection<ModelElement> generalizations = relation.getRelations("generalizations");
                 for(ModelElement g: generalizations){
                     Component child = new Component(g.getName(), g.getType().getName(),false);
-                    RelationshipItem relationshipItem = new RelationshipItem(relation.getType().getName(), owner,child);
+                    RelationshipItem relationshipItem = new RelationshipItem(relation.getType().getName(), child,owner);
                     relationshipItems.add(relationshipItem);
                 }
             }

@@ -5,5 +5,6 @@ public enum Relationships {
     dependency,
     association,
     operation,
-    property
+    property,
+    interfacerealization
 }

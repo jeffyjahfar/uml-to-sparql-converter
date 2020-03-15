@@ -1,0 +1,31 @@
+SELECT ?createProductA ?createProductB ?AbstractFactory ?ConcreteFactory1 ?ConcreteFactory2 ?AbstractProductA ?ProductA2 ?ProductA1 ?AbstractProductB ?ProductB2 ?ProductB1 
+ WHERE {
+ ?createProductA  a http://rdf.webofcode.org/woc/Method;
+?createProductB  a http://rdf.webofcode.org/woc/Method;
+?AbstractFactory  a http://rdf.webofcode.org/woc/Class;
+?ConcreteFactory1  a http://rdf.webofcode.org/woc/Class;
+?ConcreteFactory2  a http://rdf.webofcode.org/woc/Class;
+?AbstractProductA  a http://rdf.webofcode.org/woc/Class;
+?ProductA2  a http://rdf.webofcode.org/woc/Class;
+?ProductA1  a http://rdf.webofcode.org/woc/Class;
+?AbstractProductB  a http://rdf.webofcode.org/woc/Class;
+?ProductB2  a http://rdf.webofcode.org/woc/Class;
+?ProductB1  a http://rdf.webofcode.org/woc/Class;
+?AbstractFactory http://rdf.webofcode.org/woc/hasMethod ?createProductA.
+?AbstractFactory http://rdf.webofcode.org/woc/hasMethod ?createProductB.
+?ConcreteFactory1 http://rdf.webofcode.org/woc/hasMethod ?createProductA.
+?ConcreteFactory1 http://rdf.webofcode.org/woc/hasMethod ?createProductB.
+?ConcreteFactory2 http://rdf.webofcode.org/woc/hasMethod ?createProductA.
+?ConcreteFactory2 http://rdf.webofcode.org/woc/hasMethod ?createProductB.
+?ConcreteFactory1 http://rdf.webofcode.org/woc/extends ?AbstractFactory.
+?ConcreteFactory2 http://rdf.webofcode.org/woc/extends ?AbstractFactory.
+?ProductA2 http://rdf.webofcode.org/woc/extends ?AbstractProductA.
+?ProductA1 http://rdf.webofcode.org/woc/extends ?AbstractProductA.
+?ProductA2 http://rdf.webofcode.org/woc/hasDependency ?ConcreteFactory2.
+?ProductA1 http://rdf.webofcode.org/woc/hasDependency ?ConcreteFactory1.
+?ProductB2 http://rdf.webofcode.org/woc/extends ?AbstractProductB.
+?ProductB1 http://rdf.webofcode.org/woc/extends ?AbstractProductB.
+?ProductB2 http://rdf.webofcode.org/woc/hasDependency ?ConcreteFactory2.
+?ProductB1 http://rdf.webofcode.org/woc/hasDependency ?ConcreteFactory1.
+
+}

@@ -62,7 +62,7 @@ public class PatternUMLParser {
         PatternUMLParser patternUMLParser = new PatternUMLParser();
         ModelElementResolverService modelElementResolverService = new ModelElementResolverService();
         try {
-            String filename = "proxy_pattern";
+            String filename = "visitor_pattern";
             patternUMLParser.parseTestXMIFile(filename.concat(".xmi"));
             SparqlQuery query = new SparqlQuery();
 
