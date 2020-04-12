@@ -1,0 +1,9 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?ClassA ?ClassB 
+ WHERE {
+ ?ClassA  a woc:Class.
+?ClassB  a woc:Class.
+?ClassB woc:extends ?ClassA.
+
+}

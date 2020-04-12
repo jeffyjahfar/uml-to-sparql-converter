@@ -1,0 +1,38 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?Visitor ?VisitConcreteElementA ?VisitConcreteElementB ?Accept ?OperationA ?OperationB ?Visitor ?ConcreteVisitor1 ?ConcreteVisitor2 ?ObjectStructure ?Element ?ConcreteElementA ?ConcreteElementB 
+ WHERE {
+ ?Visitor  a woc:Interface.
+?VisitConcreteElementA  a woc:Method.
+?VisitConcreteElementB  a woc:Method.
+?Accept  a woc:Method.
+?OperationA  a woc:Method.
+?OperationB  a woc:Method.
+?Visitor  a woc:Class.
+?ConcreteVisitor1  a woc:Class.
+?ConcreteVisitor2  a woc:Class.
+?ObjectStructure  a woc:Class.
+?Element  a woc:Class.
+?ConcreteElementA  a woc:Class.
+?ConcreteElementB  a woc:Class.
+?Visitor woc:hasMethod ?VisitConcreteElementA.
+?Visitor woc:hasMethod ?VisitConcreteElementB.
+?ConcreteVisitor1 woc:hasMethod ?VisitConcreteElementA.
+?ConcreteVisitor1 woc:hasMethod ?VisitConcreteElementB.
+?ConcreteVisitor2 woc:hasMethod ?VisitConcreteElementA.
+?ConcreteVisitor2 woc:hasMethod ?VisitConcreteElementB.
+?Element woc:hasMethod ?Accept.
+?ConcreteElementA woc:hasMethod ?Accept.
+?ConcreteElementA woc:hasMethod ?OperationA.
+?ConcreteElementB woc:hasMethod ?Accept.
+?ConcreteElementB woc:hasMethod ?OperationB.
+?Visitor woc:hasMethod ?VisitConcreteElementA.
+?Visitor woc:hasMethod ?VisitConcreteElementB.
+?ConcreteVisitor2 woc:extends ?Visitor.
+?ConcreteElementA woc:extends ?Element.
+?ConcreteElementB woc:extends ?Element.
+?ObjectStructure woc:references ?Element.
+?ConcreteVisitor1 woc:implements ?Visitor.
+?ConcreteVisitor2 woc:implements ?Visitor.
+
+}
