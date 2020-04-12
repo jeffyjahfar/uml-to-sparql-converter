@@ -2,7 +2,6 @@ package com.uw.css.xmi_parser;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class SparqlQuery {
     String query;
@@ -49,7 +48,8 @@ public class SparqlQuery {
     public String constructQuery(){
         QueryConstructionService queryConstructionService = new QueryConstructionService();
         query = "";
-        query = queryConstructionService.constructSelectStatement(components,false);
+        query = query + queryConstructionService.setPrefix();
+        query = queryConstructionService.constructSelectStatement(components,false, query);
         query = queryConstructionService.constructWhereStatement(query,relationshipItems,components);
         return query;
     }

@@ -1,15 +1,18 @@
 package com.uw.css.xmi_parser;
 
 import com.uw.css.utils.Relationships;
-import org.apache.jena.sparql.algebra.optimize.Optimize;
 import org.codeontology.Ontology;
 import java.util.List;
 
 
 public class QueryConstructionService {
 
-    String constructSelectStatement(List<Component> componentList, Boolean distinctResult){
-        String query = "SELECT ";
+    String setPrefix(){
+        return "PREFIX woc: <"+Ontology.WOC + ">\n\n";
+    }
+
+    String constructSelectStatement(List<Component> componentList, Boolean distinctResult, String query){
+        query = query + "SELECT ";
 
         if(distinctResult){
             query+="DISTINCT ";
@@ -28,7 +31,7 @@ public class QueryConstructionService {
         //iteration on components
         for(Component c : components){
             query = query.concat("?").concat(c.name).concat(" ").concat(" a ");
-            query = query.concat(resolveWOCType(c.getType())).concat(";\n");
+            query = query.concat(resolveWOCType(c.getType())).concat(".\n");
         }
 
         //iteration on relations
@@ -48,17 +51,17 @@ public class QueryConstructionService {
         Relationships r = Relationships.valueOf(typename);
         switch (r){
             case generalization:
-                return Ontology.EXTENDS_PROPERTY.toString();
+                return Ontology.EXTENDS_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case dependency:
-                return Ontology.DEPENDENCY_PROPERTY.toString();
+                return Ontology.DEPENDENCY_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case association:
-                return Ontology.REFERENCES_PROPERTY.toString();
+                return Ontology.REFERENCES_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case operation:
-                return Ontology.HAS_METHOD_PROPERTY.toString();
+                return Ontology.HAS_METHOD_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case property:
-                return Ontology.HAS_FIELD_PROPERTY.toString();
+                return Ontology.HAS_FIELD_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case interfacerealization:
-                return Ontology.IMPLEMENTS_PROPERTY.toString();
+                return Ontology.IMPLEMENTS_PROPERTY.toString().replace(Ontology.WOC,"woc:");
         }
         return "";
     }
@@ -66,11 +69,11 @@ public class QueryConstructionService {
     public String resolveWOCType(String typename){
         switch (typename){
             case "class":
-                return Ontology.CLASS_ENTITY.toString();
+                return Ontology.CLASS_ENTITY.toString().replace(Ontology.WOC,"woc:");
             case "operation":
-                return Ontology.METHOD_ENTITY.toString();
+                return Ontology.METHOD_ENTITY.toString().replace(Ontology.WOC,"woc:");
             case "interface":
-                return Ontology.INTERFACE_ENTITY.toString();
+                return Ontology.INTERFACE_ENTITY.toString().replace(Ontology.WOC,"woc:");
             default:
                 throw new IllegalStateException("Unexpected value: " + typename);
         }
