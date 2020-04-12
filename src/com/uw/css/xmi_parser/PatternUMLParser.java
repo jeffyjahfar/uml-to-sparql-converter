@@ -45,7 +45,7 @@ public class PatternUMLParser {
     public void saveOutputAsText(String query, String filename){
         try {
             //create an print writer for writing to a file
-            PrintWriter out = new PrintWriter(new FileWriter(umlDirBase + filename));
+            PrintWriter out = new PrintWriter(new FileWriter(Utils.TEST_OUTPUT_DIR + filename));
 
             //output to the file a line
             out.println(query);
@@ -62,7 +62,7 @@ public class PatternUMLParser {
         PatternUMLParser patternUMLParser = new PatternUMLParser();
         ModelElementResolverService modelElementResolverService = new ModelElementResolverService();
         try {
-            String filename = "state_pattern";
+            String filename = "visitor_pattern";
             patternUMLParser.parseTestXMIFile(filename.concat(".xmi"));
             SparqlQuery query = new SparqlQuery();
 
@@ -81,7 +81,7 @@ public class PatternUMLParser {
                 query.relationshipItems = modelElementResolverService.resolveRelations(query.relationshipItems,modelElement);
             }
             query.constructQuery();
-            patternUMLParser.saveOutputAsText(query.query,filename.concat(".txt"));
+            patternUMLParser.saveOutputAsText(query.query,filename.concat(".rq"));
         } catch (Exception e) {
             e.printStackTrace();
         }
