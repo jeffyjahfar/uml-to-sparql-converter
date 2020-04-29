@@ -3,6 +3,7 @@ package com.uw.css.xmi_parser;
 import com.sdmetrics.model.ModelElement;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.uw.css.utils.Relationships;
+import org.codeontology.Ontology;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -49,6 +50,40 @@ public class ModelElementResolverService {
        }
     }
 
+    public String resolveParameterKind(ModelElement modelElement){
+        String kind = modelElement.getPlainAttribute("kind");
+        switch (kind){
+            case "return":
+                return Relationships.returnType.name();
+            case "in":
+                return Relationships.parameter.name();
+            case "out":
+                return Relationships.parameter.name();
+            case "inout":
+                return Relationships.parameter.name();
+            default:
+                return "";
+        }
+    }
+
+    public void getOwnedParameters(List<RelationshipItem> relationshipItems, ModelElement modelElement){
+        if(modelElement.getType().getName().equals(Relationships.operation.name()) && modelElement.getName().length()>0){
+            Collection<ModelElement> ownedparameters = modelElement.getOwnedElements();
+            if(ownedparameters != null){
+                for(ModelElement op: ownedparameters){
+                    if(op.getType().getName().equals(Relationships.parameter.name())){
+                        String relationshipType = resolveParameterKind(op);
+                        Component owner = new Component(op.getName(), op.getType().getName(),false);
+                        Component child = new Component(modelElement.getName(), modelElement.getType().getName(),false);
+                        RelationshipItem relationshipItem = new RelationshipItem(relationshipType, owner,child);
+                        relationshipItems.add(relationshipItem);
+                    }
+
+                }
+            }
+        }
+    }
+
     public void getPropertyRelations(List<RelationshipItem> relationshipItems, ModelElement modelElement){
         if(modelElement.getType().getName().equals(Relationships.property.name())){
 //            modelElement.getat
@@ -71,6 +106,7 @@ public class ModelElementResolverService {
         getGeneralizationRelations(relationshipItems, modelElement);
         getSupplierRelations(relationshipItems,modelElement);
         getOwnedOperations(relationshipItems,modelElement);
+        getOwnedParameters(relationshipItems,modelElement);
         getAssociationRelations(relationshipItems,modelElement);
         getInterfaceImplementationRelations(relationshipItems,modelElement);
     }
@@ -142,6 +178,20 @@ public class ModelElementResolverService {
     List<Component> resolveComponents(List<Component> components, ModelElement modelElement){
         if(isQueryObject(modelElement)){
             Component component = new Component(modelElement.getName(), modelElement.getType().getName(),true);
+            List<String> modifiers = new ArrayList<>();
+            if(modelElement.getType().hasAttribute("visibility")){
+                String visibility = modelElement.getPlainAttribute("visibility");
+                if(visibility != null){
+                    modifiers.add(visibility);
+                }
+            }
+            if(modelElement.getType().hasAttribute("abstract")){
+                String isAbstract = modelElement.getPlainAttribute("abstract");
+                if(isAbstract.equals("true")){
+                    modifiers.add("Abstract");
+                }
+            }
+            component.setModifiers(modifiers);
             if(!components.contains(component))
                 components.add(component);
         }

@@ -2,10 +2,13 @@ package com.uw.css.xmi_parser;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
+import java.util.List;
+
 public class Component {
     String name;
     String type;
     Boolean isSelectItem;
+    List<String> modifiers;
 
     public Component(String name, String type, Boolean isSelectItem) {
         this.name = name;
@@ -27,6 +30,14 @@ public class Component {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public List<String> getModifiers() {
+        return modifiers;
+    }
+
+    public void setModifiers(List<String> modifiers) {
+        this.modifiers = modifiers;
     }
 
     public Boolean getSelectItem() {

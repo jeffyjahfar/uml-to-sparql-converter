@@ -32,6 +32,14 @@ public class QueryConstructionService {
         for(Component c : components){
             query = query.concat("?").concat(c.name).concat(" ").concat(" a ");
             query = query.concat(resolveWOCType(c.getType())).concat(".\n");
+
+            //modifier iteration
+            if(c.getModifiers() != null){
+                for(String modifier: c.getModifiers()){
+                    query = query.concat("?").concat(c.name).concat(" ").concat(replaceInlinePrefix(Ontology.MODIFIER_PROPERTY.toString()));
+                    query = query.concat(" ").concat(resolveModifiers(modifier)).concat(" .\n");
+                }
+            }
         }
 
         //iteration on relations
@@ -45,6 +53,22 @@ public class QueryConstructionService {
         //close where clause
         query = query.concat("\n}");
         return query;
+    }
+
+    private String resolveModifiers(String typename){
+        switch (typename){
+            case "public":
+                return replaceInlinePrefix(Ontology.PUBLIC_INDIVIDUAL.toString());
+            case "private":
+                return replaceInlinePrefix(Ontology.PRIVATE_INDIVIDUAL.toString());
+            case "protected":
+                return replaceInlinePrefix(Ontology.PROTECTED_INDIVIDUAL.toString());
+            case "static":
+                return replaceInlinePrefix(Ontology.STATIC_INDIVIDUAL.toString());
+            case "Abstract":
+                return replaceInlinePrefix(Ontology.ABSTRACT_INDIVIDUAL.toString());
+        }
+        return "";
     }
 
     private String resolveRelationshipWOCType(String typename) {
@@ -64,6 +88,10 @@ public class QueryConstructionService {
                 return Ontology.IMPLEMENTS_PROPERTY.toString().replace(Ontology.WOC,"woc:");
         }
         return "";
+    }
+
+    public String replaceInlinePrefix(String s){
+        return s.replace(Ontology.WOC,"woc:");
     }
 
     public String resolveWOCType(String typename){
