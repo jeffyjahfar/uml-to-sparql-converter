@@ -3,11 +3,21 @@ PREFIX woc: <http://rdf.webofcode.org/woc/>
 SELECT ?FactoryMethod ?AnOperation ?Product ?ConcreteProduct ?Creator ?ConcreteCreator 
  WHERE {
  ?FactoryMethod  a woc:Method.
+?FactoryMethod woc:hasModifier woc:Public .
+?FactoryMethod woc:hasModifier woc:Abstract .
 ?AnOperation  a woc:Method.
+?AnOperation woc:hasModifier woc:Public .
+?AnOperation woc:hasModifier woc:Abstract .
 ?Product  a woc:Class.
+?Product woc:hasModifier woc:Public .
+?Product woc:hasModifier woc:Abstract .
 ?ConcreteProduct  a woc:Class.
+?ConcreteProduct woc:hasModifier woc:Public .
 ?Creator  a woc:Class.
+?Creator woc:hasModifier woc:Public .
+?Creator woc:hasModifier woc:Abstract .
 ?ConcreteCreator  a woc:Class.
+?ConcreteCreator woc:hasModifier woc:Public .
 ?Creator woc:hasMethod ?FactoryMethod.
 ?Creator woc:hasMethod ?AnOperation.
 ?ConcreteCreator woc:hasMethod ?FactoryMethod.

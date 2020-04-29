@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.0" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1">
+	<xmi:Documentation exporter="StarUML" exporterVersion="2.0"/>
+	<uml:Model xmi:id="AAAAAAFxwvHkfU/0aFQ=" xmi:type="uml:Model" name="RootModel">
+		<packagedElement xmi:id="AAAAAAFF+qBWK6M3Z8Y=" name="Model" visibility="public" xmi:type="uml:Model">
+			<packagedElement xmi:id="AAAAAAFxwopVAA9n0+M=" name="Class1" visibility="public" isAbstract="true" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedOperation xmi:id="AAAAAAFxwopvkw+QrSA=" name="Operation1" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<ownedParameter xmi:id="AAAAAAFxwpSe7hCoVeg=" name="Parameter1" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAFxwpNStRAZ2MI=" isReadOnly="false" isOrdered="false" isUnique="false" direction="return" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAFxwoqwxw+Xjwg=" name="Class2" visibility="public" isAbstract="false" isFinalSpecialization="true" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedMember xmi:id="AAAAAAFxwpPjBxB+H/M=" visibility="public" xmi:type="uml:Dependency" client="AAAAAAFxwoqwxw+Xjwg=" supplier="AAAAAAFxwoqwxw+Xjwg="/>
+				<ownedMember xmi:id="AAAAAAFxwpQXtRCXOuc=" visibility="public" xmi:type="uml:Dependency" client="AAAAAAFxwoqwxw+Xjwg=" supplier="AAAAAAFxwpNgMBBClU4="/>
+				<ownedAttribute xmi:id="AAAAAAFxwotljA/Xm/A=" name="Attribute1" visibility="protected" isStatic="false" isLeaf="false" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="none" isDerived="false" isID="false">
+					<ownedRule xmi:id="AAAAAAFxwot3+A/dnjI=" name="Constraint1" visibility="public" xmi:type="uml:Constraint">
+						<xmi:Extension extender="StarUML">
+							<stereotype value="Class1"/>
+						</xmi:Extension>
+						<constrainedElement xmi:idref="AAAAAAFxwotljA/Xm/A="/>
+					</ownedRule>
+				</ownedAttribute>
+				<ownedAttribute xmi:id="AAAAAAFxwo0npQ/o48Q=" name="Attribute2" visibility="public" isStatic="false" isLeaf="false" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="none" isDerived="false" isID="false"/>
+				<ownedAttribute xmi:id="AAAAAAFxwo00+A/uHmU=" name="Attribute3" visibility="private" isStatic="true" isLeaf="false" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="none" isDerived="false" isID="false"/>
+				<ownedOperation xmi:id="AAAAAAFxworqqA/REpw=" name="Operation1" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<ownedRule xmi:id="AAAAAAFxwu/r5k/wz8A=" name="Constraint1" visibility="public" xmi:type="uml:Constraint">
+						<constrainedElement xmi:idref="AAAAAAFxworqqA/REpw="/>
+						<specification xmi:id="AAAAAAFxwvHkfk/1/yM=" xmi:type="uml:OpaqueExpression" body="returns%20attribute1%0A"/>
+					</ownedRule>
+					<xmi:Extension extender="StarUML">
+						<documentation value="String"/>
+						<stereotype value=""/>
+						<specification value="String%0A"/>
+					</xmi:Extension>
+					<ownedParameter xmi:id="AAAAAAFxwpKMBxAU9hg=" name="Parameter1" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAFxwpNgMBBClU4=" isReadOnly="false" isOrdered="false" isUnique="false" direction="return" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+				<ownedOperation xmi:id="AAAAAAFxwpXGmRCuc/w=" name="Operation2" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<ownedParameter xmi:id="AAAAAAFxwpXh6RC0moE=" name="Parameter1" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAFxwpNStRAZ2MI=" isReadOnly="false" isOrdered="false" isUnique="false" direction="in" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+				<ownedOperation xmi:id="AAAAAAFxwu83F0/oIb8=" name="Operation3" visibility="protected" isStatic="true" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation"/>
+				<generalization xmi:id="AAAAAAFxworKOA/AEGs=" visibility="public" xmi:type="uml:Generalization" specific="AAAAAAFxwoqwxw+Xjwg=" general="AAAAAAFxwopVAA9n0+M="/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAFxwpNStRAZ2MI=" name="Class3" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false"/>
+			<packagedElement xmi:id="AAAAAAFxwpNgMBBClU4=" name="Class4" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<generalization xmi:id="AAAAAAFxwpN5pBBsW/I=" visibility="public" xmi:type="uml:Generalization" specific="AAAAAAFxwpNgMBBClU4=" general="AAAAAAFxwpNStRAZ2MI="/>
+			</packagedElement>
+		</packagedElement>
+	</uml:Model>
+</xmi:XMI>

@@ -1,0 +1,32 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?Operation1 ?Operation2 ?Operation3 ?Class1 ?Class2 ?Class3 ?Class4 
+ WHERE {
+ ?Operation1  a woc:Method.
+?Operation1 woc:hasModifier woc:Public .
+?Operation2  a woc:Method.
+?Operation2 woc:hasModifier woc:Public .
+?Operation3  a woc:Method.
+?Operation3 woc:hasModifier woc:Protected .
+?Class1  a woc:Class.
+?Class1 woc:hasModifier woc:Public .
+?Class1 woc:hasModifier woc:Abstract .
+?Class2  a woc:Class.
+?Class2 woc:hasModifier woc:Public .
+?Class3  a woc:Class.
+?Class3 woc:hasModifier woc:Public .
+?Class4  a woc:Class.
+?Class4 woc:hasModifier woc:Public .
+?Class1 woc:hasMethod ?Operation1.
+?Parameter1  ?Operation1.
+?Class2 woc:hasMethod ?Operation1.
+?Parameter1  ?Operation1.
+?Class2 woc:hasMethod ?Operation2.
+?Parameter1  ?Operation2.
+?Class2 woc:hasMethod ?Operation3.
+?Class2 woc:extends ?Class1.
+?Class2 woc:hasDependency ?Class2.
+?Class4 woc:extends ?Class3.
+?Class4 woc:hasDependency ?Class2.
+
+}
