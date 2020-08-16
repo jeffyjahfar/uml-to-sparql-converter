@@ -1,6 +1,6 @@
 package com.uw.css.xmi_parser;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.sdmetrics.model.ModelElement;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ public class Component {
     Boolean isSelectItem;
     List<String> modifiers;
 
-    public Component(String name, String type, Boolean isSelectItem) {
-        this.name = name;
+    public Component(ModelElement modelElement, String type, Boolean isSelectItem) {
+        this.name = modelElement.getName()+modelElement.getRunningID();
         this.type = type;
         this.isSelectItem = isSelectItem;
     }

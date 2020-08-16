@@ -1,0 +1,18 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?Instance ?SingletonOperation ?Singleton ?uniqueInstance 
+ WHERE {
+?Instance  a woc:Method .
+?Instance woc:hasModifier woc:Public .
+?SingletonOperation  a woc:Constructor .
+?SingletonOperation woc:hasModifier woc:Private .
+?Singleton  a woc:Class .
+?Singleton woc:hasModifier woc:Public .
+?uniqueInstance  a woc:Field .
+?uniqueInstance woc:hasModifier woc:Private .
+?Singleton woc:hasMethod ?Instance .
+?Instance woc:hasReturnType ?Singleton .
+?Singleton woc:hasConstructor ?SingletonOperation .
+?Singleton woc:hasField ?uniqueInstance .
+
+}

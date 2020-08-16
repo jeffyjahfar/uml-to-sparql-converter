@@ -1,9 +1,7 @@
 package com.uw.css.xmi_parser;
 
 import com.sdmetrics.model.ModelElement;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.uw.css.utils.Relationships;
-import org.codeontology.Ontology;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,7 +29,9 @@ public class ModelElementResolverService {
                 return true;
             case "interface":
                 return true;
-//            case "property":
+            case "property":
+                return true;
+//            case "parameter":
 //                return true;
         }
         return false;
@@ -41,8 +41,8 @@ public class ModelElementResolverService {
            Collection<ModelElement> ownedoperations = modelElement.getRelations("ownedoperations");
            if(ownedoperations != null){
                for(ModelElement op: ownedoperations){
-                   Component owner = new Component(op.getName(), op.getType().getName(),false);
-                   Component child = new Component(modelElement.getName(), modelElement.getType().getName(),false);
+                   Component owner = new Component(op, op.getType().getName(),false);
+                   Component child = new Component(modelElement, modelElement.getType().getName(),false);
                    RelationshipItem relationshipItem = new RelationshipItem(modelElement.getType().getName(), owner,child);
                    relationshipItems.add(relationshipItem);
                }
@@ -73,31 +73,26 @@ public class ModelElementResolverService {
                 for(ModelElement op: ownedparameters){
                     if(op.getType().getName().equals(Relationships.parameter.name())){
                         String relationshipType = resolveParameterKind(op);
-                        Component owner = new Component(op.getName(), op.getType().getName(),false);
-                        Component child = new Component(modelElement.getName(), modelElement.getType().getName(),false);
-                        RelationshipItem relationshipItem = new RelationshipItem(relationshipType, owner,child);
-                        relationshipItems.add(relationshipItem);
+                        ModelElement parametertype = op.getRefAttribute("parametertype");
+                        if(relationshipType.equals(Relationships.returnType.name())){
+                            Component child = new Component(parametertype, parametertype.getType().getName(),false);
+                            Component owner = new Component(modelElement, modelElement.getType().getName(),false);
+                            RelationshipItem relationshipItem = new RelationshipItem(relationshipType, owner,child);
+                            relationshipItems.add(relationshipItem);
+                        }else{
+                            Component child = new Component(op, op.getType().getName(),false);
+                            Component owner = new Component(modelElement, modelElement.getType().getName(),false);
+                            RelationshipItem relationshipItem = new RelationshipItem(relationshipType, owner,child);
+                            relationshipItems.add(relationshipItem);
+                            if(parametertype != null){
+                                Component child2 = new Component(parametertype, parametertype.getType().getName(),false);
+                                RelationshipItem relationshipItem2 = new RelationshipItem(Relationships.type.name(), child,child2);
+                                relationshipItems.add(relationshipItem2);
+                            }
+                        }
                     }
 
                 }
-            }
-        }
-    }
-
-    public void getPropertyRelations(List<RelationshipItem> relationshipItems, ModelElement modelElement){
-        if(modelElement.getType().getName().equals(Relationships.property.name())){
-//            modelElement.getat
-        }
-        Collection<ModelElement> relations = modelElement.getRelations("ownedoperations");
-        if(relations != null){
-            for(ModelElement relation: relations){
-                Component owner = new Component(modelElement.getName(), modelElement.getType().getName(),false);
-//                Collection<ModelElement> generalizations = relation.getRelations("generalizations");
-//                for(ModelElement g: generalizations){
-//                    Component child = new Component(g.getName(), g.getType().getName(),false);
-//                    RelationshipItem relationshipItem = new RelationshipItem(relation.getType().getName(), owner,child);
-//                    relationshipItems.add(relationshipItem);
-//                }
             }
         }
     }
@@ -109,6 +104,23 @@ public class ModelElementResolverService {
         getOwnedParameters(relationshipItems,modelElement);
         getAssociationRelations(relationshipItems,modelElement);
         getInterfaceImplementationRelations(relationshipItems,modelElement);
+        getOwnedAttributes(relationshipItems,modelElement);
+    }
+
+    private void getOwnedAttributes(List<RelationshipItem> relationshipItems, ModelElement modelElement) {
+        if(modelElement.getType().getName().equals("class") || modelElement.getType().getName().equals("interface")){
+            Collection<ModelElement> ownedElements = modelElement.getOwnedElements();
+            if(ownedElements != null){
+                for(ModelElement op: ownedElements){
+                    if(op.getType().getName().equals(Relationships.property.name()) && !op.getName().isEmpty()){
+                        Component child = new Component(op, op.getType().getName(),false);
+                        Component owner = new Component(modelElement, modelElement.getType().getName(),false);
+                        RelationshipItem relationshipItem = new RelationshipItem(Relationships.property.name(), owner,child);
+                        relationshipItems.add(relationshipItem);
+                    }
+                }
+            }
+        }
     }
 
     private void getInterfaceImplementationRelations(List<RelationshipItem> relationshipItems, ModelElement modelElement) {
@@ -116,10 +128,10 @@ public class ModelElementResolverService {
             Collection<ModelElement> implementations = modelElement.getRelations("interfacerealizations");
             ModelElement owner = modelElement.getRefAttribute("contract");
             Iterator<ModelElement> iterator = implementations.iterator();
-            Component toItem = new Component(owner.getName(),owner.getType().getName(),false);
+            Component toItem = new Component(owner,owner.getType().getName(),false);
             if(iterator.hasNext()){
                 ModelElement child = iterator.next();
-                Component fromItem = new Component(child.getName(),child.getType().getName(),false);
+                Component fromItem = new Component(child,child.getType().getName(),false);
                 RelationshipItem relationshipItem = new RelationshipItem(modelElement.getType().getName(),fromItem,toItem);
                 relationshipItems.add(relationshipItem);
             }
@@ -130,10 +142,10 @@ public class ModelElementResolverService {
         Collection<ModelElement> relations = modelElement.getRelations("general");
         if(relations != null){
             for(ModelElement relation: relations){
-                Component owner = new Component(modelElement.getName(), modelElement.getType().getName(),false);
+                Component owner = new Component(modelElement, modelElement.getType().getName(),false);
                 Collection<ModelElement> generalizations = relation.getRelations("generalizations");
                 for(ModelElement g: generalizations){
-                    Component child = new Component(g.getName(), g.getType().getName(),false);
+                    Component child = new Component(g, g.getType().getName(),false);
                     RelationshipItem relationshipItem = new RelationshipItem(relation.getType().getName(), child,owner);
                     relationshipItems.add(relationshipItem);
                 }
@@ -146,10 +158,10 @@ public class ModelElementResolverService {
             Collection<ModelElement> ownedends = (Collection<ModelElement>) modelElement.getSetAttribute("ownedends");
             Iterator<ModelElement> iterator = ownedends.iterator();
             ModelElement owner = iterator.next().getRefAttribute("propertytype");
-            Component fromItem = new Component(owner.getName(),owner.getType().getName(),false);
+            Component fromItem = new Component(owner,owner.getType().getName(),false);
             if(iterator.hasNext()){
                 ModelElement child = iterator.next().getRefAttribute("propertytype");
-                Component toItem = new Component(child.getName(),child.getType().getName(),false);
+                Component toItem = new Component(child,child.getType().getName(),false);
                 RelationshipItem relationshipItem = new RelationshipItem(modelElement.getType().getName(),fromItem,toItem);
                 relationshipItems.add(relationshipItem);
             }
@@ -160,11 +172,11 @@ public class ModelElementResolverService {
         Collection<ModelElement> relations = modelElement.getRelations("supplier");
         if(relations != null){
             for(ModelElement relation: relations){
-                Component owner = new Component(modelElement.getName(), modelElement.getType().getName(),false);
+                Component owner = new Component(modelElement, modelElement.getType().getName(),false);
                 Collection<ModelElement> clients = (Collection<ModelElement>) relation.getSetAttribute("client");
                 for(ModelElement g: clients){
-                    Component child = new Component(g.getName(), g.getType().getName(),false);
-                    RelationshipItem relationshipItem = new RelationshipItem(relation.getType().getName(), owner,child);
+                    Component child = new Component(g, g.getType().getName(),false);
+                    RelationshipItem relationshipItem = new RelationshipItem(relation.getType().getName(), child,owner);
                     relationshipItems.add(relationshipItem);
                 }
             }
@@ -175,20 +187,35 @@ public class ModelElementResolverService {
         return relationshipItems;
     }
 
-    List<Component> resolveComponents(List<Component> components, ModelElement modelElement){
-        if(isQueryObject(modelElement)){
-            Component component = new Component(modelElement.getName(), modelElement.getType().getName(),true);
+    List<Component> resolveComponents(List<Component> components, ModelElement modelElement, Boolean suppressVisibility){
+        if(isQueryObject(modelElement) && !modelElement.getName().isEmpty()){
+            Component component = new Component(modelElement, modelElement.getType().getName(),true);
             List<String> modifiers = new ArrayList<>();
-            if(modelElement.getType().hasAttribute("visibility")){
-                String visibility = modelElement.getPlainAttribute("visibility");
-                if(visibility != null){
-                    modifiers.add(visibility);
+            if(!suppressVisibility){
+                if(modelElement.getType().hasAttribute("visibility")){
+                    String visibility = modelElement.getPlainAttribute("visibility");
+                    if(visibility != null){
+                        modifiers.add(visibility);
+                    }
                 }
             }
+
             if(modelElement.getType().hasAttribute("abstract")){
                 String isAbstract = modelElement.getPlainAttribute("abstract");
                 if(isAbstract.equals("true")){
-                    modifiers.add("Abstract");
+                    modifiers.add("abstract");
+                }
+            }
+            if(modelElement.getType().hasAttribute("static")){
+                String isStatic = modelElement.getPlainAttribute("static");
+                if(isStatic.equals("true")){
+                    modifiers.add("static");
+                }
+            }
+            if(modelElement.getType().hasAttribute("final")){
+                String isFinal = modelElement.getPlainAttribute("final");
+                if(isFinal.equals("true")){
+                    modifiers.add("final");
                 }
             }
             component.setModifiers(modifiers);

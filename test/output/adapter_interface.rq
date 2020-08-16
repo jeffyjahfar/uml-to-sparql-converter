@@ -1,0 +1,23 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?Target ?Adaptee ?Request ?TargetRequest ?SpecificRequest ?Adapter ?adapteeInstance 
+ WHERE {
+ ?Target  a woc:Interface .
+?Adaptee  a woc:Interface .
+?Request  a woc:Method .
+?Request woc:hasModifier woc:Public .
+?TargetRequest  a woc:Method .
+?TargetRequest woc:hasModifier woc:Public .
+?SpecificRequest  a woc:Method .
+?SpecificRequest woc:hasModifier woc:Public .
+?Adapter  a woc:Class .
+?Adapter woc:hasModifier woc:Public .
+?adapteeInstance  a woc:Field .
+?adapteeInstance woc:hasModifier woc:Public .
+?Adapter woc:hasMethod ?Request .
+?Target woc:hasMethod ?TargetRequest .
+?Adaptee woc:hasMethod ?SpecificRequest .
+?Adapter woc:references ?Adaptee .
+?Adapter woc:implements ?Target .
+
+}

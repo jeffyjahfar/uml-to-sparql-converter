@@ -1,0 +1,39 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?Visitor ?Accept1 ?AcceptA ?AcceptB ?visitConcreteElementA ?visitConcreteElementB ?Element ?ConcreteElementA ?ConcreteElementB 
+ WHERE {
+ ?Visitor  a woc:Interface .
+?Accept1  a woc:Method .
+?Accept1 woc:hasModifier woc:Public .
+?Accept1 woc:hasModifier woc:Abstract .
+?AcceptA  a woc:Method .
+?AcceptA woc:hasModifier woc:Public .
+?AcceptB  a woc:Method .
+?AcceptB woc:hasModifier woc:Public .
+?visitConcreteElementA  a woc:Method .
+?visitConcreteElementA woc:hasModifier woc:Public .
+?visitConcreteElementB  a woc:Method .
+?visitConcreteElementB woc:hasModifier woc:Public .
+?Element  a woc:Class .
+?Element woc:hasModifier woc:Public .
+?Element woc:hasModifier woc:Abstract .
+?ConcreteElementA  a woc:Class .
+?ConcreteElementA woc:hasModifier woc:Public .
+?ConcreteElementB  a woc:Class .
+?ConcreteElementB woc:hasModifier woc:Public .
+?Element woc:hasMethod ?Accept1 .
+?Accept1 woc:hasParameter ?v1 .
+?ConcreteElementA woc:hasMethod ?AcceptA .
+?AcceptA woc:hasParameter ?vA .
+?ConcreteElementB woc:hasMethod ?AcceptB .
+?AcceptB woc:hasParameter ?vB .
+?Visitor woc:hasMethod ?visitConcreteElementA .
+?visitConcreteElementA woc:hasParameter ?a .
+?a woc:hasType ?ConcreteElementA .
+?Visitor woc:hasMethod ?visitConcreteElementB .
+?visitConcreteElementB woc:hasParameter ?b .
+?b woc:hasType ?ConcreteElementB .
+?ConcreteElementA woc:extends ?Element .
+?ConcreteElementB woc:extends ?Element .
+
+}

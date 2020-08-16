@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.0" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1">
 	<xmi:Documentation exporter="StarUML" exporterVersion="2.0"/>
-	<uml:Model xmi:id="AAAAAAFxwvHkfU/0aFQ=" xmi:type="uml:Model" name="RootModel">
+	<uml:Model xmi:id="AAAAAAFxw7dbIl2dTrE=" xmi:type="uml:Model" name="RootModel">
 		<packagedElement xmi:id="AAAAAAFF+qBWK6M3Z8Y=" name="Model" visibility="public" xmi:type="uml:Model">
 			<packagedElement xmi:id="AAAAAAFxwopVAA9n0+M=" name="Class1" visibility="public" isAbstract="true" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
 				<ownedOperation xmi:id="AAAAAAFxwopvkw+QrSA=" name="Operation1" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
@@ -11,7 +11,7 @@
 			<packagedElement xmi:id="AAAAAAFxwoqwxw+Xjwg=" name="Class2" visibility="public" isAbstract="false" isFinalSpecialization="true" isLeaf="false" xmi:type="uml:Class" isActive="false">
 				<ownedMember xmi:id="AAAAAAFxwpPjBxB+H/M=" visibility="public" xmi:type="uml:Dependency" client="AAAAAAFxwoqwxw+Xjwg=" supplier="AAAAAAFxwoqwxw+Xjwg="/>
 				<ownedMember xmi:id="AAAAAAFxwpQXtRCXOuc=" visibility="public" xmi:type="uml:Dependency" client="AAAAAAFxwoqwxw+Xjwg=" supplier="AAAAAAFxwpNgMBBClU4="/>
-				<ownedAttribute xmi:id="AAAAAAFxwotljA/Xm/A=" name="Attribute1" visibility="protected" isStatic="false" isLeaf="false" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="none" isDerived="false" isID="false">
+				<ownedAttribute xmi:id="AAAAAAFxwotljA/Xm/A=" name="Attribute1" visibility="protected" isStatic="false" isLeaf="false" type="AAAAAAFxwpNgMBBClU4=" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="none" isDerived="false" isID="false">
 					<ownedRule xmi:id="AAAAAAFxwot3+A/dnjI=" name="Constraint1" visibility="public" xmi:type="uml:Constraint">
 						<xmi:Extension extender="StarUML">
 							<stereotype value="Class1"/>
@@ -24,7 +24,7 @@
 				<ownedOperation xmi:id="AAAAAAFxworqqA/REpw=" name="Operation1" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
 					<ownedRule xmi:id="AAAAAAFxwu/r5k/wz8A=" name="Constraint1" visibility="public" xmi:type="uml:Constraint">
 						<constrainedElement xmi:idref="AAAAAAFxworqqA/REpw="/>
-						<specification xmi:id="AAAAAAFxwvHkfk/1/yM=" xmi:type="uml:OpaqueExpression" body="returns%20attribute1%0A"/>
+						<specification xmi:id="AAAAAAFxw7dbJF2eUiU=" xmi:type="uml:OpaqueExpression" body="returns%20attribute1%0A"/>
 					</ownedRule>
 					<xmi:Extension extender="StarUML">
 						<documentation value="String"/>

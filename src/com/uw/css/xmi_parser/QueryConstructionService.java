@@ -31,7 +31,7 @@ public class QueryConstructionService {
         //iteration on components
         for(Component c : components){
             query = query.concat("?").concat(c.name).concat(" ").concat(" a ");
-            query = query.concat(resolveWOCType(c.getType())).concat(".\n");
+            query = query.concat(resolveWOCType(c.getType())).concat(" .\n");
 
             //modifier iteration
             if(c.getModifiers() != null){
@@ -48,7 +48,7 @@ public class QueryConstructionService {
             Component toItem = relationshipItem.getToItem();
             query = query.concat("?").concat(fromItem.name).concat(" ");
             query = query.concat(resolveRelationshipWOCType(relationshipItem.getName())).concat(" ");
-            query = query.concat("?").concat(toItem.name).concat(".\n");
+            query = query.concat("?").concat(toItem.name).concat(" .\n");
         }
         //close where clause
         query = query.concat("\n}");
@@ -65,7 +65,9 @@ public class QueryConstructionService {
                 return replaceInlinePrefix(Ontology.PROTECTED_INDIVIDUAL.toString());
             case "static":
                 return replaceInlinePrefix(Ontology.STATIC_INDIVIDUAL.toString());
-            case "Abstract":
+            case "abstract":
+                return replaceInlinePrefix(Ontology.ABSTRACT_INDIVIDUAL.toString());
+            case "final":
                 return replaceInlinePrefix(Ontology.ABSTRACT_INDIVIDUAL.toString());
         }
         return "";
@@ -79,13 +81,19 @@ public class QueryConstructionService {
             case dependency:
                 return Ontology.DEPENDENCY_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case association:
-                return Ontology.REFERENCES_PROPERTY.toString().replace(Ontology.WOC,"woc:");
+                return Ontology.DEPENDENCY_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case operation:
                 return Ontology.HAS_METHOD_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case property:
                 return Ontology.HAS_FIELD_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case interfacerealization:
                 return Ontology.IMPLEMENTS_PROPERTY.toString().replace(Ontology.WOC,"woc:");
+            case returnType:
+                return replaceInlinePrefix(Ontology.RETURN_TYPE_PROPERTY.toString());
+            case parameter:
+                return replaceInlinePrefix(Ontology.PARAMETER_PROPERTY.toString());
+            case type:
+                return replaceInlinePrefix(Ontology.JAVA_TYPE_PROPERTY.toString());
         }
         return "";
     }
@@ -102,8 +110,25 @@ public class QueryConstructionService {
                 return Ontology.METHOD_ENTITY.toString().replace(Ontology.WOC,"woc:");
             case "interface":
                 return Ontology.INTERFACE_ENTITY.toString().replace(Ontology.WOC,"woc:");
+            case "property":
+                return replaceInlinePrefix(Ontology.FIELD_ENTITY.toString());
+//            case "parameter":
+//                return replaceInlinePrefix(Ontology.PARAMETER_ENTITY.toString());
             default:
                 throw new IllegalStateException("Unexpected value: " + typename);
         }
+    }
+
+    public String addFilterStatement(String query, List<Component> components){
+        String filter = "FILTER { ";
+        for (int i = 0; i < components.size(); i++) {
+            for (int j = i+1; j < components.size(); j++) {
+                if(components.get(i).getType().equals(components.get(j).getType())){
+                    filter += "?"+components.get(i).getName() +" != ?"+components.get(j).getName()+" .\n";
+                }
+            }
+        }
+        filter +="}\n";
+        return query+filter;
     }
 }

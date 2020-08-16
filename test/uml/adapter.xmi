@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.0" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1">
+	<xmi:Documentation exporter="StarUML" exporterVersion="2.0"/>
+	<uml:Model xmi:id="AAAAAAFx4o1svwu+fk0=" xmi:type="uml:Model" name="RootModel">
+		<packagedElement xmi:id="AAAAAAFx4owBewt/1ZY=" name="adapter_simple" visibility="public" xmi:type="uml:Package">
+			<packagedElement xmi:id="AAAAAAFx4owBewt2VXU=" name="Target" visibility="public" isAbstract="true" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedOperation xmi:id="AAAAAAFx4owBewt1m6c=" name="Request1" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="true" xmi:type="uml:Operation"/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAFx4owBewt8zkY=" name="Adapter" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedMember xmi:id="AAAAAAFx4owBewt63T8=" visibility="public" xmi:type="uml:Association" isDerived="false">
+					<ownedEnd xmi:id="AAAAAAFx4owBewt4uuI=" name="adaptee" visibility="public" isStatic="false" isLeaf="false" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="none" isDerived="false" isID="false" type="AAAAAAFx4owBewt8zkY=">
+						<xmi:Extension extender="StarUML">
+							<stereotype value=""/>
+						</xmi:Extension>
+					</ownedEnd>
+					<ownedEnd xmi:id="AAAAAAFx4owBewt5Bts=" visibility="public" isStatic="false" isLeaf="false" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="none" isDerived="false" isID="false" type="AAAAAAFx4owBewt+As4=">
+						<xmi:Extension extender="StarUML">
+							<stereotype value=""/>
+						</xmi:Extension>
+					</ownedEnd>
+					<memberEnd xmi:idref="AAAAAAFx4owBewt4uuI="/>
+					<memberEnd xmi:idref="AAAAAAFx4owBewt5Bts="/>
+				</ownedMember>
+				<ownedOperation xmi:id="AAAAAAFx4owBewt7tL0=" name="Request" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation"/>
+				<generalization xmi:id="AAAAAAFx4owBewt3VDE=" visibility="public" xmi:type="uml:Generalization" specific="AAAAAAFx4owBewt8zkY=" general="AAAAAAFx4owBewt2VXU="/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAFx4owBewt+As4=" name="Adaptee" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedOperation xmi:id="AAAAAAFx4owBewt99mk=" name="SpecificRequest" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation"/>
+			</packagedElement>
+		</packagedElement>
+	</uml:Model>
+</xmi:XMI>

@@ -2,27 +2,27 @@ PREFIX woc: <http://rdf.webofcode.org/woc/>
 
 SELECT ?FactoryMethod ?AnOperation ?Product ?ConcreteProduct ?Creator ?ConcreteCreator 
  WHERE {
- ?FactoryMethod  a woc:Method.
+ ?FactoryMethod  a woc:Method .
 ?FactoryMethod woc:hasModifier woc:Public .
 ?FactoryMethod woc:hasModifier woc:Abstract .
-?AnOperation  a woc:Method.
+?AnOperation  a woc:Method .
 ?AnOperation woc:hasModifier woc:Public .
 ?AnOperation woc:hasModifier woc:Abstract .
-?Product  a woc:Class.
+?Product  a woc:Class .
 ?Product woc:hasModifier woc:Public .
 ?Product woc:hasModifier woc:Abstract .
-?ConcreteProduct  a woc:Class.
+?ConcreteProduct  a woc:Class .
 ?ConcreteProduct woc:hasModifier woc:Public .
-?Creator  a woc:Class.
+?Creator  a woc:Class .
 ?Creator woc:hasModifier woc:Public .
 ?Creator woc:hasModifier woc:Abstract .
-?ConcreteCreator  a woc:Class.
+?ConcreteCreator  a woc:Class .
 ?ConcreteCreator woc:hasModifier woc:Public .
-?Creator woc:hasMethod ?FactoryMethod.
-?Creator woc:hasMethod ?AnOperation.
-?ConcreteCreator woc:hasMethod ?FactoryMethod.
-?ConcreteProduct woc:extends ?Product.
-?ConcreteProduct woc:hasDependency ?ConcreteCreator.
-?ConcreteCreator woc:extends ?Creator.
+?Creator woc:hasMethod ?FactoryMethod .
+?Creator woc:hasMethod ?AnOperation .
+?ConcreteCreator woc:hasMethod ?FactoryMethod .
+?ConcreteProduct woc:extends ?Product .
+?ConcreteCreator woc:hasDependency ?ConcreteProduct .
+?ConcreteCreator woc:extends ?Creator .
 
 }

@@ -42,6 +42,8 @@ other part of SDMetrics.
 <trigger name="name" type="attrval" attr="name" />
 <trigger name="name" type="ctext" src="name" />
 <trigger name="comments" type="xmi2assoc" attr="ownedComment" src="uml:Comment" />
+<trigger name="stereotypes" type="gcattrval" src="UML:ModelElement.stereotype"
+		 attr="xmi.idref" linkbackattr="extendedelements" />
 </xmitransformation>
 
 <!-- classes, interfaces, attributes, operations -->
@@ -50,6 +52,10 @@ other part of SDMetrics.
 <trigger name="visibility" type="ctext" src="visibility" />
 <trigger name="abstract" type="attrval" attr="isAbstract"/>
 <trigger name="abstract" type="ctext" src="isAbstract" />
+<trigger name="final" type="attrval" attr="isFinal"/>
+<trigger name="final" type="ctext" src="isFinal" />
+<trigger name="static" type="attrval" attr="isStatic"/>
+<trigger name="static" type="ctext" src="isStatic" />
 <trigger name="leaf" type="attrval" attr="isLeaf"/>
 <trigger name="leaf" type="ctext" src="isLeaf" />
 <trigger name="ownedattributes" type="xmi2assoc" src="uml:Property" attr="ownedAttribute" />
@@ -107,6 +113,10 @@ other part of SDMetrics.
 <trigger name="visibility" type="ctext" src="visibility" />
 <trigger name="abstract" type="attrval" attr="isAbstract"/>
 <trigger name="abstract" type="ctext" src="isAbstract" />
+<trigger name="final" type="attrval" attr="isFinal"/>
+<trigger name="final" type="ctext" src="isFinal" />
+<trigger name="static" type="attrval" attr="isStatic"/>
+<trigger name="static" type="ctext" src="isStatic" />
 <trigger name="isquery" type="attrval" attr="isQuery"/>
 <trigger name="isquery" type="ctext" src="isQuery" />
 <trigger name="ownedparameters" type="xmi2assoc" src="uml:Parameter" attr="ownedParameter" />
@@ -736,7 +746,11 @@ other part of SDMetrics.
 
 
 <!-- stereotypes, comments -->
-<xmitransformation modelelement="stereotype" xmipattern="uml:Stereotype" />
+<!--<xmitransformation modelelement="stereotype" xmipattern="uml:Stereotype" />-->
+<xmitransformation modelelement="stereotype" xmipattern="UML:Stereotype" requirexmiid="false">
+	<trigger name="extendedelements" type="gcattrval" src="UML:Stereotype.extendedElement"
+			 attr="xmi.idref" linkbackattr="stereotypes" />
+</xmitransformation>
 
 <xmitransformation modelelement="comment" xmipattern="uml:Comment">
 <trigger name="body" type="attrval" attr="body" />

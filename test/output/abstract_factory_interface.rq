@@ -1,0 +1,44 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?FactoryInterface28 ?FactoryInterface29 ?ProductInterfaceA30 ?ProductInterfaceB31 ?createProductA3 ?createProductB5 ?createProductA11 ?createProductB13 ?createProductA25 ?createProductB27 ?ConcreteFactory17 ?ConcreteFactory215 ?ProductA217 ?ProductA119 ?ProductB221 ?ProductB123 
+ WHERE {
+ ?FactoryInterface28  a woc:Interface .
+?FactoryInterface29  a woc:Interface .
+?ProductInterfaceA30  a woc:Interface .
+?ProductInterfaceB31  a woc:Interface .
+?createProductA3  a woc:Method .
+?createProductB5  a woc:Method .
+?createProductA11  a woc:Method .
+?createProductB13  a woc:Method .
+?createProductA25  a woc:Method .
+?createProductB27  a woc:Method .
+?ConcreteFactory17  a woc:Class .
+?ConcreteFactory215  a woc:Class .
+?ProductA217  a woc:Class .
+?ProductA119  a woc:Class .
+?ProductB221  a woc:Class .
+?ProductB123  a woc:Class .
+?ConcreteFactory17 woc:hasMethod ?createProductA3 .
+?createProductA3 woc:hasReturnType ?ProductInterfaceA30 .
+?ConcreteFactory17 woc:hasMethod ?createProductB5 .
+?createProductB5 woc:hasReturnType ?ProductInterfaceB31 .
+?ConcreteFactory215 woc:hasMethod ?createProductA11 .
+?createProductA11 woc:hasReturnType ?ProductInterfaceA30 .
+?ConcreteFactory215 woc:hasMethod ?createProductB13 .
+?createProductB13 woc:hasReturnType ?ProductInterfaceB31 .
+?FactoryInterface28 woc:hasMethod ?createProductA25 .
+?createProductA25 woc:hasReturnType ?ProductInterfaceA30 .
+?FactoryInterface28 woc:hasMethod ?createProductB27 .
+?createProductB27 woc:hasReturnType ?ProductInterfaceB31 .
+?ConcreteFactory215 woc:hasDependency ?ProductA217 .
+?ConcreteFactory17 woc:hasDependency ?ProductA119 .
+?ConcreteFactory215 woc:hasDependency ?ProductB221 .
+?ConcreteFactory17 woc:hasDependency ?ProductB123 .
+?ConcreteFactory17 woc:implements ?FactoryInterface29 .
+?ConcreteFactory215 woc:implements ?FactoryInterface29 .
+?ProductA217 woc:implements ?ProductInterfaceA30 .
+?ProductA119 woc:implements ?ProductInterfaceA30 .
+?ProductB221 woc:implements ?ProductInterfaceB31 .
+?ProductB123 woc:implements ?ProductInterfaceB31 .
+
+}

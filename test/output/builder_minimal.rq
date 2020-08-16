@@ -1,0 +1,24 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?Constructor ?getResult ?Director ?ConcreteBuilder ?Product ?builder 
+ WHERE {
+ ?Constructor  a woc:Method .
+?Constructor woc:hasModifier woc:Public .
+?getResult  a woc:Method .
+?getResult woc:hasModifier woc:Public .
+?Director  a woc:Class .
+?Director woc:hasModifier woc:Public .
+?ConcreteBuilder  a woc:Class .
+?ConcreteBuilder woc:hasModifier woc:Public .
+?Product  a woc:Class .
+?Product woc:hasModifier woc:Public .
+?builder  a woc:Field .
+?builder woc:hasModifier woc:Public .
+?Director woc:hasMethod ?Constructor .
+?ConcreteBuilder woc:hasMethod ?getResult .
+?getResult woc:hasReturnType ?Product .
+?Director woc:hasField ?builder .
+?ConcreteBuilder woc:hasDependency ?Product .
+?ConcreteBuilder woc:references ?Director .
+
+}

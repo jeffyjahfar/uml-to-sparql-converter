@@ -1,0 +1,19 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?Factory ?factoryMethod ?ConcreteFactory ?Creator 
+ WHERE {
+ ?Factory  a woc:Interface .
+?factoryMethod  a woc:Method .
+?factoryMethod woc:hasModifier woc:Public .
+?ConcreteFactory  a woc:Class .
+?ConcreteFactory woc:hasModifier woc:Public .
+?Creator  a woc:Class .
+?Creator woc:hasModifier woc:Public .
+?Factory woc:hasMethod ?factoryMethod .
+?factoryMethod woc:hasReturnType ?Creator .
+?ConcreteFactory woc:hasMethod ?factoryMethod .
+?factoryMethod woc:hasReturnType ?Creator .
+?ConcreteFactory woc:hasDependency ?Creator .
+?ConcreteFactory woc:implements ?Factory .
+
+}

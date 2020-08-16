@@ -1,0 +1,26 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?Visitor ?VisitConcreteElementA ?Accept ?VisitConcreteElementA1 ?ConcreteVisitor1 ?ConcreteElementA 
+ WHERE {
+ ?Visitor  a woc:Interface .
+?VisitConcreteElementA  a woc:Method .
+?VisitConcreteElementA woc:hasModifier woc:Public .
+?Accept  a woc:Method .
+?Accept woc:hasModifier woc:Public .
+?VisitConcreteElementA1  a woc:Method .
+?VisitConcreteElementA1 woc:hasModifier woc:Public .
+?ConcreteVisitor1  a woc:Class .
+?ConcreteVisitor1 woc:hasModifier woc:Public .
+?ConcreteElementA  a woc:Class .
+?ConcreteElementA woc:hasModifier woc:Public .
+?ConcreteVisitor1 woc:hasMethod ?VisitConcreteElementA .
+?VisitConcreteElementA woc:hasParameter ?c .
+?c woc:hasType ?ConcreteElementA .
+?ConcreteElementA woc:hasMethod ?Accept .
+?Accept woc:hasParameter ?v .
+?Visitor woc:hasMethod ?VisitConcreteElementA1 .
+?VisitConcreteElementA1 woc:hasParameter ?c1 .
+?c1 woc:hasType ?ConcreteElementA .
+?ConcreteVisitor1 woc:implements ?Visitor .
+
+}

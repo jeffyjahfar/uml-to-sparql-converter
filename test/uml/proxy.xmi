@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.0" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1">
+	<xmi:Documentation exporter="StarUML" exporterVersion="2.0"/>
+	<uml:Model xmi:id="AAAAAAFx4ngCwIbSTl4=" xmi:type="uml:Model" name="RootModel">
+		<packagedElement xmi:id="AAAAAAFx4nZEHYY2u30=" name="proxy" visibility="public" xmi:type="uml:Package">
+			<packagedElement xmi:id="AAAAAAFx4nZEHYYsolE=" name="Subject" visibility="public" isAbstract="true" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedOperation xmi:id="AAAAAAFx4nZEHYYr+uk=" name="Request1" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="true" xmi:type="uml:Operation"/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAFx4nZEHYYv+LY=" name="RealSubject" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedOperation xmi:id="AAAAAAFx4nZEHYYulFU=" name="RealRequest" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation"/>
+				<generalization xmi:id="AAAAAAFx4nZEHYYtm5Q=" visibility="public" xmi:type="uml:Generalization" specific="AAAAAAFx4nZEHYYv+LY=" general="AAAAAAFx4nZEHYYsolE="/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAFx4nZEHYY1zqo=" name="Proxy" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedMember xmi:id="AAAAAAFx4nZEHYYyijE=" name="realSubjectInstance" visibility="public" xmi:type="uml:Association" isDerived="false">
+					<ownedEnd xmi:id="AAAAAAFx4nZEHYYwdRw=" visibility="public" isStatic="false" isLeaf="false" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="none" isDerived="false" isID="false" type="AAAAAAFx4nZEHYY1zqo=">
+						<xmi:Extension extender="StarUML">
+							<stereotype value=""/>
+						</xmi:Extension>
+					</ownedEnd>
+					<ownedEnd xmi:id="AAAAAAFx4nZEHYYxdhY=" visibility="public" isStatic="false" isLeaf="false" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="none" isDerived="false" isID="false" type="AAAAAAFx4nZEHYYv+LY=">
+						<xmi:Extension extender="StarUML">
+							<stereotype value=""/>
+						</xmi:Extension>
+					</ownedEnd>
+					<memberEnd xmi:idref="AAAAAAFx4nZEHYYwdRw="/>
+					<memberEnd xmi:idref="AAAAAAFx4nZEHYYxdhY="/>
+				</ownedMember>
+				<ownedOperation xmi:id="AAAAAAFx4nZEHYY0te0=" name="ProxyRequest" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation"/>
+				<generalization xmi:id="AAAAAAFx4nZEHYYzsNQ=" visibility="public" xmi:type="uml:Generalization" specific="AAAAAAFx4nZEHYY1zqo=" general="AAAAAAFx4nZEHYYsolE="/>
+			</packagedElement>
+		</packagedElement>
+	</uml:Model>
+</xmi:XMI>

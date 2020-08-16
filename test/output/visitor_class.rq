@@ -1,0 +1,70 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?VisitConcreteElementA ?VisitConcreteElementB ?VisitConcreteElementA1 ?VisitConcreteElementB2 ?VisitConcreteElementA2 ?Accept ?AcceptA ?AcceptB ?Visitor ?ConcreteVisitor1 ?ConcreteVisitor2 ?Element ?ConcreteElementA ?ConcreteElementB 
+ WHERE {
+ ?VisitConcreteElementA  a woc:Method .
+?VisitConcreteElementA woc:hasModifier woc:Public .
+?VisitConcreteElementA woc:hasModifier woc:Abstract .
+?VisitConcreteElementB  a woc:Method .
+?VisitConcreteElementB woc:hasModifier woc:Public .
+?VisitConcreteElementB woc:hasModifier woc:Abstract .
+?VisitConcreteElementA1  a woc:Method .
+?VisitConcreteElementA1 woc:hasModifier woc:Public .
+?VisitConcreteElementB2  a woc:Method .
+?VisitConcreteElementB2 woc:hasModifier woc:Public .
+?VisitConcreteElementA2  a woc:Method .
+?VisitConcreteElementA2 woc:hasModifier woc:Public .
+?Accept  a woc:Method .
+?Accept woc:hasModifier woc:Public .
+?Accept woc:hasModifier woc:Abstract .
+?AcceptA  a woc:Method .
+?AcceptA woc:hasModifier woc:Public .
+?AcceptB  a woc:Method .
+?AcceptB woc:hasModifier woc:Public .
+?Visitor  a woc:Class .
+?Visitor woc:hasModifier woc:Public .
+?Visitor woc:hasModifier woc:Abstract .
+?ConcreteVisitor1  a woc:Class .
+?ConcreteVisitor1 woc:hasModifier woc:Public .
+?ConcreteVisitor2  a woc:Class .
+?ConcreteVisitor2 woc:hasModifier woc:Public .
+?Element  a woc:Class .
+?Element woc:hasModifier woc:Public .
+?Element woc:hasModifier woc:Abstract .
+?ConcreteElementA  a woc:Class .
+?ConcreteElementA woc:hasModifier woc:Public .
+?ConcreteElementB  a woc:Class .
+?ConcreteElementB woc:hasModifier woc:Public .
+?Visitor woc:hasMethod ?VisitConcreteElementA .
+?VisitConcreteElementA woc:hasParameter ?cA .
+?cA woc:hasType ?ConcreteElementA .
+?Visitor woc:hasMethod ?VisitConcreteElementB .
+?VisitConcreteElementB woc:hasParameter ?cB .
+?cB woc:hasType ?ConcreteElementB .
+?ConcreteVisitor1 woc:hasMethod ?VisitConcreteElementA1 .
+?VisitConcreteElementA1 woc:hasParameter ?cA1 .
+?cA1 woc:hasType ?ConcreteElementA .
+?ConcreteVisitor1 woc:hasMethod ?VisitConcreteElementB2 .
+?VisitConcreteElementB2 woc:hasParameter ?cB1 .
+?cB1 woc:hasType ?ConcreteElementB .
+?ConcreteVisitor2 woc:hasMethod ?VisitConcreteElementA2 .
+?VisitConcreteElementA2 woc:hasParameter ?cA2 .
+?cA2 woc:hasType ?ConcreteElementA .
+?ConcreteVisitor2 woc:hasMethod ?VisitConcreteElementB2 .
+?VisitConcreteElementB2 woc:hasParameter ?cB2 .
+?cB2 woc:hasType ?ConcreteElementB .
+?Element woc:hasMethod ?Accept .
+?Accept woc:hasParameter ?v .
+?v woc:hasType ?Visitor .
+?ConcreteElementA woc:hasMethod ?AcceptA .
+?AcceptA woc:hasParameter ?vA .
+?vA woc:hasType ?Visitor .
+?ConcreteElementB woc:hasMethod ?AcceptB .
+?AcceptB woc:hasParameter ?vA .
+?vA woc:hasType ?Visitor .
+?ConcreteVisitor1 woc:extends ?Visitor .
+?ConcreteVisitor2 woc:extends ?Visitor .
+?ConcreteElementA woc:extends ?Element .
+?ConcreteElementB woc:extends ?Element .
+
+}

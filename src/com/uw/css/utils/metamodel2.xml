@@ -39,13 +39,16 @@ other part of SDMetrics.
   <attribute name="id">Unique identifier of the model element.</attribute>
   <attribute name="name">Name of the element in UML model.</attribute>
   <attribute name="comments" type="ref" multiplicity="many">The comments for the model element.</attribute>
+  <attribute name="stereotypes" type="ref" multiplicity="many">The stereotypes of the model element.</attribute>
 </modelelement>
 
 <!-- classes, interfaces, attributes, operations -->
 <modelelement name="class">
 	<attribute name="visibility">Visibility of the element (public, protected, package, private).</attribute>
 	<attribute name="abstract">Boolean indicating if the element is abstract.</attribute>
-	<attribute name="leaf">Boolean indicating if the element can have specializations.</attribute>
+    <attribute name="static">Boolean indicating if the element is static.</attribute>
+    <attribute name="final">Boolean indicating if the element is final.</attribute>
+    <attribute name="leaf">Boolean indicating if the element can have specializations.</attribute>
 	<attribute name="ownedattributes" type="ref" multiplicity="many">The attributes of the element.</attribute>
 	<attribute name="ownedoperations" type="ref" multiplicity="many">The operations of the element.</attribute>
 	<attribute name="nestedclassifiers" type="ref" multiplicity="many">The nested classifiers of the element.</attribute>
@@ -92,7 +95,9 @@ other part of SDMetrics.
 <modelelement name="operation">
 	<attribute name="visibility">Visibility of the operation (public, private, protected, package).</attribute>
 	<attribute name="abstract">Boolean indicating if operation is abstract.</attribute>
-	<attribute name="isquery">Boolean indicating if operation is a query that does not change the classifier's state.</attribute>
+    <attribute name="static">Boolean indicating if the element is static.</attribute>
+    <attribute name="final">Boolean indicating if the element is final.</attribute>
+    <attribute name="isquery">Boolean indicating if operation is a query that does not change the classifier's state.</attribute>
 	<attribute name="ownedparameters" type="ref" multiplicity="many">The parameters of the operation.</attribute>
 </modelelement>
 <modelelement name="parameter">
@@ -338,7 +343,10 @@ other part of SDMetrics.
 
 
 <!-- comments, stereotypes  -->
-<modelelement name="stereotype" />
+<!--<modelelement name="stereotype" />-->
+<modelelement name="stereotype">
+    <attribute name="extendedelements" type="ref" multiplicity="many">The set of elements that the stereotype extends.</attribute>
+</modelelement>
 <modelelement name="comment">
   <attribute name="body">The comment text.</attribute>
 </modelelement>

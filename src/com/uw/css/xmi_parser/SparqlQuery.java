@@ -51,6 +51,7 @@ public class SparqlQuery {
         query = query + queryConstructionService.setPrefix();
         query = queryConstructionService.constructSelectStatement(components,false, query);
         query = queryConstructionService.constructWhereStatement(query,relationshipItems,components);
+//        query = queryConstructionService.addFilterStatement(query,components);
         return query;
     }
 }

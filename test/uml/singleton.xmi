@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.0" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1">
+	<xmi:Documentation exporter="StarUML" exporterVersion="2.0"/>
+	<uml:Model xmi:id="AAAAAAFx3rhrQ8uXqIk=" xmi:type="uml:Model" name="RootModel">
+		<packagedElement xmi:id="AAAAAAFx3qyuN8tzC0g=" name="singleton" visibility="public" xmi:type="uml:Package">
+			<packagedElement xmi:id="AAAAAAFx3qyuN8tyjs8=" name="Singleton" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedAttribute xmi:id="AAAAAAFx3qyuN8ttuNc=" name="uniqueInstance" visibility="private" isStatic="true" isLeaf="false" type="AAAAAAFx3qyuN8tyjs8=" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="none" isDerived="false" isID="false"/>
+				<ownedOperation xmi:id="AAAAAAFx3qyuN8tva9o=" name="Instance" visibility="public" isStatic="true" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<ownedParameter xmi:id="AAAAAAFx3q1308t5o+g=" name="uniqueInstance" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAFx3qyuN8tyjs8=" isReadOnly="false" isOrdered="false" isUnique="false" direction="return" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+				<ownedOperation xmi:id="AAAAAAFx3qyuN8twjjQ=" name="SingletonOperation" visibility="private" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation"/>
+			</packagedElement>
+		</packagedElement>
+	</uml:Model>
+</xmi:XMI>

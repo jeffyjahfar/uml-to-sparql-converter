@@ -62,10 +62,10 @@ public class PatternUMLParser {
         PatternUMLParser patternUMLParser = new PatternUMLParser();
         ModelElementResolverService modelElementResolverService = new ModelElementResolverService();
         try {
-            String filename = "sample_complex";
+            String filename = "visitor_bothinterface_variation";
             patternUMLParser.parseTestXMIFile(filename.concat(".xmi"));
             SparqlQuery query = new SparqlQuery();
-
+            Boolean suppressVisibility = true;
 
 //            patternUMLParser.model.getMetaModel();
             Iterator<ModelElement> iterator = patternUMLParser.model.iterator();
@@ -77,7 +77,7 @@ public class PatternUMLParser {
                 if(modelElement.getXMIID() != null){
                     PatternUMLParser.entityMap.put(modelElement.getXMIID(),modelElement);
                 }
-                query.components = modelElementResolverService.resolveComponents(query.components,modelElement);
+                query.components = modelElementResolverService.resolveComponents(query.components,modelElement, suppressVisibility);
                 query.relationshipItems = modelElementResolverService.resolveRelations(query.relationshipItems,modelElement);
             }
             query.constructQuery();

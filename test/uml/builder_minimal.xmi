@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.0" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1">
+	<xmi:Documentation exporter="StarUML" exporterVersion="2.0"/>
+	<uml:Model xmi:id="AAAAAAFx4sTCPrEzVE4=" xmi:type="uml:Model" name="RootModel">
+		<packagedElement xmi:id="AAAAAAFx4rZp+K/hAQo=" name="builder" visibility="public" xmi:type="uml:Package">
+			<packagedElement xmi:id="AAAAAAFx4rZp96/TxBs=" name="Director" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedAttribute xmi:id="AAAAAAFx4rZp96/QFvw=" name="builder" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAFx4rZp+K/fl9g=" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="none" isDerived="false" isID="false"/>
+				<ownedOperation xmi:id="AAAAAAFx4rZp96/SG2k=" name="Constructor" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation"/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAFx4rZp+K/fl9g=" name="ConcreteBuilder" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedMember xmi:id="AAAAAAFx4rZp+K/a42c=" visibility="public" xmi:type="uml:Dependency" client="AAAAAAFx4rZp+K/fl9g=" supplier="AAAAAAFx4rZp+K/gIuY=">
+					<xmi:Extension extender="StarUML">
+						<stereotype value="create"/>
+					</xmi:Extension>
+				</ownedMember>
+				<ownedMember xmi:id="AAAAAAFx4sMAQbB1KQ4=" visibility="public" xmi:type="uml:Association" isDerived="false">
+					<ownedEnd xmi:id="AAAAAAFx4sMAQbB2cfM=" visibility="public" isStatic="false" isLeaf="false" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="shared" isDerived="false" isID="false" type="AAAAAAFx4rZp+K/fl9g=">
+						<xmi:Extension extender="StarUML">
+							<stereotype value=""/>
+						</xmi:Extension>
+					</ownedEnd>
+					<ownedEnd xmi:id="AAAAAAFx4sMAQbB37vA=" visibility="public" isStatic="false" isLeaf="false" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="none" isDerived="false" isID="false" type="AAAAAAFx4rZp96/TxBs=">
+						<xmi:Extension extender="StarUML">
+							<stereotype value=""/>
+						</xmi:Extension>
+					</ownedEnd>
+					<memberEnd xmi:idref="AAAAAAFx4sMAQbB2cfM="/>
+					<memberEnd xmi:idref="AAAAAAFx4sMAQbB37vA="/>
+				</ownedMember>
+				<ownedOperation xmi:id="AAAAAAFx4rZp+K/dXHQ=" name="getResult" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<ownedParameter xmi:id="AAAAAAFx4rZp+K/c+Hc=" visibility="public" isStatic="false" isLeaf="false" type="Product_id" isReadOnly="false" isOrdered="false" isUnique="false" direction="return" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAFx4rZp+K/gIuY=" name="Product" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false"/>
+		</packagedElement>
+		<packagedElement xmi:id="Builder_id" xmi:type="uml:DataType" name="Builder"/>
+		<packagedElement xmi:id="Product_id" xmi:type="uml:DataType" name="Product"/>
+	</uml:Model>
+</xmi:XMI>
