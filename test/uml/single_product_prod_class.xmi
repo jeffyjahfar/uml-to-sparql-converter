@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.0" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1">
+	<xmi:Documentation exporter="StarUML" exporterVersion="2.0"/>
+	<uml:Model xmi:id="AAAAAAF0MdMkLU5Lhlo=" xmi:type="uml:Model" name="RootModel">
+		<packagedElement xmi:id="AAAAAAF0Mbra5Uxto7Q=" name="abstract_factory" visibility="public" xmi:type="uml:Package">
+			<packagedElement xmi:id="AAAAAAF0Mbra5UxU3EU=" name="ConcreteFactory1" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedMember xmi:id="AAAAAAF0Mbra5UxNL8k=" visibility="public" xmi:type="uml:Dependency" client="AAAAAAF0Mbra5UxU3EU=" supplier="AAAAAAF0Mbra5UxgI2U="/>
+				<ownedOperation xmi:id="AAAAAAF0Mbra5UxR1ZQ=" name="createProductA" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<ownedParameter xmi:id="AAAAAAF0Mbra5UxQknY=" name="a" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF0Mbra5UxrUpo=" isReadOnly="false" isOrdered="false" isUnique="false" direction="return" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+				<interfaceRealization xmi:id="AAAAAAF0MdCxJE4RSms=" visibility="public" xmi:type="uml:InterfaceRealization" implementingClassifier="AAAAAAF0Mbra5UxU3EU=" contract="AAAAAAF0Mc7Tek3SxKA="/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAF0Mbra5UxcEZg=" name="ConcreteFactory2" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedMember xmi:id="AAAAAAF0Mbra5UxVkak=" visibility="public" xmi:type="uml:Dependency" client="AAAAAAF0Mbra5UxcEZg=" supplier="AAAAAAF0Mbra5Uxe/dA="/>
+				<ownedOperation xmi:id="AAAAAAF0Mbra5UxZFpY=" name="createProductA" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<ownedParameter xmi:id="AAAAAAF0Mbra5UxYEms=" name="a" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF0Mbra5UxrUpo=" isReadOnly="false" isOrdered="false" isUnique="false" direction="return" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+				<interfaceRealization xmi:id="AAAAAAF0MdDC+k4iuXA=" visibility="public" xmi:type="uml:InterfaceRealization" implementingClassifier="AAAAAAF0Mbra5UxcEZg=" contract="AAAAAAF0Mc7Tek3SxKA="/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAF0Mbra5Uxe/dA=" name="ProductA2" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<generalization xmi:id="AAAAAAF0Mct/T02XndQ=" visibility="public" xmi:type="uml:Generalization" specific="AAAAAAF0Mbra5Uxe/dA=" general="AAAAAAF0McpSnU0OdIo="/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAF0Mbra5UxgI2U=" name="ProductA1" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<generalization xmi:id="AAAAAAF0MctcWk1+rLE=" visibility="public" xmi:type="uml:Generalization" specific="AAAAAAF0Mbra5UxgI2U=" general="AAAAAAF0McpSnU0OdIo="/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAF0McpSnU0OdIo=" name="ProductA" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false"/>
+			<packagedElement xmi:id="AAAAAAF0Mc7Tek3SxKA=" name="FactoryInterface" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Interface">
+				<ownedOperation xmi:id="AAAAAAF0Mbra5Uxm7sg=" name="createProductA" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<ownedParameter xmi:id="AAAAAAF0Mbra5Uxl+wY=" name="a" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF0Mbra5UxrUpo=" isReadOnly="false" isOrdered="false" isUnique="false" direction="return" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+			</packagedElement>
+		</packagedElement>
+	</uml:Model>
+</xmi:XMI>

@@ -1,0 +1,24 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?FactoryInterface17 ?createProductA2 ?createProductA7 ?createProductA16 ?ConcreteFactory14 ?ConcreteFactory29 ?ProductA211 ?ProductA113 ?ProductA14 
+ WHERE {
+ ?FactoryInterface17  a woc:Interface .
+?createProductA2  a woc:Method .
+?createProductA7  a woc:Method .
+?createProductA16  a woc:Method .
+?ConcreteFactory14  a woc:Class .
+?ConcreteFactory29  a woc:Class .
+?ProductA211  a woc:Class .
+?ProductA113  a woc:Class .
+?ProductA14  a woc:Class .
+?ConcreteFactory14 woc:implements ?FactoryInterface17 .
+?ConcreteFactory29 woc:implements ?FactoryInterface17 .
+?ConcreteFactory14 woc:hasMethod ?createProductA2 .
+?ConcreteFactory29 woc:hasMethod ?createProductA7 .
+?FactoryInterface17 woc:hasMethod ?createProductA16 .
+?ConcreteFactory29 woc:hasDependency ?ProductA211 .
+?ConcreteFactory14 woc:hasDependency ?ProductA113 .
+?ProductA113 woc:extends ?ProductA14 .
+?ProductA211 woc:extends ?ProductA14 .
+
+}

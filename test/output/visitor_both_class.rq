@@ -1,0 +1,57 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?VisitConcreteElementA1 ?VisitConcreteElementB3 ?VisitConcreteElementA16 ?VisitConcreteElementB28 ?VisitConcreteElementA212 ?VisitConcreteElementB214 ?Accept18 ?AcceptA21 ?AcceptB25 ?Visitor4 ?ConcreteVisitor110 ?ConcreteVisitor216 ?Element19 ?ConcreteElementA23 ?ConcreteElementB27 
+ WHERE {
+ ?VisitConcreteElementA1  a woc:Method .
+?VisitConcreteElementA1 woc:hasModifier woc:Abstract .
+?VisitConcreteElementB3  a woc:Method .
+?VisitConcreteElementB3 woc:hasModifier woc:Abstract .
+?VisitConcreteElementA16  a woc:Method .
+?VisitConcreteElementB28  a woc:Method .
+?VisitConcreteElementA212  a woc:Method .
+?VisitConcreteElementB214  a woc:Method .
+?Accept18  a woc:Method .
+?Accept18 woc:hasModifier woc:Abstract .
+?AcceptA21  a woc:Method .
+?AcceptB25  a woc:Method .
+?Visitor4  a woc:Class .
+?Visitor4 woc:hasModifier woc:Abstract .
+?ConcreteVisitor110  a woc:Class .
+?ConcreteVisitor216  a woc:Class .
+?Element19  a woc:Class .
+?Element19 woc:hasModifier woc:Abstract .
+?ConcreteElementA23  a woc:Class .
+?ConcreteElementB27  a woc:Class .
+?Visitor4 woc:hasMethod ?VisitConcreteElementA1 .
+?VisitConcreteElementA1 woc:hasParameter ?cA0 .
+?cA0 woc:hasType ?ConcreteElementA23 .
+?Visitor4 woc:hasMethod ?VisitConcreteElementB3 .
+?VisitConcreteElementB3 woc:hasParameter ?cB2 .
+?cB2 woc:hasType ?ConcreteElementB27 .
+?ConcreteVisitor110 woc:hasMethod ?VisitConcreteElementA16 .
+?VisitConcreteElementA16 woc:hasParameter ?cA15 .
+?cA15 woc:hasType ?ConcreteElementA23 .
+?ConcreteVisitor110 woc:hasMethod ?VisitConcreteElementB28 .
+?VisitConcreteElementB28 woc:hasParameter ?cB17 .
+?cB17 woc:hasType ?ConcreteElementB27 .
+?ConcreteVisitor216 woc:hasMethod ?VisitConcreteElementA212 .
+?VisitConcreteElementA212 woc:hasParameter ?cA211 .
+?cA211 woc:hasType ?ConcreteElementA23 .
+?ConcreteVisitor216 woc:hasMethod ?VisitConcreteElementB214 .
+?VisitConcreteElementB214 woc:hasParameter ?cB213 .
+?cB213 woc:hasType ?ConcreteElementB27 .
+?Element19 woc:hasMethod ?Accept18 .
+?Accept18 woc:hasParameter ?v17 .
+?v17 woc:hasType ?Visitor4 .
+?ConcreteElementA23 woc:hasMethod ?AcceptA21 .
+?AcceptA21 woc:hasParameter ?vA20 .
+?vA20 woc:hasType ?Visitor4 .
+?ConcreteElementB27 woc:hasMethod ?AcceptB25 .
+?AcceptB25 woc:hasParameter ?vA24 .
+?vA24 woc:hasType ?Visitor4 .
+?ConcreteVisitor216 woc:extends ?Visitor4 .
+?ConcreteVisitor110 woc:extends ?Visitor4 .
+?ConcreteElementB27 woc:extends ?Element19 .
+?ConcreteElementA23 woc:extends ?Element19 .
+
+}

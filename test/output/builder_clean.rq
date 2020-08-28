@@ -2,7 +2,7 @@ PREFIX woc: <http://rdf.webofcode.org/woc/>
 
 SELECT ?Constructor ?buildPart ?getResult ?Director ?Builder ?ConcreteBuilder ?Product ?builder 
  WHERE {
- ?Constructor  a woc:Method .
+?Constructor  a woc:Constructor .
 ?Constructor woc:hasModifier woc:Public .
 ?buildPart  a woc:Method .
 ?buildPart woc:hasModifier woc:Public .
@@ -20,7 +20,7 @@ SELECT ?Constructor ?buildPart ?getResult ?Director ?Builder ?ConcreteBuilder ?P
 ?Product woc:hasModifier woc:Public .
 ?builder  a woc:Field .
 ?builder woc:hasModifier woc:Public .
-?Director woc:hasMethod ?Constructor .
+?Director woc:hasConstructor ?Constructor .
 ?Builder woc:hasMethod ?buildPart .
 ?ConcreteBuilder woc:hasMethod ?buildPart .
 ?ConcreteBuilder woc:hasMethod ?getResult .

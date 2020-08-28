@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.0" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1">
+	<xmi:Documentation exporter="StarUML" exporterVersion="2.0"/>
+	<uml:Model xmi:id="AAAAAAF0M/FNCTyqImE=" xmi:type="uml:Model" name="RootModel">
+		<packagedElement xmi:id="AAAAAAF0M+y/ITwobU4=" name="abstract_factory" visibility="public" xmi:type="uml:Package">
+			<packagedElement xmi:id="AAAAAAF0M+y/ITwRKGo=" name="AbstractFactory" visibility="public" isAbstract="true" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedOperation xmi:id="AAAAAAF0M+y/ITwP9zM=" name="createProductA" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="true" xmi:type="uml:Operation">
+					<ownedParameter xmi:id="AAAAAAF0M+9I6DyO3qs=" name="a" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF0M+y/ITweo8A=" isReadOnly="false" isOrdered="false" isUnique="false" direction="return" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+				<ownedOperation xmi:id="AAAAAAF0M+y/ITwQwM4=" name="createProductB" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="true" xmi:type="uml:Operation">
+					<ownedParameter xmi:id="AAAAAAF0M+/dqDydqTE=" name="b" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF0M+y/ITwjWYU=" isReadOnly="false" isOrdered="false" isUnique="false" direction="return" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAF0M+y/ITwXqRg=" name="ConcreteFactory1" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedOperation xmi:id="AAAAAAF0M+y/ITwVxHI=" name="createProductA" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<ownedParameter xmi:id="AAAAAAF0M++5pzyVS6Y=" name="a" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF0M+y/ITweo8A=" isReadOnly="false" isOrdered="false" isUnique="false" direction="return" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+				<ownedOperation xmi:id="AAAAAAF0M+y/ITwWpBo=" name="createProductB" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<ownedParameter xmi:id="AAAAAAF0M/Awojyje8U=" name="b" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF0M+y/ITwjWYU=" isReadOnly="false" isOrdered="false" isUnique="false" direction="return" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+				<generalization xmi:id="AAAAAAF0M+y/ITwSvag=" visibility="public" xmi:type="uml:Generalization" specific="AAAAAAF0M+y/ITwXqRg=" general="AAAAAAF0M+y/ITwRKGo="/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAF0M+y/ITwdREY=" name="ConcreteFactory2" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedOperation xmi:id="AAAAAAF0M+y/ITwbafg=" name="createProductA" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<ownedParameter xmi:id="AAAAAAF0M+/K5jyZhjg=" name="a" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF0M+y/ITweo8A=" isReadOnly="false" isOrdered="false" isUnique="false" direction="return" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+				<ownedOperation xmi:id="AAAAAAF0M+y/ITwcbEA=" name="createProductB" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<ownedParameter xmi:id="AAAAAAF0M/A/1TynFLg=" name="b" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF0M+y/ITwjWYU=" isReadOnly="false" isOrdered="false" isUnique="false" direction="return" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+				<generalization xmi:id="AAAAAAF0M+y/ITwYixk=" visibility="public" xmi:type="uml:Generalization" specific="AAAAAAF0M+y/ITwdREY=" general="AAAAAAF0M+y/ITwRKGo="/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAF0M+y/ITweo8A=" name="AbstractProductA" visibility="public" isAbstract="true" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false"/>
+			<packagedElement xmi:id="AAAAAAF0M+y/ITwiogo=" name="ProductA1" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<generalization xmi:id="AAAAAAF0M+y/ITwhXS0=" visibility="public" xmi:type="uml:Generalization" specific="AAAAAAF0M+y/ITwiogo=" general="AAAAAAF0M+y/ITweo8A="/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAF0M+y/ITwjWYU=" name="AbstractProductB" visibility="public" isAbstract="true" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false"/>
+			<packagedElement xmi:id="AAAAAAF0M+y/ITwn4TE=" name="ProductB1" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<generalization xmi:id="AAAAAAF0M+y/ITwmVSc=" visibility="public" xmi:type="uml:Generalization" specific="AAAAAAF0M+y/ITwn4TE=" general="AAAAAAF0M+y/ITwjWYU="/>
+			</packagedElement>
+		</packagedElement>
+	</uml:Model>
+</xmi:XMI>

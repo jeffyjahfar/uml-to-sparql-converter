@@ -1,0 +1,40 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?createProductA1 ?createProductB3 ?createProductA6 ?createProductB8 ?createProductA12 ?createProductB14 ?AbstractFactory4 ?ConcreteFactory110 ?ConcreteFactory216 ?AbstractProductA17 ?ProductA119 ?AbstractProductB20 ?ProductB122 
+ WHERE {
+ ?createProductA1  a woc:Method .
+?createProductA1 woc:hasModifier woc:Abstract .
+?createProductB3  a woc:Method .
+?createProductB3 woc:hasModifier woc:Abstract .
+?createProductA6  a woc:Method .
+?createProductB8  a woc:Method .
+?createProductA12  a woc:Method .
+?createProductB14  a woc:Method .
+?AbstractFactory4  a woc:Class .
+?AbstractFactory4 woc:hasModifier woc:Abstract .
+?ConcreteFactory110  a woc:Class .
+?ConcreteFactory216  a woc:Class .
+?AbstractProductA17  a woc:Class .
+?AbstractProductA17 woc:hasModifier woc:Abstract .
+?ProductA119  a woc:Class .
+?AbstractProductB20  a woc:Class .
+?AbstractProductB20 woc:hasModifier woc:Abstract .
+?ProductB122  a woc:Class .
+?AbstractFactory4 woc:hasMethod ?createProductA1 .
+?createProductA1 woc:hasReturnType ?AbstractProductA17 .
+?AbstractFactory4 woc:hasMethod ?createProductB3 .
+?createProductB3 woc:hasReturnType ?AbstractProductB20 .
+?ConcreteFactory110 woc:hasMethod ?createProductA6 .
+?createProductA6 woc:hasReturnType ?AbstractProductA17 .
+?ConcreteFactory110 woc:hasMethod ?createProductB8 .
+?createProductB8 woc:hasReturnType ?AbstractProductB20 .
+?ConcreteFactory216 woc:hasMethod ?createProductA12 .
+?createProductA12 woc:hasReturnType ?AbstractProductA17 .
+?ConcreteFactory216 woc:hasMethod ?createProductB14 .
+?createProductB14 woc:hasReturnType ?AbstractProductB20 .
+?ConcreteFactory110 woc:extends ?AbstractFactory4 .
+?ConcreteFactory216 woc:extends ?AbstractFactory4 .
+?ProductA119 woc:extends ?AbstractProductA17 .
+?ProductB122 woc:extends ?AbstractProductB20 .
+
+}

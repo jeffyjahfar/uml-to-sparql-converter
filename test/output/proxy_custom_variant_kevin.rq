@@ -1,0 +1,19 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?Subject11 ?Request0 ?Request7 ?Request10 ?RealSubject2 ?Proxy9 ?realSubject6 
+ WHERE {
+ ?Subject11  a woc:Interface .
+?Request0  a woc:Method .
+?Request7  a woc:Method .
+?Request10  a woc:Method .
+?RealSubject2  a woc:Class .
+?Proxy9  a woc:Class .
+?realSubject6  a woc:Field .
+?RealSubject2 woc:implements ?Subject11 .
+?Proxy9 woc:implements ?Subject11 .
+?RealSubject2 woc:hasMethod ?Request0 .
+?Proxy9 woc:hasMethod ?Request7 .
+?Subject11 woc:hasMethod ?Request10 .
+?Proxy9 woc:hasField ?realSubject6 .
+
+}

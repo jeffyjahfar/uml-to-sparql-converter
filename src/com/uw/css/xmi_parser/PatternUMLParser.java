@@ -62,8 +62,10 @@ public class PatternUMLParser {
         PatternUMLParser patternUMLParser = new PatternUMLParser();
         ModelElementResolverService modelElementResolverService = new ModelElementResolverService();
         try {
-            String filename = "visitor_bothinterface_variation";
+            String filename = "visitor_custom_variant_bibtex";
+//            String filename = args[0];
             patternUMLParser.parseTestXMIFile(filename.concat(".xmi"));
+//            patternUMLParser.parseTestXMIFile(filename);
             SparqlQuery query = new SparqlQuery();
             Boolean suppressVisibility = true;
 
@@ -81,6 +83,7 @@ public class PatternUMLParser {
                 query.relationshipItems = modelElementResolverService.resolveRelations(query.relationshipItems,modelElement);
             }
             query.constructQuery();
+//            patternUMLParser.saveOutputAsText(query.query,filename.replaceFirst(".xmi",".rq"));
             patternUMLParser.saveOutputAsText(query.query,filename.concat(".rq"));
         } catch (Exception e) {
             e.printStackTrace();

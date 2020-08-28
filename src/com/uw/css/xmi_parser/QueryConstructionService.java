@@ -4,7 +4,6 @@ import com.uw.css.utils.Relationships;
 import org.codeontology.Ontology;
 import java.util.List;
 
-
 public class QueryConstructionService {
 
     String setPrefix(){
@@ -74,6 +73,9 @@ public class QueryConstructionService {
     }
 
     private String resolveRelationshipWOCType(String typename) {
+        if(typename.isEmpty()){
+            return "";
+        }
         Relationships r = Relationships.valueOf(typename);
         switch (r){
             case generalization:
