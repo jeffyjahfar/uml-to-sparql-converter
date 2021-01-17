@@ -2,12 +2,13 @@ package com.uw.css.xmi_parser;
 
 import com.uw.css.utils.Relationships;
 import org.codeontology.Ontology;
+
 import java.util.List;
 
 public class QueryConstructionService {
 
     String setPrefix(){
-        return "PREFIX woc: <"+Ontology.WOC + ">\n\n";
+        return "PREFIX woc: <"+ Ontology.WOC + ">\n\n";
     }
 
     String constructSelectStatement(List<Component> componentList, Boolean distinctResult, String query){
@@ -47,7 +48,14 @@ public class QueryConstructionService {
             Component toItem = relationshipItem.getToItem();
             query = query.concat("?").concat(fromItem.name).concat(" ");
             query = query.concat(resolveRelationshipWOCType(relationshipItem.getName())).concat(" ");
-            query = query.concat("?").concat(toItem.name).concat(" .\n");
+            if(toItem!=null) {
+                query = query.concat("?").concat(toItem.name).concat(" .\n");
+            }else{
+                if(relationshipItem instanceof TextSpecificationConstraints){
+                    TextSpecificationConstraints textSpecificationConstraints = (TextSpecificationConstraints)relationshipItem;
+                    query = query.concat("woc:").concat(textSpecificationConstraints.specification).concat(" .\n");
+                }
+            }
         }
         //close where clause
         query = query.concat("\n}");
@@ -90,12 +98,18 @@ public class QueryConstructionService {
                 return Ontology.HAS_FIELD_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case interfacerealization:
                 return Ontology.IMPLEMENTS_PROPERTY.toString().replace(Ontology.WOC,"woc:");
+            case realization:
+                return Ontology.IMPLEMENTS_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case returnType:
                 return replaceInlinePrefix(Ontology.RETURN_TYPE_PROPERTY.toString());
             case parameter:
                 return replaceInlinePrefix(Ontology.PARAMETER_PROPERTY.toString());
             case type:
                 return replaceInlinePrefix(Ontology.JAVA_TYPE_PROPERTY.toString());
+            case references:
+                return replaceInlinePrefix(Ontology.REFERENCES_PROPERTY.toString());
+            case annotation:
+                return replaceInlinePrefix(Ontology.ANNOTATION_PROPERTY.toString());
         }
         return "";
     }

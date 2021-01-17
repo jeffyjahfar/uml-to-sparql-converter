@@ -38,7 +38,7 @@ public class PatternUMLParser {
     }
     public void parseTestXMIFile(String filename) throws Exception {
         parser = new XMLParser();
-        parseFiles("metamodel2.xml", "xmiTrans2_0.xml",
+        parseFiles("metamodel2.xml", "xmiTrans2_0_visual_paradigm.xml",
                 filename);
     }
 
@@ -62,7 +62,7 @@ public class PatternUMLParser {
         PatternUMLParser patternUMLParser = new PatternUMLParser();
         ModelElementResolverService modelElementResolverService = new ModelElementResolverService();
         try {
-            String filename = "visitor_custom_variant_bibtex";
+            String filename = "visitor_visual_paradigm";
 //            String filename = args[0];
             patternUMLParser.parseTestXMIFile(filename.concat(".xmi"));
 //            patternUMLParser.parseTestXMIFile(filename);

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.0" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1">
+	<xmi:Documentation exporter="StarUML" exporterVersion="2.0"/>
+	<uml:Model xmi:id="AAAAAAF1YopCtuS9yrk=" xmi:type="uml:Model" name="RootModel">
+		<packagedElement xmi:id="AAAAAAF1YlVDV+KV7Qw=" name="visitor" visibility="public" xmi:type="uml:Package">
+			<packagedElement xmi:id="AAAAAAF1YlVDV+J+XAU=" name="ConcreteVisitor1" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedOperation xmi:id="AAAAAAF1YlVDVuJ7/6E=" name="VisitConcreteElementA1" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<xmi:Extension extender="StarUML">
+						<documentation value="override%20VisitConcreteElementA"/>
+						<stereotype value="override"/>
+						<specification value="visitConcreteElementA"/>
+					</xmi:Extension>
+					<ownedParameter xmi:id="AAAAAAF1YlVDVuJ6XaI=" name="cA1" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF1YlVDV+KL82w=" isReadOnly="false" isOrdered="false" isUnique="false" direction="in" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+				<ownedOperation xmi:id="AAAAAAF1YlVDVuJ9I4U=" name="VisitConcreteElementB1" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<xmi:Extension extender="StarUML">
+						<stereotype value="override"/>
+					</xmi:Extension>
+					<ownedParameter xmi:id="AAAAAAF1YlVDVuJ8BRU=" name="cB1" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF1YlVDV+KPNKw=" isReadOnly="false" isOrdered="false" isUnique="false" direction="in" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+				<interfaceRealization xmi:id="AAAAAAF1YlVDVuJ5rfo=" visibility="public" xmi:type="uml:InterfaceRealization" implementingClassifier="AAAAAAF1YlVDV+J+XAU=" contract="AAAAAAF1YlVDV+KUzzQ="/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAF1YlVDV+KEP78=" name="ConcreteVisitor2" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedOperation xmi:id="AAAAAAF1YlVDV+KBVvI=" name="VisitConcreteElementA2" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<xmi:Extension extender="StarUML">
+						<stereotype value="override"/>
+					</xmi:Extension>
+					<ownedParameter xmi:id="AAAAAAF1YlVDV+KA4Qw=" name="cA2" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF1YlVDV+KL82w=" isReadOnly="false" isOrdered="false" isUnique="false" direction="in" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+				<ownedOperation xmi:id="AAAAAAF1YlVDV+KDbG0=" name="VisitConcreteElementB2" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<xmi:Extension extender="StarUML">
+						<stereotype value="override"/>
+					</xmi:Extension>
+					<ownedParameter xmi:id="AAAAAAF1YlVDV+KCuu8=" name="cB2" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF1YlVDV+KPNKw=" isReadOnly="false" isOrdered="false" isUnique="false" direction="in" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+				<interfaceRealization xmi:id="AAAAAAF1YlVDV+J/23U=" visibility="public" xmi:type="uml:InterfaceRealization" implementingClassifier="AAAAAAF1YlVDV+KEP78=" contract="AAAAAAF1YlVDV+KUzzQ="/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAF1YlVDV+KH0DU=" name="Element" visibility="public" isAbstract="true" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedOperation xmi:id="AAAAAAF1YlVDV+KGI00=" name="Accept" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="true" xmi:type="uml:Operation">
+					<ownedParameter xmi:id="AAAAAAF1YlVDV+KFSao=" name="v" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF1YlVDV+KUzzQ=" isReadOnly="false" isOrdered="false" isUnique="false" direction="in" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAF1YlVDV+KL82w=" name="ConcreteElementA" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedOperation xmi:id="AAAAAAF1YlVDV+KKoT8=" name="AcceptA" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<xmi:Extension extender="StarUML">
+						<stereotype value="override"/>
+					</xmi:Extension>
+					<ownedParameter xmi:id="AAAAAAF1YlVDV+KJVyw=" name="vA" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF1YlVDV+KUzzQ=" isReadOnly="false" isOrdered="false" isUnique="false" direction="in" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+				<ownedOperation xmi:id="AAAAAAF1YnKV7+Pq2ww=" name="OperationA" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation"/>
+				<generalization xmi:id="AAAAAAF1YlVDV+KIq44=" visibility="public" xmi:type="uml:Generalization" specific="AAAAAAF1YlVDV+KL82w=" general="AAAAAAF1YlVDV+KH0DU="/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAF1YlVDV+KPNKw=" name="ConcreteElementB" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false">
+				<ownedOperation xmi:id="AAAAAAF1YlVDV+KOdQU=" name="AcceptB" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation">
+					<xmi:Extension extender="StarUML">
+						<stereotype value="override"/>
+					</xmi:Extension>
+					<ownedParameter xmi:id="AAAAAAF1YlVDV+KNeP0=" name="vA" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF1YlVDV+KUzzQ=" isReadOnly="false" isOrdered="false" isUnique="false" direction="in" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+				<ownedOperation xmi:id="AAAAAAF1YnLorePygls=" name="OperationB" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="false" xmi:type="uml:Operation"/>
+				<generalization xmi:id="AAAAAAF1YlVDV+KMcO8=" visibility="public" xmi:type="uml:Generalization" specific="AAAAAAF1YlVDV+KPNKw=" general="AAAAAAF1YlVDV+KH0DU="/>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAF1YlVDV+KUzzQ=" name="Visitor" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Interface">
+				<xmi:Extension extender="StarUML">
+					<stereotype value="AAAAAAF1YlVDV+J+XAU="/>
+				</xmi:Extension>
+				<ownedOperation xmi:id="AAAAAAF1YlVDV+KRps0=" name="VisitConcreteElementA" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="true" xmi:type="uml:Operation">
+					<ownedParameter xmi:id="AAAAAAF1YlVDV+KQSO0=" name="cA" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF1YlVDV+KL82w=" isReadOnly="false" isOrdered="false" isUnique="false" direction="in" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+				<ownedOperation xmi:id="AAAAAAF1YlVDV+KT2Hg=" name="VisitConcreteElementB" visibility="public" isStatic="false" isLeaf="false" concurrency="sequential" isQuery="false" isAbstract="true" xmi:type="uml:Operation">
+					<ownedParameter xmi:id="AAAAAAF1YlVDV+KSy0s=" name="cB" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF1YlVDV+KPNKw=" isReadOnly="false" isOrdered="false" isUnique="false" direction="in" xmi:type="uml:Parameter"/>
+				</ownedOperation>
+			</packagedElement>
+			<packagedElement xmi:id="AAAAAAF1YmZfpeNR83I=" name="client" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Class" isActive="false"/>
+			<packagedElement xmi:id="AAAAAAF1YmEmweKXk88=" name="Collaboration1" visibility="public" isAbstract="false" isFinalSpecialization="false" isLeaf="false" xmi:type="uml:Collaboration">
+				<ownedMember xmi:id="AAAAAAF1YmEmweKYNwk=" name="Interaction1" visibility="public" isReentrant="true" xmi:type="uml:Interaction">
+					<lifeline xmi:id="AAAAAAF1YmFrCuKnbAg=" name="Lifeline1" visibility="public" xmi:type="uml:Lifeline" represents="AAAAAAF1YmFrCeKmfKA="/>
+					<lifeline xmi:id="AAAAAAF1YmF0n+LGY3U=" name="Lifeline2" visibility="public" xmi:type="uml:Lifeline" represents="AAAAAAF1YmF0nuLFHOQ="/>
+					<lifeline xmi:id="AAAAAAF1YmGA9OLl4OQ=" name="Lifeline3" visibility="public" xmi:type="uml:Lifeline" represents="AAAAAAF1YmGA9OLkKIY="/>
+					<lifeline xmi:id="AAAAAAF1YmJIFOMM2qc=" name="Lifeline4" visibility="public" xmi:type="uml:Lifeline" represents="AAAAAAF1YmJIFOMLDQ8="/>
+					<lifeline xmi:id="AAAAAAF1YmJRiOMrTYo=" name="Lifeline5" visibility="public" xmi:type="uml:Lifeline" represents="AAAAAAF1YmJRh+Mqju4="/>
+					<message xmi:id="AAAAAAF1Ymbe4+N9T/Y=" name="Accept" visibility="public" xmi:type="uml:Message" messageSort="synchCall" messageKind="complete" signature="AAAAAAF1YlVDV+KKoT8=" receiveEvent="AAAAAAF1YopCuOS/4gM=" sendEvent="AAAAAAF1YopCuOS+h48="/>
+					<message xmi:id="AAAAAAF1YmksHeOl0oo=" name="Message1" visibility="public" xmi:type="uml:Message" messageSort="synchCall" messageKind="complete" signature="AAAAAAF1YlVDVuJ7/6E=" receiveEvent="AAAAAAF1YopCuOTBffM=" sendEvent="AAAAAAF1YopCuOTA+bo="/>
+					<message xmi:id="AAAAAAF1YoXPw+SGuA8=" visibility="public" xmi:type="uml:Message" messageSort="reply" messageKind="complete" signature="AAAAAAF1YnKV7+Pq2ww=" receiveEvent="AAAAAAF1YopCuOTDGq0=" sendEvent="AAAAAAF1YopCuOTC1WY="/>
+					<message xmi:id="AAAAAAF1Ymnur+O7ySU=" name="Message2" visibility="public" xmi:type="uml:Message" messageSort="synchCall" messageKind="complete" signature="AAAAAAF1YlVDV+KOdQU=" receiveEvent="AAAAAAF1YopCuOTFfuE=" sendEvent="AAAAAAF1YopCuOTEi6c="/>
+					<message xmi:id="AAAAAAF1Ymo1POPRrSA=" name="Message3" visibility="public" xmi:type="uml:Message" messageSort="synchCall" messageKind="complete" signature="AAAAAAF1YlVDV+KDbG0=" receiveEvent="AAAAAAF1YopCuOTHBxU=" sendEvent="AAAAAAF1YopCuOTGcGo="/>
+					<message xmi:id="AAAAAAF1YoVli+RwXEE=" visibility="public" xmi:type="uml:Message" messageSort="reply" messageKind="complete" signature="AAAAAAF1YnLorePygls=" receiveEvent="AAAAAAF1YopCuOTJ9kQ=" sendEvent="AAAAAAF1YopCuOTI3vY="/>
+					<fragment xmi:id="AAAAAAF1YopCuOS+h48=" xmi:type="uml:OccurrenceSpecification" covered="AAAAAAF1YmFrCuKnbAg="/>
+					<fragment xmi:id="AAAAAAF1YopCuOS/4gM=" xmi:type="uml:OccurrenceSpecification" covered="AAAAAAF1YmF0n+LGY3U="/>
+					<fragment xmi:id="AAAAAAF1YopCuOTA+bo=" xmi:type="uml:OccurrenceSpecification" covered="AAAAAAF1YmF0n+LGY3U="/>
+					<fragment xmi:id="AAAAAAF1YopCuOTBffM=" xmi:type="uml:OccurrenceSpecification" covered="AAAAAAF1YmJIFOMM2qc="/>
+					<fragment xmi:id="AAAAAAF1YopCuOTC1WY=" xmi:type="uml:OccurrenceSpecification" covered="AAAAAAF1YmJIFOMM2qc="/>
+					<fragment xmi:id="AAAAAAF1YopCuOTDGq0=" xmi:type="uml:OccurrenceSpecification" covered="AAAAAAF1YmF0n+LGY3U="/>
+					<fragment xmi:id="AAAAAAF1YopCuOTEi6c=" xmi:type="uml:OccurrenceSpecification" covered="AAAAAAF1YmFrCuKnbAg="/>
+					<fragment xmi:id="AAAAAAF1YopCuOTFfuE=" xmi:type="uml:OccurrenceSpecification" covered="AAAAAAF1YmGA9OLl4OQ="/>
+					<fragment xmi:id="AAAAAAF1YopCuOTGcGo=" xmi:type="uml:OccurrenceSpecification" covered="AAAAAAF1YmGA9OLl4OQ="/>
+					<fragment xmi:id="AAAAAAF1YopCuOTHBxU=" xmi:type="uml:OccurrenceSpecification" covered="AAAAAAF1YmJRiOMrTYo="/>
+					<fragment xmi:id="AAAAAAF1YopCuOTI3vY=" xmi:type="uml:OccurrenceSpecification" covered="AAAAAAF1YmJRiOMrTYo="/>
+					<fragment xmi:id="AAAAAAF1YopCuOTJ9kQ=" xmi:type="uml:OccurrenceSpecification" covered="AAAAAAF1YmGA9OLl4OQ="/>
+				</ownedMember>
+				<ownedAttribute xmi:id="AAAAAAF1YmFrCeKmfKA=" name="Role1" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF1YmZfpeNR83I=" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="none" isDerived="false" isID="false"/>
+				<ownedAttribute xmi:id="AAAAAAF1YmF0nuLFHOQ=" name="Role2" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF1YlVDV+KL82w=" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="none" isDerived="false" isID="false"/>
+				<ownedAttribute xmi:id="AAAAAAF1YmGA9OLkKIY=" name="Role3" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF1YlVDV+KPNKw=" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="none" isDerived="false" isID="false"/>
+				<ownedAttribute xmi:id="AAAAAAF1YmJIFOMLDQ8=" name="Role4" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF1YlVDV+J+XAU=" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="none" isDerived="false" isID="false"/>
+				<ownedAttribute xmi:id="AAAAAAF1YmJRh+Mqju4=" name="Role5" visibility="public" isStatic="false" isLeaf="false" type="AAAAAAF1YlVDV+KEP78=" isReadOnly="false" isOrdered="false" isUnique="false" xmi:type="uml:Property" aggregation="none" isDerived="false" isID="false"/>
+			</packagedElement>
+		</packagedElement>
+	</uml:Model>
+</xmi:XMI>

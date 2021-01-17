@@ -1,6 +1,7 @@
 package com.uw.css.xmi_parser;
 
 import com.sdmetrics.model.ModelElement;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.uw.css.utils.Relationships;
 
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class ModelElementResolverService {
                    Component child = new Component(modelElement, modelElement.getType().getName(),false);
                    RelationshipItem relationshipItem = new RelationshipItem(modelElement.getType().getName(), owner,child);
                    relationshipItems.add(relationshipItem);
+                   getAnnotationRelations(relationshipItems,modelElement);
                }
            }
        }
@@ -75,10 +77,12 @@ public class ModelElementResolverService {
                         String relationshipType = resolveParameterKind(op);
                         ModelElement parametertype = op.getRefAttribute("parametertype");
                         if(relationshipType.equals(Relationships.returnType.name())){
-                            Component child = new Component(parametertype, parametertype.getType().getName(),false);
-                            Component owner = new Component(modelElement, modelElement.getType().getName(),false);
-                            RelationshipItem relationshipItem = new RelationshipItem(relationshipType, owner,child);
-                            relationshipItems.add(relationshipItem);
+                            if(parametertype!=null && !parametertype.getName().isEmpty()) {
+                                Component child = new Component(parametertype, parametertype.getType().getName(), false);
+                                Component owner = new Component(modelElement, modelElement.getType().getName(), false);
+                                RelationshipItem relationshipItem = new RelationshipItem(relationshipType, owner, child);
+                                relationshipItems.add(relationshipItem);
+                            }
                         }else{
                             Component child = new Component(op, op.getType().getName(),false);
                             Component owner = new Component(modelElement, modelElement.getType().getName(),false);
@@ -105,6 +109,8 @@ public class ModelElementResolverService {
         getAssociationRelations(relationshipItems,modelElement);
         getInterfaceImplementationRelations(relationshipItems,modelElement);
         getOwnedAttributes(relationshipItems,modelElement);
+        getSequenceDiagramRelations(relationshipItems,modelElement);
+        resolveInteractionDiagram(relationshipItems,modelElement);
     }
 
     private void getOwnedAttributes(List<RelationshipItem> relationshipItems, ModelElement modelElement) {
@@ -124,7 +130,8 @@ public class ModelElementResolverService {
     }
 
     private void getInterfaceImplementationRelations(List<RelationshipItem> relationshipItems, ModelElement modelElement) {
-        if(modelElement.getType().getName().equals(Relationships.interfacerealization.name())){
+        String type = modelElement.getType().getName();
+        if(type.equals(Relationships.interfacerealization.name())){
             Collection<ModelElement> implementations = modelElement.getRelations("interfacerealizations");
             ModelElement owner = modelElement.getRefAttribute("contract");
             Iterator<ModelElement> iterator = implementations.iterator();
@@ -132,9 +139,17 @@ public class ModelElementResolverService {
             if(iterator.hasNext()){
                 ModelElement child = iterator.next();
                 Component fromItem = new Component(child,child.getType().getName(),false);
-                RelationshipItem relationshipItem = new RelationshipItem(modelElement.getType().getName(),fromItem,toItem);
+                RelationshipItem relationshipItem = new RelationshipItem(type,fromItem,toItem);
                 relationshipItems.add(relationshipItem);
             }
+        }
+        if(type.equals(Relationships.realization.name())){
+            ModelElement client = (ModelElement) modelElement.getSetAttribute("client").iterator().next();
+            ModelElement owner = (ModelElement) modelElement.getSetAttribute("supplier").iterator().next();
+            Component fromItem = new Component(client,client.getType().getName(),false);
+            Component toItem = new Component(owner,owner.getType().getName(),false);
+            RelationshipItem relationshipItem = new RelationshipItem(type,fromItem,toItem);
+            relationshipItems.add(relationshipItem);
         }
     }
 
@@ -223,5 +238,45 @@ public class ModelElementResolverService {
                 components.add(component);
         }
         return components;
+    }
+
+    void getSequenceDiagramRelations(List<RelationshipItem> relationshipItems, ModelElement modelElement){
+        if(modelElement.getType().getName().equals("message")){
+            ModelElement receiveevent = modelElement.getRefAttribute("receiveevent").getRefAttribute("covered").getRefAttribute("represents").getRefAttribute("propertytype");
+            Component receiveComp = new Component(receiveevent,receiveevent.getType().getName(),Boolean.FALSE);
+            ModelElement sendevent = modelElement.getRefAttribute("sendevent").getRefAttribute("covered").getRefAttribute("represents").getRefAttribute("propertytype");
+            Component sendComp = new Component(sendevent,sendevent.getType().getName(),Boolean.FALSE);
+            RelationshipItem relationshipItem = new RelationshipItem(Relationships.references.name(), sendComp,receiveComp);
+            relationshipItems.add(relationshipItem);
+        }
+
+    }
+
+    void resolveInteractionDiagram(List<RelationshipItem> relationshipItems, ModelElement modelElement){
+        if(modelElement.getType().getName().equals("interaction")){
+            Collection<ModelElement> ownedElements = modelElement.getOwnedElements();
+            for(ModelElement m:ownedElements){
+                if(m.getType().getName().equals("message")){
+                    m.getRefAttribute("signature");
+                }
+            }
+            ModelElement receiveevent = modelElement.getRefAttribute("receiveevent").getRefAttribute("covered").getRefAttribute("represents").getRefAttribute("propertytype");
+//            Component receiveComp = new Component(receiveevent,receiveevent.getType().getName(),Boolean.FALSE);
+//            ModelElement sendevent = modelElement.getRefAttribute("sendevent").getRefAttribute("covered").getRefAttribute("represents").getRefAttribute("propertytype");
+//            Component sendComp = new Component(sendevent,sendevent.getType().getName(),Boolean.FALSE);
+//            RelationshipItem relationshipItem = new RelationshipItem(Relationships.references.name(), sendComp,receiveComp);
+//            relationshipItems.add(relationshipItem);
+        }
+
+    }
+
+
+    void getAnnotationRelations(List<RelationshipItem> relationshipItems, ModelElement modelElement){
+        String stereotype = modelElement.getPlainAttribute("stereotype");
+        if(stereotype.equals(Relationships.override.name())){
+            Component comp = new Component(modelElement,modelElement.getType().getName(),Boolean.FALSE);
+            RelationshipItem relationshipItem = new TextSpecificationConstraints(Relationships.annotation.name(),comp,Override.class.getName());
+            relationshipItems.add(relationshipItem);
+        }
     }
 }

@@ -1,0 +1,17 @@
+patterns:{
+  factory: {
+    variants: [
+        abstract_factory.rq,
+        abstract_factory_interface.rq,
+        factory.rq,
+        factory_iluwatar.rq
+]
+},
+  visitor: {
+  variants: [
+        visitor_interface.rq,
+        visitor_class.rq,
+        visitor_jameszbl.rq
+]
+}
+}

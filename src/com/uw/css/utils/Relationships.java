@@ -9,5 +9,9 @@ public enum Relationships {
     interfacerealization,
     parameter,
     returnType,
-    type
+    type,
+    references,
+    annotation,
+    override,
+    realization
 }

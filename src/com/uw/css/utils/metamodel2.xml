@@ -40,6 +40,8 @@ other part of SDMetrics.
   <attribute name="name">Name of the element in UML model.</attribute>
   <attribute name="comments" type="ref" multiplicity="many">The comments for the model element.</attribute>
   <attribute name="stereotypes" type="ref" multiplicity="many">The stereotypes of the model element.</attribute>
+  <attribute name="stereotype">Name of the element in UML model.</attribute>
+  <attribute name="specification">Name of the element in UML model.</attribute>
 </modelelement>
 
 <!-- classes, interfaces, attributes, operations -->
@@ -166,6 +168,7 @@ other part of SDMetrics.
 <modelelement name="message">
   <attribute name="receiveevent" type="ref">Occurrence specification for the message reception.</attribute>
   <attribute name="sendevent" type="ref">Occurrence specification for the message sending.</attribute>
+  <attribute name="signature" type="ref">Signature specification for the message.</attribute>
   <attribute name="sort">The sort of communication (synchCall, asynchCall, asynchSignal, etc.).</attribute>
 </modelelement>
 

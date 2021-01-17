@@ -125,8 +125,8 @@ other part of SDMetrics.
 </xmitransformation>
 
 <xmitransformation modelelement="parameter" xmipattern="uml:Parameter">
-<trigger name="kind" type="attrval" attr="direction"/>
-<trigger name="kind" type="ctext" src="direction" />
+<trigger name="kind" type="attrval" attr="kind"/>
+<trigger name="kind" type="ctext" src="kind" />
 <trigger name="parametertype" type="xmi2assoc" attr="type"/>
 </xmitransformation>
 
