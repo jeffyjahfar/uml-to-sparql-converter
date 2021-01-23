@@ -1,13 +1,12 @@
 PREFIX woc: <http://rdf.webofcode.org/woc/>
 
-SELECT ?Element3 ?ConcreteElementA8 ?ConcreteElementB13 ?ConcreteVisitorA27 ?ConcreteVisitorB34 ?Visitor20 ?visit2 ?visit6 ?visit11 ?visitConcreteElementB16 ?visitConcreteElementA19 ?visitConcreteElementA23 ?visitConcreteElementB26 ?visitConcreteElementA30 ?visitConcreteElementB33 
+SELECT ?Element3 ?ConcreteElementA8 ?ConcreteElementB13 ?ConcreteVisitorA27 ?ConcreteVisitorB34 ?visit2 ?visit6 ?visit11 ?visitConcreteElementB16 ?visitConcreteElementA19 ?visitConcreteElementA23 ?visitConcreteElementB26 ?visitConcreteElementA30 ?visitConcreteElementB33 ?Visitor20 
  WHERE {
  ?Element3  a woc:Class .
 ?ConcreteElementA8  a woc:Class .
 ?ConcreteElementB13  a woc:Class .
 ?ConcreteVisitorA27  a woc:Class .
 ?ConcreteVisitorB34  a woc:Class .
-?Visitor20  a woc:Interface .
 ?visit2  a woc:Method .
 ?visit6  a woc:Method .
 ?visit11  a woc:Method .
@@ -17,12 +16,9 @@ SELECT ?Element3 ?ConcreteElementA8 ?ConcreteElementB13 ?ConcreteVisitorA27 ?Con
 ?visitConcreteElementB26  a woc:Method .
 ?visitConcreteElementA30  a woc:Method .
 ?visitConcreteElementB33  a woc:Method .
-?ConcreteElementA8 woc:extends ?Element3 .
+?Visitor20  a woc:Interface .
 ?ConcreteElementB13 woc:extends ?Element3 .
-?ConcreteVisitorA27 woc:implements ?Visitor20 .
-?ConcreteVisitorB34 woc:implements ?Visitor20 .
-?ConcreteVisitorA27 woc:implements ?Visitor20 .
-?ConcreteVisitorB34 woc:implements ?Visitor20 .
+?ConcreteElementA8 woc:extends ?Element3 .
 ?Element3 woc:hasMethod ?visit2 .
 ?visit2 woc:hasParameter ?v1 .
 ?v1 woc:hasType ?Visitor20 .
@@ -50,5 +46,9 @@ SELECT ?Element3 ?ConcreteElementA8 ?ConcreteElementB13 ?ConcreteVisitorA27 ?Con
 ?ConcreteVisitorB34 woc:hasMethod ?visitConcreteElementB33 .
 ?visitConcreteElementB33 woc:hasParameter ?cB32 .
 ?cB32 woc:hasType ?ConcreteElementB13 .
+?ConcreteVisitorB34 woc:implements ?Visitor20 .
+?ConcreteVisitorA27 woc:implements ?Visitor20 .
+?ConcreteVisitorA27 woc:implements ?Visitor20 .
+?ConcreteVisitorB34 woc:implements ?Visitor20 .
 
 }

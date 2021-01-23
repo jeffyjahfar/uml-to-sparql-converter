@@ -42,7 +42,7 @@ other part of SDMetrics.
 <trigger name="name" type="attrval" attr="name" />
 <trigger name="name" type="ctext" src="name" />
 <trigger name="comments" type="xmi2assoc" attr="ownedComment" src="uml:Comment" />
-<trigger name="stereotypes" type="gcattrval" src="UML:ModelElement.Extensions.stereotype"
+<trigger name="stereotypes" type="gcattrval" src="uml:ModelElement.Extensions.stereotype"
 		 attr="xmi.idref" linkbackattr="extendedelements" />
 <trigger name="stereotype" type="attrval" attr="stereotype" />
 <trigger name="specification" type="attrval" attr="specification" />
@@ -212,15 +212,41 @@ other part of SDMetrics.
 </xmitransformation>
 
 <xmitransformation modelelement="message" xmipattern="uml:Message" recurse="true">
-<trigger name="sendevent" type="xmi2assoc" attr="sendEvent" />
-<trigger name="receiveevent" type="xmi2assoc" attr="receiveEvent" />
+<trigger name="receiveevent" type="xmi2assoc" attr="receiveEvent" src="uml:EventOccurrence"/>
+<trigger name="sendevent" type="xmi2assoc" attr="sendEvent" src="uml:EventOccurrence"/>
 <trigger name="sort" type="attrval" attr="messageSort" />
 <trigger name="sort" type="ctext" src="messageSort" />
-<trigger name="signature" type="xmi2assoc" attr="signature" />
+<trigger name="signature" type="xmi2assoc" attr="signature" src="uml:CallOperationAction" />
+	<trigger name="returnsignature" type="xmi2assoc" attr="signature" src="uml:ReplyAction" />
+	<trigger name="fromActivation" type="xmi2assoc" attr="fromActivation" />
+	<trigger name="toActivation" type="xmi2assoc" attr="toActivation"  />
+
+</xmitransformation>
+
+<xmitransformation modelelement="fragment" xmipattern="uml:EventOccurrence">
+	<trigger name="covered" type="xmi2assoc" attr="covered" src="uml:Lifeline" />
+	<trigger name="message" type="xmi2assoc" attr="message" src="uml:Message" />
+</xmitransformation>
+
+<xmitransformation modelelement="signature" xmipattern="uml:CallOperationAction">
+	<trigger name="operation" type="xmi2assoc" src="uml:Operation" attr="operation" />
+</xmitransformation>
+<xmitransformation modelelement="returnsignature" xmipattern="uml:ReplyAction">
+<!--	<trigger name="operation" type="xmi2assoc" src="uml:Operation" attr="operation" />-->
+</xmitransformation>
+
+<!-- support for extended elements from and to Activation -->
+<xmitransformation modelelement="fromActivation" xmipattern="fromActivation"
+				   requirexmiid="false">
+	<trigger name="activation" type="cattrval" attr="xmi:value" src="activation" />
+</xmitransformation>
+<xmitransformation modelelement="toActivation" xmipattern="toActivation"
+				   requirexmiid="false">
+	<trigger name="activation" type="cattrval" attr="xmi:value" src="activation" />
 </xmitransformation>
 
 
-<xmitransformation modelelement="occurrencespec" xmipattern="uml:MessageOccurrenceSpecification">
+	<xmitransformation modelelement="occurrencespec" xmipattern="uml:MessageOccurrenceSpecification">
 <trigger name="kind" type="constant" attr="message"/>
 <trigger name="covered" type="xmi2assoc" attr="covered" src="uml:Lifeline" />
 <trigger name="covered" type="xmi2assoc" attr="coveredLifeLine" src="uml:Lifeline" />
@@ -346,7 +372,8 @@ other part of SDMetrics.
 
 
 
-<!-- state machines -->
+
+	<!-- state machines -->
 
 <xmitransformation modelelement="statemachine" xmipattern="uml:StateMachine" recurse="true">
 <trigger name="regions" type="xmi2assoc" attr="region" src="uml:Region" />
@@ -599,7 +626,7 @@ other part of SDMetrics.
 </xmitransformation>
 
 <xmitransformation modelelement="action" xmipattern="uml:CallOperationAction" recurse="true">
-<trigger name="kind" type="constant" attr="calloperation"/>
+	<trigger name="kind" type="constant" attr="calloperation"/>
 </xmitransformation>
 <xmitransformation modelelement="action" xmipattern="uml:CallBehaviorAction" recurse="true">
 <trigger name="kind" type="constant" attr="callbehavior"/>

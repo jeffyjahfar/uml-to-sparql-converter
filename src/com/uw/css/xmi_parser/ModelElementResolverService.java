@@ -32,8 +32,8 @@ public class ModelElementResolverService {
                 return true;
             case "property":
                 return true;
-//            case "parameter":
-//                return true;
+            case "lifeline":
+                return false;
         }
         return false;
     }
@@ -109,8 +109,7 @@ public class ModelElementResolverService {
         getAssociationRelations(relationshipItems,modelElement);
         getInterfaceImplementationRelations(relationshipItems,modelElement);
         getOwnedAttributes(relationshipItems,modelElement);
-        getSequenceDiagramRelations(relationshipItems,modelElement);
-        resolveInteractionDiagram(relationshipItems,modelElement);
+//        getSequenceDiagramRelations(relationshipItems,modelElement);
     }
 
     private void getOwnedAttributes(List<RelationshipItem> relationshipItems, ModelElement modelElement) {
@@ -240,36 +239,68 @@ public class ModelElementResolverService {
         return components;
     }
 
-    void getSequenceDiagramRelations(List<RelationshipItem> relationshipItems, ModelElement modelElement){
-        if(modelElement.getType().getName().equals("message")){
-            ModelElement receiveevent = modelElement.getRefAttribute("receiveevent").getRefAttribute("covered").getRefAttribute("represents").getRefAttribute("propertytype");
-            Component receiveComp = new Component(receiveevent,receiveevent.getType().getName(),Boolean.FALSE);
-            ModelElement sendevent = modelElement.getRefAttribute("sendevent").getRefAttribute("covered").getRefAttribute("represents").getRefAttribute("propertytype");
-            Component sendComp = new Component(sendevent,sendevent.getType().getName(),Boolean.FALSE);
-            RelationshipItem relationshipItem = new RelationshipItem(Relationships.references.name(), sendComp,receiveComp);
-            relationshipItems.add(relationshipItem);
-        }
-
-    }
-
-    void resolveInteractionDiagram(List<RelationshipItem> relationshipItems, ModelElement modelElement){
-        if(modelElement.getType().getName().equals("interaction")){
-            Collection<ModelElement> ownedElements = modelElement.getOwnedElements();
-            for(ModelElement m:ownedElements){
-                if(m.getType().getName().equals("message")){
-                    m.getRefAttribute("signature");
+    void getInteractionDiagramRelations(List<ModelElement> fromActivations, List<ModelElement> toActivations,List<RelationshipItem> relationshipItems){
+        for(ModelElement fromActivation: fromActivations){
+            for(ModelElement toActivation: toActivations){
+                if(toActivation.getPlainAttribute("activation").equals(fromActivation.getPlainAttribute("activation"))){
+                    ModelElement toMessage = toActivation.getOwner();
+                    ModelElement fromMessage = fromActivation.getOwner();
+                    ModelElement toSignature = toMessage.getRefAttribute("signature");
+                    ModelElement fromSignature = fromMessage.getRefAttribute("signature");
+                    if(toSignature.getType().getName().equals("signature") && fromSignature.getType().getName().equals("signature")){
+                        ModelElement toOperation = toSignature.getRefAttribute("operation");
+                        ModelElement fromOperation = fromSignature.getRefAttribute("operation");
+                        Component sendComp = new Component(fromOperation,fromOperation.getType().getName(),Boolean.FALSE);
+                        Component receiveComp = new Component(toOperation,toOperation.getType().getName(),Boolean.FALSE);
+                        RelationshipItem relationshipItem = new RelationshipItem(Relationships.references.name(), receiveComp,sendComp);
+                        relationshipItems.add(relationshipItem);
+                    }
                 }
             }
-            ModelElement receiveevent = modelElement.getRefAttribute("receiveevent").getRefAttribute("covered").getRefAttribute("represents").getRefAttribute("propertytype");
-//            Component receiveComp = new Component(receiveevent,receiveevent.getType().getName(),Boolean.FALSE);
-//            ModelElement sendevent = modelElement.getRefAttribute("sendevent").getRefAttribute("covered").getRefAttribute("represents").getRefAttribute("propertytype");
-//            Component sendComp = new Component(sendevent,sendevent.getType().getName(),Boolean.FALSE);
-//            RelationshipItem relationshipItem = new RelationshipItem(Relationships.references.name(), sendComp,receiveComp);
-//            relationshipItems.add(relationshipItem);
+        }
+    }
+
+    void getSequenceDiagramRelations(List<RelationshipItem> relationshipItems, ModelElement modelElement){
+        if(modelElement.getType().getName().equals("message")){
+            ModelElement signature = modelElement.getRefAttribute("signature");
+            if(signature.getType().getName().equals("signature")){
+                ModelElement sendevent = modelElement.getRefAttribute("sendevent").getRefAttribute("message").getRefAttribute("signature").getRefAttribute("operation");
+                Component sendComp = new Component(sendevent,sendevent.getType().getName(),Boolean.FALSE);
+                ModelElement receiveevent = modelElement.getRefAttribute("receiveevent").getRefAttribute("message").getRefAttribute("signature").getRefAttribute("operation");
+                Component receiveComp = new Component(receiveevent,receiveevent.getType().getName(),Boolean.FALSE);
+                RelationshipItem relationshipItem = new RelationshipItem(Relationships.references.name(), sendComp,receiveComp);
+                relationshipItems.add(relationshipItem);
+
+            }
+
         }
 
     }
+    /*
+    format of sequence diagram message fragment
 
+    <message receiveEvent="iQzK1W6AUAAAFBOz" sendEvent="iQzK1W6AUAAAFBOy" xmi:id="8QzK1W6AUAAAFBOw" xmi:type="uml:Message">
+        <signature name="Call" operation="z.aOVW6AUAAAFBGU" xmi:id="aIzK1W6AUAAAFBO3" xmi:type="uml:CallOperationAction">
+            <xmi:Extension extender="Visual Paradigm">
+                <iteration xmi:value="false"/>
+                <asynshronous xmi:value="false"/>
+                <qualityScore value="-1"/>
+            </xmi:Extension>
+        </signature>
+        <xmi:Extension extender="Visual Paradigm">
+            <number xmi:value="1"/>
+            <asynshronous xmi:value="false"/>
+            <fromActivation>
+                <activation xmi:value="ugzK1W6AUAAAFBOm"/>
+            </fromActivation>
+            <toActivation>
+                <activation xmi:value="ngzK1W6AUAAAFBOs"/>
+            </toActivation>
+            <qualityScore value="-1"/>
+            <modelTransition from="(xaOBRW6AUAAAFBEU$z.aOVW6AUAAAFBGU)"/>
+        </xmi:Extension>
+    </message>
+     */
 
     void getAnnotationRelations(List<RelationshipItem> relationshipItems, ModelElement modelElement){
         String stereotype = modelElement.getPlainAttribute("stereotype");

@@ -62,7 +62,7 @@ public class PatternUMLParser {
         PatternUMLParser patternUMLParser = new PatternUMLParser();
         ModelElementResolverService modelElementResolverService = new ModelElementResolverService();
         try {
-            String filename = "visitor_visual_paradigm";
+            String filename = "Visitor_Corrected_Seq_VP";
 //            String filename = args[0];
             patternUMLParser.parseTestXMIFile(filename.concat(".xmi"));
 //            patternUMLParser.parseTestXMIFile(filename);
@@ -71,6 +71,9 @@ public class PatternUMLParser {
 
 //            patternUMLParser.model.getMetaModel();
             Iterator<ModelElement> iterator = patternUMLParser.model.iterator();
+            List<ModelElement> fromActivations = new ArrayList<>();
+            List<ModelElement> toActivations = new ArrayList<>();
+
 //            List<ModelElement> queryPackage = patternUMLParser.model.getElements(new MetaModelElement("package", null));
             while (iterator.hasNext()){
                 ModelElement modelElement = iterator.next();
@@ -78,10 +81,19 @@ public class PatternUMLParser {
                 System.out.println(modelElement.getName() +" "+ type.getName());
                 if(modelElement.getXMIID() != null){
                     PatternUMLParser.entityMap.put(modelElement.getXMIID(),modelElement);
+
+                    if(modelElement.getType().getName().equals("fromActivation")){
+                        fromActivations.add(modelElement);
+                    }else{
+                        if(modelElement.getType().getName().equals("toActivation")){
+                            toActivations.add(modelElement);
+                        }
+                    }
                 }
                 query.components = modelElementResolverService.resolveComponents(query.components,modelElement, suppressVisibility);
                 query.relationshipItems = modelElementResolverService.resolveRelations(query.relationshipItems,modelElement);
             }
+            modelElementResolverService.getInteractionDiagramRelations(fromActivations,toActivations,query.relationshipItems);
             query.constructQuery();
 //            patternUMLParser.saveOutputAsText(query.query,filename.replaceFirst(".xmi",".rq"));
             patternUMLParser.saveOutputAsText(query.query,filename.concat(".rq"));

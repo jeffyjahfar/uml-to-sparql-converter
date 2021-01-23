@@ -146,11 +146,11 @@ other part of SDMetrics.
 
 <!-- instance specifications, connectors. -->
  
-<modelelement name="collaboration" parent="class">
+<modelelement name="collaboration" >
   <attribute name="ownedbehaviors" type="ref" multiplicity="many">Behavior specifications owned by the collaboration.</attribute>
 </modelelement>
 
-<modelelement name="interaction" parent="class">
+<modelelement name="interaction" >
   <attribute name="lifelines" type="ref" multiplicity="many">The lifelines involved in the interaction.</attribute>
   <attribute name="messages" type="ref" multiplicity="many">The messages sent within the interaction.</attribute>
   <attribute name="fragments" type="ref" multiplicity="many">The message occurrence specifications and combined fragments of the interaction.</attribute>
@@ -169,8 +169,35 @@ other part of SDMetrics.
   <attribute name="receiveevent" type="ref">Occurrence specification for the message reception.</attribute>
   <attribute name="sendevent" type="ref">Occurrence specification for the message sending.</attribute>
   <attribute name="signature" type="ref">Signature specification for the message.</attribute>
+  <attribute name="returnsignature" type="ref">Signature specification for the message.</attribute>
   <attribute name="sort">The sort of communication (synchCall, asynchCall, asynchSignal, etc.).</attribute>
+    <attribute name="fromActivation" type="ref" >From Activation specification for the message.</attribute>
+    <attribute name="toActivation" type="ref">From Activation specification for the message.</attribute>
 </modelelement>
+<modelelement name="fragment">
+    <attribute name="message" type="ref">Occurrence specification for the message reception.</attribute>
+    <attribute name="covered" type="ref">Occurrence specification for the message sending.</attribute>
+</modelelement>
+
+<modelelement name="signature">
+    <attribute name="operation" type="ref">Occurrence specification for the message reception.</attribute>
+</modelelement>
+<modelelement name="returnsignature">
+<!--    <attribute name="operation" type="ref">Occurrence specification for the message reception.</attribute>-->
+</modelelement>
+
+    <!--support for extended elements for from and to Activation-->
+    <!-- new meta-model element -->
+<!--    <modelelement name="extensionelement">-->
+<!--        <attribute name="fromactivation" type="data" />-->
+<!--        <attribute name="toactivation" type="data" />-->
+<!--    </modelelement>-->
+    <modelelement name="fromActivation" parent="message">
+        <attribute name="activation" type="data" />
+    </modelelement>
+    <modelelement name="toActivation" parent="message">
+        <attribute name="activation" type="data" />
+    </modelelement>
 
 <modelelement name="occurrencespec">
   <attribute name="covered" type="ref">The lifeline on which this occurrence specification appears.</attribute>
@@ -188,15 +215,18 @@ other part of SDMetrics.
   <attribute name="fragments" type="ref" multiplicity="many">The message occurrence specifications and combined fragments of the interaction operand.</attribute>
 </modelelement>
 
-
 <!-- use case model -->
 <modelelement name="actor" parent="class" />
 <modelelement name="usecase" parent="class">
   <attribute name="includes" type="ref" multiplicity="many">The include relationships owned by the use case.</attribute>
   <attribute name="extends" type="ref" multiplicity="many">The extend relationships owned by the use case.</attribute>
   <attribute name="extensionpoints" type="ref" multiplicity="many">The extension points owned by the use case.</attribute>
+<!--    <attribute name="extension" type="ref" multiplicity="many">The extension points owned by the use case.</attribute>-->
 </modelelement>
 <modelelement name="extensionpoint"/>
+<!--<modelelement name="extension"/>-->
+
+
 <modelelement name="usecaseextend">
 	<attribute name="extendedcase" type="ref">The use case that is extended.</attribute>
 	<attribute name="usecaseextensionpoint" type="ref">The extension point in the extended use case.</attribute>
