@@ -1,0 +1,19 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?Context0 ?Level1State2 ?ConcreteStateA4 ?ConcreteStateB6 ?Level3State8 ?Level2State9 
+ WHERE {
+ ?Context0  a woc:Class .
+?Level1State2  a woc:Class .
+?Level1State2 woc:hasModifier woc:Abstract .
+?ConcreteStateA4  a woc:Class .
+?ConcreteStateB6  a woc:Class .
+?Level3State8  a woc:Class .
+?Level3State8 woc:hasModifier woc:Abstract .
+?Level2State9  a woc:Class .
+?Level1State2 woc:extends ?Context0 .
+?Level3State8 woc:extends ?Level1State2 .
+?ConcreteStateA4 woc:extends ?Level2State9 .
+?ConcreteStateB6 woc:extends ?Level2State9 .
+?Level2State9 woc:hasDependency ?Level1State2 .
+
+}

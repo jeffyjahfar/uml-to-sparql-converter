@@ -11,6 +11,12 @@ public class QueryConstructionService {
         return "PREFIX woc: <"+ Ontology.WOC + ">\n\n";
     }
 
+    int countLines(String s){
+        return s.split("\n").length;
+    }
+
+    private int numLines;
+
     String constructSelectStatement(List<Component> componentList, Boolean distinctResult, String query){
         query = query + "SELECT ";
 
@@ -27,7 +33,7 @@ public class QueryConstructionService {
 
     public String constructWhereStatement(String query, List<RelationshipItem> relationshipItems, List<Component> components){
         query = query.concat("\n WHERE {\n ");
-
+        int selectLines = countLines(query);
         //iteration on components
         for(Component c : components){
             query = query.concat("?").concat(c.name).concat(" ").concat(" a ");
@@ -57,6 +63,9 @@ public class QueryConstructionService {
                 }
             }
         }
+        int whereLines =countLines(query);
+        System.out.println("# RDF Triples in query:" + (whereLines-selectLines));
+        numLines = whereLines-selectLines;
         //close where clause
         query = query.concat("\n}");
         return query;
@@ -88,8 +97,8 @@ public class QueryConstructionService {
         switch (r){
             case generalization:
                 return Ontology.EXTENDS_PROPERTY.toString().replace(Ontology.WOC,"woc:");
-            case dependency:
-                return Ontology.DEPENDENCY_PROPERTY.toString().replace(Ontology.WOC,"woc:");
+//            case dependency:
+//                return Ontology.DEPENDENCY_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case association:
                 return Ontology.DEPENDENCY_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case operation:
@@ -146,5 +155,9 @@ public class QueryConstructionService {
         }
         filter +="}\n";
         return query+filter;
+    }
+
+    public int getNumLines(){
+        return numLines;
     }
 }

@@ -1,0 +1,12 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?UserClassImpl0 ?Profiler1 ?UserClass3 
+ WHERE {
+ ?UserClassImpl0  a woc:Class .
+?Profiler1  a woc:Class .
+?UserClass3  a woc:Class .
+?UserClass3 woc:hasDependency ?Profiler1 .
+?Profiler1 woc:hasDependency ?UserClassImpl0 .
+?UserClass3 woc:extends ?UserClassImpl0 .
+
+}

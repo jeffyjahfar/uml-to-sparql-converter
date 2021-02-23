@@ -1,0 +1,44 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?Client6 ?Component18 ?Leaf22 ?Composite35 ?Operation8 ?Add11 ?Remove14 ?GetChild17 ?Operation20 ?Operation24 ?Add27 ?Remove30 ?GetChild33 
+ WHERE {
+ ?Client6  a woc:Class .
+?Component18  a woc:Class .
+?Leaf22  a woc:Class .
+?Composite35  a woc:Class .
+?Operation8  a woc:Method .
+?Add11  a woc:Method .
+?Remove14  a woc:Method .
+?GetChild17  a woc:Method .
+?Operation20  a woc:Method .
+?Operation24  a woc:Method .
+?Add27  a woc:Method .
+?Remove30  a woc:Method .
+?GetChild33  a woc:Method .
+?Leaf22 woc:extends ?Component18 .
+?Composite35 woc:extends ?Component18 .
+?Client6 woc:hasDependency ?Component18 .
+?Component18 woc:hasDependency ?Composite35 .
+?Component18 woc:hasMethod ?Operation8 .
+?Component18 woc:hasMethod ?Add11 .
+?Add11 woc:hasParameter ?parameter10 .
+?parameter10 woc:hasType ?Component18 .
+?Component18 woc:hasMethod ?Remove14 .
+?Remove14 woc:hasParameter ?parameter13 .
+?parameter13 woc:hasType ?Component18 .
+?Component18 woc:hasMethod ?GetChild17 .
+?GetChild17 woc:hasParameter ?parameter16 .
+?parameter16 woc:hasType ?int38 .
+?Leaf22 woc:hasMethod ?Operation20 .
+?Composite35 woc:hasMethod ?Operation24 .
+?Composite35 woc:hasMethod ?Add27 .
+?Add27 woc:hasParameter ?parameter26 .
+?parameter26 woc:hasType ?Component18 .
+?Composite35 woc:hasMethod ?Remove30 .
+?Remove30 woc:hasParameter ?parameter29 .
+?parameter29 woc:hasType ?Component18 .
+?Composite35 woc:hasMethod ?GetChild33 .
+?GetChild33 woc:hasParameter ?parameter32 .
+?parameter32 woc:hasType ?int38 .
+
+}

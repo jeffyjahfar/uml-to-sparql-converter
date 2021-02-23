@@ -4,9 +4,7 @@ import com.sdmetrics.model.*;
 import com.sdmetrics.util.XMLParser;
 import com.uw.css.utils.Utils;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.*;
 
 public class PatternUMLParser {
@@ -59,10 +57,57 @@ public class PatternUMLParser {
     }
 
     public static void main(String[] args) {
+        String directory = "C:\\Users\\actsdev\\uml-to-sparql-converter\\test\\uml";
+        generateRQandReport(directory);
+
+
+
+
+
+
+    }
+
+    private static void generateRQandReport(String directory){
+        HashMap<String, Integer> report = new HashMap<>();
+        for(File f : new File(directory).listFiles()){
+            String name = f.getName();
+            if(name.indexOf(".xmi") != -1){
+                parseFile(name.substring(0, name.indexOf(".xmi")), report);
+                System.out.println("Filename: " + name);
+            }
+        }
+        printReport(report);
+        writeReport(directory, report);
+    }
+
+    private static void printReport(HashMap<String, Integer> report){
+        System.out.println("-----Num RDF Lines Report-----");
+        for(String key : report.keySet()){
+            System.out.println(key + " : " + report.get(key) + " lines");
+        }
+        System.out.println("-----End Report-----");
+    }
+    private static void writeReport(String dir, HashMap<String, Integer> report){
+        File f = new File(dir + "RDFLineReport.csv");
+        try{
+            f.createNewFile();
+        }catch (Exception e){};
+
+        try{
+            PrintStream stream = new PrintStream(f);
+            stream.println("Filename, numRDFLines");
+            for(String key : report.keySet()){
+                stream.println(key + "," + report.get(key));
+            }
+        }catch (FileNotFoundException e){System.out.println("Unable to write report file");};
+        System.out.println("Report written to " + f.getName());
+    }
+
+    private static void parseFile(String filenameIn, HashMap<String, Integer> report){
         PatternUMLParser patternUMLParser = new PatternUMLParser();
         ModelElementResolverService modelElementResolverService = new ModelElementResolverService();
         try {
-            String filename = "Visitor_Corrected_Seq_VP";
+            String filename = filenameIn;
 //            String filename = args[0];
             patternUMLParser.parseTestXMIFile(filename.concat(".xmi"));
 //            patternUMLParser.parseTestXMIFile(filename);
@@ -97,9 +142,9 @@ public class PatternUMLParser {
             query.constructQuery();
 //            patternUMLParser.saveOutputAsText(query.query,filename.replaceFirst(".xmi",".rq"));
             patternUMLParser.saveOutputAsText(query.query,filename.concat(".rq"));
+            report.put(filenameIn, query.getRDFLines());
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

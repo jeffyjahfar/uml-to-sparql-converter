@@ -1,0 +1,24 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?ContextInterface1 ?AlgorithmInterface4 ?AlgorithmInterface7 ?AlgorithmInterface11 ?Context2 ?ConcreteStrategyA5 ?ConcreteStrategyB8 ?Class9 ?Strategy12 
+ WHERE {
+ ?ContextInterface1  a woc:Method .
+?AlgorithmInterface4  a woc:Method .
+?AlgorithmInterface7  a woc:Method .
+?AlgorithmInterface11  a woc:Method .
+?Context2  a woc:Class .
+?ConcreteStrategyA5  a woc:Class .
+?ConcreteStrategyB8  a woc:Class .
+?Class9  a woc:Interface .
+?Strategy12  a woc:Interface .
+?Context2 woc:hasMethod ?ContextInterface1 .
+?ConcreteStrategyA5 woc:hasMethod ?AlgorithmInterface4 .
+?ConcreteStrategyB8 woc:hasMethod ?AlgorithmInterface7 .
+?Strategy12 woc:hasMethod ?AlgorithmInterface11 .
+?Context2 woc:hasDependency ?Strategy12 .
+?AlgorithmInterface4 woc:implements ?Strategy12 .
+?AlgorithmInterface7 woc:implements ?Strategy12 .
+?AlgorithmInterface7 woc:implements ?Strategy12 .
+?AlgorithmInterface4 woc:implements ?Strategy12 .
+
+}

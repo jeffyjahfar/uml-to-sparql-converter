@@ -1,0 +1,29 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?prototype30 ?operation1 ?Clone4 ?Clone7 ?Clone11 ?Client2 ?Prototype5 ?ConcretePrototypeA9 ?ConcretePrototypeB13 
+ WHERE {
+ ?prototype30  a woc:Field .
+?operation1  a woc:Method .
+?Clone4  a woc:Method .
+?Clone4 woc:hasModifier woc:Abstract .
+?Clone7  a woc:Method .
+?Clone11  a woc:Method .
+?Client2  a woc:Class .
+?Prototype5  a woc:Class .
+?Prototype5 woc:hasModifier woc:Abstract .
+?ConcretePrototypeA9  a woc:Class .
+?ConcretePrototypeB13  a woc:Class .
+?Client2 woc:hasMethod ?operation1 .
+?Prototype5 woc:hasMethod ?Clone4 .
+?Clone4 woc:hasReturnType ?Prototype5 .
+?ConcretePrototypeA9 woc:hasMethod ?Clone7 .
+?Clone7 woc:hasReturnType ?ConcretePrototypeA9 .
+?ConcretePrototypeB13 woc:hasMethod ?Clone11 .
+?Clone11 woc:hasReturnType ?ConcretePrototypeB13 .
+?ConcretePrototypeA9 woc:extends ?Prototype5 .
+?ConcretePrototypeB13 woc:extends ?Prototype5 .
+?Prototype5 woc:hasDependency ?Client2 .
+?operation1 woc:references ?operation1 .
+?operation1 woc:references ?Clone4 .
+
+}

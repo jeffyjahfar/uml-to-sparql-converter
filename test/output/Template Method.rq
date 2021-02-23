@@ -1,0 +1,20 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?TemplateMethod1 ?PrimitiveOperation13 ?PrimitiveOperation25 ?PrimitiveOperation18 ?PrimitiveOperation210 ?AbstractClass6 ?ConcreteClass12 
+ WHERE {
+ ?TemplateMethod1  a woc:Method .
+?PrimitiveOperation13  a woc:Method .
+?PrimitiveOperation25  a woc:Method .
+?PrimitiveOperation18  a woc:Method .
+?PrimitiveOperation210  a woc:Method .
+?AbstractClass6  a woc:Class .
+?AbstractClass6 woc:hasModifier woc:Abstract .
+?ConcreteClass12  a woc:Class .
+?AbstractClass6 woc:hasMethod ?TemplateMethod1 .
+?AbstractClass6 woc:hasMethod ?PrimitiveOperation13 .
+?AbstractClass6 woc:hasMethod ?PrimitiveOperation25 .
+?ConcreteClass12 woc:hasMethod ?PrimitiveOperation18 .
+?ConcreteClass12 woc:hasMethod ?PrimitiveOperation210 .
+?ConcreteClass12 woc:extends ?AbstractClass6 .
+
+}

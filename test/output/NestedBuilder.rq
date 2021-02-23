@@ -1,0 +1,30 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?constructor5 ?constructor8 ?builder10 ?build13 ?setter16 ?Client11 ?Builder17 ?ConcreteBuilder19 ?Product20 
+ WHERE {
+ ?constructor5  a woc:Method .
+?constructor8  a woc:Method .
+?builder10  a woc:Method .
+?build13  a woc:Method .
+?setter16  a woc:Method .
+?Client11  a woc:Class .
+?Builder17  a woc:Class .
+?ConcreteBuilder19  a woc:Class .
+?Product20  a woc:Class .
+?Builder17 woc:hasDependency ?Client11 .
+?Client11 woc:hasMethod ?constructor5 .
+?constructor5 woc:hasReturnType ?Builder17 .
+?constructor5 woc:hasParameter ?required4 .
+?Client11 woc:hasMethod ?constructor8 .
+?constructor8 woc:hasReturnType ?Builder17 .
+?constructor8 woc:hasParameter ?optional7 .
+?Client11 woc:hasMethod ?builder10 .
+?builder10 woc:hasReturnType ?Builder17 .
+?Builder17 woc:hasMethod ?build13 .
+?build13 woc:hasReturnType ?Builder17 .
+?Builder17 woc:hasMethod ?setter16 .
+?setter16 woc:hasParameter ?optional15 .
+?ConcreteBuilder19 woc:extends ?Builder17 .
+?ConcreteBuilder19  ?Product20 .
+
+}

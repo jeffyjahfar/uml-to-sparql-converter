@@ -1,0 +1,19 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?Request8 ?SpecificRequest11 ?Request14 ?Client6 ?Target9 ?Adaptee12 ?Adapter16 
+ WHERE {
+ ?Request8  a woc:Method .
+?SpecificRequest11  a woc:Method .
+?Request14  a woc:Method .
+?Client6  a woc:Class .
+?Target9  a woc:Class .
+?Adaptee12  a woc:Class .
+?Adapter16  a woc:Class .
+?Target9 woc:hasMethod ?Request8 .
+?Adaptee12 woc:hasMethod ?SpecificRequest11 .
+?Adapter16 woc:hasMethod ?Request14 .
+?Client6 woc:hasDependency ?Target9 .
+?Adaptee12 woc:hasDependency ?Adapter16 .
+?Adapter16 woc:extends ?Target9 .
+
+}

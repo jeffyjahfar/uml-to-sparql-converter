@@ -1,0 +1,25 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?DecoratorB6 ?DecoratorC8 ?Component0 ?ConcreteComponent2 ?Decorator4 ?Container9 ?ConcreteDecoratorC11 ?ConcreteDecoratorB13 
+ WHERE {
+ ?DecoratorB6  a woc:Method .
+?DecoratorC8  a woc:Method .
+?Component0  a woc:Class .
+?Component0 woc:hasModifier woc:Abstract .
+?ConcreteComponent2  a woc:Class .
+?Decorator4  a woc:Class .
+?Decorator4 woc:hasModifier woc:Abstract .
+?Container9  a woc:Class .
+?ConcreteDecoratorC11  a woc:Class .
+?ConcreteDecoratorB13  a woc:Class .
+?Container9 woc:hasMethod ?DecoratorB6 .
+?Container9 woc:hasMethod ?DecoratorC8 .
+?Component0 woc:hasDependency ?Decorator4 .
+?ConcreteComponent2 woc:extends ?Component0 .
+?Decorator4 woc:extends ?Component0 .
+?ConcreteDecoratorB13 woc:extends ?Decorator4 .
+?ConcreteDecoratorC11 woc:extends ?Decorator4 .
+?DecoratorB6  ?ConcreteDecoratorC11 .
+?DecoratorC8  ?ConcreteDecoratorB13 .
+
+}

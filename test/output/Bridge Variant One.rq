@@ -1,0 +1,21 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?operation4 ?operationImp7 ?operation10 ?operationImp14 ?Absraction5 ?Implementor8 ?AbstractionOne12 ?ImplementorOne16 
+ WHERE {
+ ?operation4  a woc:Method .
+?operationImp7  a woc:Method .
+?operation10  a woc:Method .
+?operationImp14  a woc:Method .
+?Absraction5  a woc:Class .
+?Implementor8  a woc:Class .
+?AbstractionOne12  a woc:Class .
+?ImplementorOne16  a woc:Class .
+?Absraction5 woc:hasMethod ?operation4 .
+?Implementor8 woc:hasMethod ?operationImp7 .
+?AbstractionOne12 woc:hasMethod ?operation10 .
+?ImplementorOne16 woc:hasMethod ?operationImp14 .
+?AbstractionOne12 woc:hasDependency ?Implementor8 .
+?AbstractionOne12 woc:extends ?Absraction5 .
+?ImplementorOne16 woc:extends ?Implementor8 .
+
+}

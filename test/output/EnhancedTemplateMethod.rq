@@ -1,0 +1,31 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?AbstractClass6 ?ConcreteClass12 ?ChildClass18 ?equals1 ?localEquals3 ?getTypeEquiv5 ?localEquals8 ?getTypeEquiv10 ?localEquals14 ?getTypeEquiv16 
+ WHERE {
+ ?AbstractClass6  a woc:Class .
+?AbstractClass6 woc:hasModifier woc:Abstract .
+?ConcreteClass12  a woc:Class .
+?ChildClass18  a woc:Class .
+?equals1  a woc:Method .
+?localEquals3  a woc:Method .
+?getTypeEquiv5  a woc:Method .
+?getTypeEquiv5 woc:hasModifier woc:Abstract .
+?localEquals8  a woc:Method .
+?getTypeEquiv10  a woc:Method .
+?localEquals14  a woc:Method .
+?getTypeEquiv16  a woc:Method .
+?ConcreteClass12 woc:extends ?AbstractClass6 .
+?ChildClass18 woc:extends ?ConcreteClass12 .
+?AbstractClass6 woc:hasMethod ?equals1 .
+?equals1 woc:hasReturnType ?boolean19 .
+?AbstractClass6 woc:hasMethod ?localEquals3 .
+?localEquals3 woc:hasReturnType ?boolean19 .
+?AbstractClass6 woc:hasMethod ?getTypeEquiv5 .
+?ConcreteClass12 woc:hasMethod ?localEquals8 .
+?localEquals8 woc:hasReturnType ?boolean19 .
+?ConcreteClass12 woc:hasMethod ?getTypeEquiv10 .
+?ChildClass18 woc:hasMethod ?localEquals14 .
+?localEquals14 woc:hasReturnType ?boolean19 .
+?ChildClass18 woc:hasMethod ?getTypeEquiv16 .
+
+}

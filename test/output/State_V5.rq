@@ -1,0 +1,29 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?TransactionFactory0 ?Service1 ?State2 ?ConcreteStateA4 ?ConcreteStateB6 ?Transaction7 ?Entity8 ?FSM Manager9 ?DataAccessObject10 ?DataSource11 
+ WHERE {
+ ?TransactionFactory0  a woc:Class .
+?Service1  a woc:Class .
+?State2  a woc:Class .
+?State2 woc:hasModifier woc:Abstract .
+?ConcreteStateA4  a woc:Class .
+?ConcreteStateB6  a woc:Class .
+?Transaction7  a woc:Class .
+?Entity8  a woc:Class .
+?FSM Manager9  a woc:Class .
+?DataAccessObject10  a woc:Class .
+?DataSource11  a woc:Class .
+?ConcreteStateB6 woc:extends ?State2 .
+?ConcreteStateA4 woc:extends ?State2 .
+?State2 woc:hasDependency ?Service1 .
+?Service1 woc:hasDependency ?TransactionFactory0 .
+?Transaction7 woc:hasDependency ?Service1 .
+?TransactionFactory0 woc:hasDependency ?Transaction7 .
+?Transaction7 woc:hasDependency ?FSM Manager9 .
+?DataSource11 woc:hasDependency ?DataAccessObject10 .
+?Entity8 woc:hasDependency ?DataAccessObject10 .
+?DataAccessObject10 woc:hasDependency ?Transaction7 .
+?State2 woc:hasDependency ?Entity8 .
+?State2 woc:hasDependency ?Transaction7 .
+
+}

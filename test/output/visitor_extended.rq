@@ -1,0 +1,49 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?Accept2 ?Accept6 ?Accept11 ?visitConcreteElement16 ?visitConcreteElement20 ?visitConcreteElement78 ?Visitor17 ?Element3 ?ConcreteElementA8 ?ConcreteElementB13 ?ConcreteVisitor121 ?ConcreteVisitor279 
+ WHERE {
+ ?Accept2  a woc:Method .
+?Accept6  a woc:Method .
+?Accept11  a woc:Method .
+?visitConcreteElement16  a woc:Method .
+?visitConcreteElement20  a woc:Method .
+?visitConcreteElement78  a woc:Method .
+?Visitor17  a woc:Interface .
+?Element3  a woc:Class .
+?Element3 woc:hasModifier woc:Abstract .
+?ConcreteElementA8  a woc:Class .
+?ConcreteElementB13  a woc:Class .
+?ConcreteVisitor121  a woc:Class .
+?ConcreteVisitor279  a woc:Class .
+?ConcreteVisitor121 woc:implements ?Visitor17 .
+?ConcreteVisitor279 woc:implements ?Visitor17 .
+?Element3 woc:hasMethod ?Accept2 .
+?Accept2 woc:hasParameter ?v1 .
+?v1 woc:hasType ?Visitor17 .
+?ConcreteElementA8 woc:hasMethod ?Accept6 .
+?Accept6 woc:hasParameter ?v5 .
+?v5 woc:hasType ?Visitor17 .
+?ConcreteElementB13 woc:hasMethod ?Accept11 .
+?Accept11 woc:hasParameter ?v10 .
+?v10 woc:hasType ?Visitor17 .
+?Visitor17 woc:hasMethod ?visitConcreteElement16 .
+?visitConcreteElement16 woc:hasParameter ?cA15 .
+?cA15 woc:hasType ?int82 .
+?ConcreteVisitor121 woc:hasMethod ?visitConcreteElement20 .
+?visitConcreteElement20 woc:hasParameter ?cA19 .
+?cA19 woc:hasType ?int82 .
+?ConcreteVisitor279 woc:hasMethod ?visitConcreteElement78 .
+?visitConcreteElement78 woc:hasParameter ?cA77 .
+?cA77 woc:hasType ?int82 .
+?ConcreteVisitor121 woc:implements ?Visitor17 .
+?ConcreteVisitor279 woc:implements ?Visitor17 .
+?ConcreteElementB13 woc:extends ?Element3 .
+?ConcreteElementA8 woc:extends ?Element3 .
+?Accept6 woc:references ?visitConcreteElement20 .
+?Accept6 woc:references ?visitConcreteElement20 .
+?Accept2 woc:references ?visitConcreteElement20 .
+?Accept6 woc:references ?visitConcreteElement78 .
+?Accept6 woc:references ?visitConcreteElement78 .
+?Accept11 woc:references ?visitConcreteElement78 .
+
+}

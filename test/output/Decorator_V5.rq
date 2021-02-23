@@ -1,0 +1,14 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?Component0 ?ConcreteCompnent2 ?ConcreteDecorator4 ?component6 
+ WHERE {
+ ?Component0  a woc:Class .
+?Component0 woc:hasModifier woc:Abstract .
+?ConcreteCompnent2  a woc:Class .
+?ConcreteDecorator4  a woc:Class .
+?component6  a woc:Field .
+?ConcreteDecorator4 woc:extends ?Component0 .
+?ConcreteCompnent2 woc:extends ?Component0 .
+?ConcreteDecorator4 woc:hasDependency ?Component0 .
+
+}

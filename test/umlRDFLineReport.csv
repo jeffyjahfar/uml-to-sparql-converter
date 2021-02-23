@@ -1,0 +1,38 @@
+Filename, numRDFLines
+Decorator_V5,7
+State_V4,25
+State_V5,22
+Decorator_V3,18
+Decorator_V2,13
+DistributedMonitoringusingVisitorPattern,20
+State_V2,9
+Composite Base,37
+State_V3,12
+Command Base,51
+observer,44
+VisitorCombinators,21
+Proxy,14
+pluggableAdapter,10
+Bridge Bass,16
+Bridge Variant One,14
+Strategy_flexible_form,41
+singleton_lazy,11
+Strategy_interface,17
+Template Method,13
+Composite_spoiled,40
+twoWayAdapter,12
+EnhancedTemplateMethod,24
+Composite_spoiled_abstract,35
+prototype_interface,20
+observer_multiple_instances,45
+prototype,22
+pluggableAdapterV2,15
+NestedBuilder,23
+visitor_abstract,50
+Strategy,16
+visitor_extended,42
+adapterBaseAssociation,12
+factory_extended_abstract,38
+Decorator_V1,5
+prototype_compound,27
+readAndWriteOnlyAdapter,15

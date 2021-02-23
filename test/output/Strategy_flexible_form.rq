@@ -1,0 +1,48 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?Class13 ?DisplayStrategy16 ?HandleStrategy19 ?DisplayStrategy0 ?HandleStrategy1 ?Element6 ?ConcreteStrategyA9 ?ConcreteStrategyB12 ?ConcreteStrategyC22 ?ConcreteStrategyD25 ?ConcreteElementA27 ?ConcreteElementB29 ?setDisplayBehavior3 ?setHandleBehavior5 ?display8 ?display11 ?display15 ?execute18 ?execute21 ?execute24 
+ WHERE {
+ ?Class13  a woc:Interface .
+?DisplayStrategy16  a woc:Interface .
+?HandleStrategy19  a woc:Interface .
+?DisplayStrategy0  a woc:Field .
+?HandleStrategy1  a woc:Field .
+?Element6  a woc:Class .
+?ConcreteStrategyA9  a woc:Class .
+?ConcreteStrategyB12  a woc:Class .
+?ConcreteStrategyC22  a woc:Class .
+?ConcreteStrategyD25  a woc:Class .
+?ConcreteElementA27  a woc:Class .
+?ConcreteElementB29  a woc:Class .
+?setDisplayBehavior3  a woc:Method .
+?setHandleBehavior5  a woc:Method .
+?display8  a woc:Method .
+?display11  a woc:Method .
+?display15  a woc:Method .
+?execute18  a woc:Method .
+?execute21  a woc:Method .
+?execute24  a woc:Method .
+?ConcreteStrategyB12 woc:implements ?DisplayStrategy16 .
+?ConcreteStrategyA9 woc:implements ?DisplayStrategy16 .
+?ConcreteStrategyD25 woc:implements ?HandleStrategy19 .
+?ConcreteStrategyC22 woc:implements ?HandleStrategy19 .
+?ConcreteStrategyA9 woc:implements ?DisplayStrategy16 .
+?ConcreteStrategyB12 woc:implements ?DisplayStrategy16 .
+?ConcreteStrategyC22 woc:implements ?HandleStrategy19 .
+?ConcreteStrategyD25 woc:implements ?HandleStrategy19 .
+?ConcreteElementA27 woc:extends ?Element6 .
+?ConcreteElementB29 woc:extends ?Element6 .
+?Element6 woc:hasField ?DisplayStrategy0 .
+?Element6 woc:hasField ?HandleStrategy1 .
+?Element6 woc:hasMethod ?setDisplayBehavior3 .
+?Element6 woc:hasMethod ?setHandleBehavior5 .
+?ConcreteStrategyA9 woc:hasMethod ?display8 .
+?ConcreteStrategyB12 woc:hasMethod ?display11 .
+?DisplayStrategy16 woc:hasMethod ?display15 .
+?HandleStrategy19 woc:hasMethod ?execute18 .
+?ConcreteStrategyC22 woc:hasMethod ?execute21 .
+?ConcreteStrategyD25 woc:hasMethod ?execute24 .
+?DisplayStrategy16 woc:hasDependency ?Element6 .
+?HandleStrategy19 woc:hasDependency ?Element6 .
+
+}

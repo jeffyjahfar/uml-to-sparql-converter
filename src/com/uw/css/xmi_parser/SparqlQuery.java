@@ -1,12 +1,15 @@
 package com.uw.css.xmi_parser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class SparqlQuery {
+
     String query;
     List<RelationshipItem> relationshipItems;
     List<Component> components;
+    private int rdfLines;
 
     public SparqlQuery() {
         query = null;
@@ -52,6 +55,11 @@ public class SparqlQuery {
         query = queryConstructionService.constructSelectStatement(components,false, query);
         query = queryConstructionService.constructWhereStatement(query,relationshipItems,components);
 //        query = queryConstructionService.addFilterStatement(query,components);
+        rdfLines = queryConstructionService.getNumLines();
         return query;
+    }
+
+    public int getRDFLines(){
+        return rdfLines;
     }
 }

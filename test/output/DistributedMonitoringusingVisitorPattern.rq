@@ -1,0 +1,27 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT ?Client9 ?Visitor12 ?Element15 ?AbstractElement17 ?ConcreteElement19 ?AbstractVisitor21 ?ConcreteVisitor23 ?Object Structure24 ?visit11 ?accept14 
+ WHERE {
+ ?Client9  a woc:Class .
+?Visitor12  a woc:Class .
+?Element15  a woc:Class .
+?AbstractElement17  a woc:Class .
+?ConcreteElement19  a woc:Class .
+?AbstractVisitor21  a woc:Class .
+?ConcreteVisitor23  a woc:Class .
+?Object Structure24  a woc:Class .
+?visit11  a woc:Method .
+?accept14  a woc:Method .
+?ConcreteVisitor23 woc:extends ?Visitor12 .
+?AbstractVisitor21 woc:extends ?Visitor12 .
+?ConcreteElement19 woc:extends ?Element15 .
+?AbstractElement17 woc:extends ?Element15 .
+?Client9 woc:hasDependency ?Visitor12 .
+?Client9 woc:hasDependency ?Object Structure24 .
+?Visitor12 woc:hasDependency ?Element15 .
+?Visitor12 woc:hasMethod ?visit11 .
+?visit11 woc:hasReturnType ?ConcreteElement19 .
+?Element15 woc:hasMethod ?accept14 .
+?accept14 woc:hasReturnType ?AbstractVisitor21 .
+
+}
