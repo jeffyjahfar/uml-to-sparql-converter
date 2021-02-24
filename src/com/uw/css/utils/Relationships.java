@@ -13,5 +13,6 @@ public enum Relationships {
     references,
     annotation,
     override,
-    realization
+    realization,
+    constructor
 }

@@ -57,14 +57,8 @@ public class PatternUMLParser {
     }
 
     public static void main(String[] args) {
-        String directory = "C:\\Users\\actsdev\\uml-to-sparql-converter\\test\\uml";
+        String directory = Utils.TEST_UML_DIR;
         generateRQandReport(directory);
-
-
-
-
-
-
     }
 
     private static void generateRQandReport(String directory){

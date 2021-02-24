@@ -303,8 +303,8 @@ public class ModelElementResolverService {
      */
 
     void getAnnotationRelations(List<RelationshipItem> relationshipItems, ModelElement modelElement){
-        String stereotype = modelElement.getPlainAttribute("stereotype");
-        if(stereotype.equals(Relationships.override.name())){
+        String stereotype = modelElement.getPlainAttribute("stereotypes");
+        if(stereotype!=null && stereotype.equals(Relationships.override.name())){
             Component comp = new Component(modelElement,modelElement.getType().getName(),Boolean.FALSE);
             RelationshipItem relationshipItem = new TextSpecificationConstraints(Relationships.annotation.name(),comp,Override.class.getName());
             relationshipItems.add(relationshipItem);

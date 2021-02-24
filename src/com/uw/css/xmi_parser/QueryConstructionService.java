@@ -85,6 +85,8 @@ public class QueryConstructionService {
                 return replaceInlinePrefix(Ontology.ABSTRACT_INDIVIDUAL.toString());
             case "final":
                 return replaceInlinePrefix(Ontology.ABSTRACT_INDIVIDUAL.toString());
+            case "synchronized":
+                return replaceInlinePrefix(Ontology.ABSTRACT_INDIVIDUAL.toString());
         }
         return "";
     }
@@ -103,6 +105,8 @@ public class QueryConstructionService {
                 return Ontology.DEPENDENCY_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case operation:
                 return Ontology.HAS_METHOD_PROPERTY.toString().replace(Ontology.WOC,"woc:");
+            case constructor:
+                return Ontology.HAS_CONSTRUCTOR_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case property:
                 return Ontology.HAS_FIELD_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case interfacerealization:
