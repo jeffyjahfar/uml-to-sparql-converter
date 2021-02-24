@@ -101,8 +101,8 @@ public class QueryConstructionService {
                 return Ontology.EXTENDS_PROPERTY.toString().replace(Ontology.WOC,"woc:");
 //            case dependency:
 //                return Ontology.DEPENDENCY_PROPERTY.toString().replace(Ontology.WOC,"woc:");
-            case association:
-                return Ontology.DEPENDENCY_PROPERTY.toString().replace(Ontology.WOC,"woc:");
+//            case association:
+//                return Ontology.DEPENDENCY_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case operation:
                 return Ontology.HAS_METHOD_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case constructor:
@@ -137,6 +137,8 @@ public class QueryConstructionService {
                 return Ontology.CLASS_ENTITY.toString().replace(Ontology.WOC,"woc:");
             case "operation":
                 return Ontology.METHOD_ENTITY.toString().replace(Ontology.WOC,"woc:");
+            case "constructor":
+                return Ontology.CONSTRUCTOR_ENTITY.toString().replace(Ontology.WOC,"woc:");
             case "interface":
                 return Ontology.INTERFACE_ENTITY.toString().replace(Ontology.WOC,"woc:");
             case "property":

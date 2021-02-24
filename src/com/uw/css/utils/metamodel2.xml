@@ -90,6 +90,8 @@ other part of SDMetrics.
         <attribute name="association" type="ref">Reference to association if this is an association end.</attribute>
         <attribute name="aggregation">The aggregation kind of the property: shared, composite, or none (default).</attribute>
         <attribute name="qualifiers" type="ref" multiplicity="many">The qualifier attributes of the property.</attribute>
+        <attribute name="static">Boolean indicating if the element is static.</attribute>
+        <attribute name="final">Boolean indicating if the element is final.</attribute>
     </modelelement>
 
     <modelelement name="port" parent="property" />

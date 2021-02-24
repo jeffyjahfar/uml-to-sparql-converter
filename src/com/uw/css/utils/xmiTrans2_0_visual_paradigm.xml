@@ -106,6 +106,10 @@ other part of SDMetrics.
 		<trigger name="aggregation" type="attrval" attr="aggregation"/>
 		<trigger name="aggregation" type="ctext" src="aggregation" />
 		<trigger name="qualifiers" type="xmi2assoc" src="uml:Property" attr="qualifier" />
+		<trigger name="final" type="attrval" attr="isFinal"/>
+		<trigger name="final" type="ctext" src="isFinal" />
+		<trigger name="static" type="attrval" attr="isStatic"/>
+		<trigger name="static" type="ctext" src="isStatic" />
 	</xmitransformation>
 
 	<xmitransformation modelelement="port" xmipattern="uml:Port" recurse="true" />

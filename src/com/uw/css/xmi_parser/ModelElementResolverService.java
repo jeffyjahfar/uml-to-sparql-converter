@@ -3,6 +3,7 @@ package com.uw.css.xmi_parser;
 import com.sdmetrics.model.ModelElement;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.uw.css.utils.Relationships;
+import com.uw.css.utils.Stereotypes;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,7 +45,11 @@ public class ModelElementResolverService {
                for(ModelElement op: ownedoperations){
                    Component owner = new Component(op, op.getType().getName(),false);
                    Component child = new Component(modelElement, modelElement.getType().getName(),false);
-                   RelationshipItem relationshipItem = new RelationshipItem(modelElement.getType().getName(), owner,child);
+                   String modelElementType = modelElement.getType().getName();
+                   if(isConstructor(modelElement)){
+                       modelElementType = Stereotypes.constructor.name();
+                   }
+                   RelationshipItem relationshipItem = new RelationshipItem(modelElementType, owner,child);
                    relationshipItems.add(relationshipItem);
                    getAnnotationRelations(relationshipItems,modelElement);
                }
@@ -203,7 +208,11 @@ public class ModelElementResolverService {
 
     List<Component> resolveComponents(List<Component> components, ModelElement modelElement, Boolean suppressVisibility){
         if(isQueryObject(modelElement) && !modelElement.getName().isEmpty()){
-            Component component = new Component(modelElement, modelElement.getType().getName(),true);
+            String modelElementType = modelElement.getType().getName();
+            if(isConstructor(modelElement)){
+                modelElementType = Stereotypes.constructor.name();
+            }
+            Component component = new Component(modelElement, modelElementType,true);
             List<String> modifiers = new ArrayList<>();
             if(!suppressVisibility){
                 if(modelElement.getType().hasAttribute("visibility")){
@@ -237,6 +246,13 @@ public class ModelElementResolverService {
                 components.add(component);
         }
         return components;
+    }
+
+    private boolean isConstructor(ModelElement modelElement) {
+        if(modelElement.getType().getName().equals(Relationships.operation.name())){
+            return resolveStereotypes(modelElement,Stereotypes.constructor);
+        }
+        return false;
     }
 
     void getInteractionDiagramRelations(List<ModelElement> fromActivations, List<ModelElement> toActivations,List<RelationshipItem> relationshipItems){
@@ -301,10 +317,20 @@ public class ModelElementResolverService {
         </xmi:Extension>
     </message>
      */
-
+    boolean resolveStereotypes(ModelElement modelElement, Stereotypes stereotype){
+        Collection<ModelElement> context = modelElement.getRelations("context");
+        for(ModelElement m: context){
+            if(m.getType().getName().equals("appliedstereotype")){
+                String appliedstereotype = m.getRefAttribute("value").getName();
+                if(appliedstereotype.equals(stereotype.name())){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     void getAnnotationRelations(List<RelationshipItem> relationshipItems, ModelElement modelElement){
-        String stereotype = modelElement.getPlainAttribute("stereotypes");
-        if(stereotype!=null && stereotype.equals(Relationships.override.name())){
+        if(resolveStereotypes(modelElement,Stereotypes.override)){
             Component comp = new Component(modelElement,modelElement.getType().getName(),Boolean.FALSE);
             RelationshipItem relationshipItem = new TextSpecificationConstraints(Relationships.annotation.name(),comp,Override.class.getName());
             relationshipItems.add(relationshipItem);
