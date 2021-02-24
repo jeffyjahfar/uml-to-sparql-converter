@@ -106,7 +106,7 @@ other part of SDMetrics.
 
     <!-- new meta-model element -->
     <modelelement name="appliedstereotype">
-        <attribute name="value"/>
+        <attribute name="value" type="ref"/>
     </modelelement>
 
     <modelelement name="parameter">

@@ -127,7 +127,7 @@ other part of SDMetrics.
 
 	<xmitransformation modelelement="appliedstereotype" xmipattern="appliedStereotype"
 					   requirexmiid="false">
-		<trigger name="value" type="attrval" attr="xmi:value" src="uml:Stereotype" />
+		<trigger name="value" type="xmi2assoc" attr="xmi:value" src="uml:Stereotype" />
 	</xmitransformation>
 
 	<xmitransformation modelelement="parameter" xmipattern="uml:Parameter">
