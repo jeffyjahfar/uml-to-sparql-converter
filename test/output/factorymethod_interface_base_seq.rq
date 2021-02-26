@@ -1,0 +1,25 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?Creator40 ?makeProduct23 ?ConcreteProduct27 ?Product32 ?makeProduct39 ?ConcreteCreator24 ?ConcreteProduct29 ?Product33 ?Client36 
+ WHERE {
+ ?Creator40  a woc:Interface .
+?makeProduct23  a woc:Method .
+?ConcreteProduct27  a woc:Constructor .
+?Product32  a woc:Constructor .
+?makeProduct39  a woc:Method .
+?ConcreteCreator24  a woc:Class .
+?ConcreteProduct29  a woc:Class .
+?Product33  a woc:Class .
+?Product33 woc:hasModifier woc:Abstract .
+?Client36  a woc:Class .
+?ConcreteCreator24 woc:implements ?Creator40 .
+?ConcreteCreator24 woc:hasMethod ?makeProduct23 .
+?makeProduct23 woc:hasAnnotation woc:java.lang.Override .
+?makeProduct23 woc:hasReturnType ?Product33 .
+?ConcreteProduct29 woc:hasConstructor ?ConcreteProduct27 .
+?Product33 woc:hasConstructor ?Product32 .
+?Creator40 woc:hasMethod ?makeProduct39 .
+?makeProduct39 woc:hasReturnType ?Product33 .
+?ConcreteProduct29 woc:extends ?Product33 .
+
+}

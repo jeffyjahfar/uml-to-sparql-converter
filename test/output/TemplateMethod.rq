@@ -1,0 +1,17 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?AbstractClass8 ?ConcreteClass13 ?TemplateMethod5 ?PrimitiveOperation17 ?PrimitiveOperation111 
+ WHERE {
+ ?AbstractClass8  a woc:Class .
+?AbstractClass8 woc:hasModifier woc:Abstract .
+?ConcreteClass13  a woc:Class .
+?TemplateMethod5  a woc:Method .
+?PrimitiveOperation17  a woc:Method .
+?PrimitiveOperation111  a woc:Method .
+?ConcreteClass13 woc:extends ?AbstractClass8 .
+?AbstractClass8 woc:hasMethod ?TemplateMethod5 .
+?AbstractClass8 woc:hasMethod ?PrimitiveOperation17 .
+?ConcreteClass13 woc:hasMethod ?PrimitiveOperation111 .
+?PrimitiveOperation111 woc:hasAnnotation woc:java.lang.Override .
+
+}

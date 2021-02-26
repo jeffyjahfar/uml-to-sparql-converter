@@ -1,0 +1,16 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?Singleton11 ?uniqueInstance5 ?Instance7 ?Singleton10 
+ WHERE {
+ ?Singleton11  a woc:Class .
+?uniqueInstance5  a woc:Field .
+?uniqueInstance5 woc:hasModifier woc:Static .
+?Instance7  a woc:Method .
+?Instance7 woc:hasModifier woc:Static .
+?Singleton10  a woc:Constructor .
+?Singleton11 woc:hasField ?uniqueInstance5 .
+?Singleton11 woc:hasMethod ?Instance7 .
+?Instance7 woc:hasReturnType ?Singleton11 .
+?Singleton11 woc:hasConstructor ?Singleton10 .
+
+}

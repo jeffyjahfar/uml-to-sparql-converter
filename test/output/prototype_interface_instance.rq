@@ -1,0 +1,18 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?PrototypeInterface32 ?Client7 ?ConcretePrototypeA10 ?operation6 ?Clone9 ?Clone31 ?prototype4 
+ WHERE {
+ ?PrototypeInterface32  a woc:Interface .
+?Client7  a woc:Class .
+?ConcretePrototypeA10  a woc:Class .
+?operation6  a woc:Method .
+?Clone9  a woc:Method .
+?Clone31  a woc:Method .
+?prototype4  a woc:Field .
+?ConcretePrototypeA10 woc:implements ?PrototypeInterface32 .
+?Client7 woc:hasField ?prototype4 .
+?Client7 woc:hasMethod ?operation6 .
+?ConcretePrototypeA10 woc:hasMethod ?Clone9 .
+?PrototypeInterface32 woc:hasMethod ?Clone31 .
+
+}

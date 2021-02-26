@@ -1,0 +1,24 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?StateInterface19 ?state7 ?Cotext10 ?ConcreteStateA14 ?ConcreteStateB23 ?Request9 ?Handle13 ?Handle18 ?Handle22 
+ WHERE {
+ ?StateInterface19  a woc:Interface .
+?state7  a woc:Field .
+?Cotext10  a woc:Class .
+?ConcreteStateA14  a woc:Class .
+?ConcreteStateB23  a woc:Class .
+?Request9  a woc:Method .
+?Handle13  a woc:Method .
+?Handle18  a woc:Method .
+?Handle22  a woc:Method .
+?ConcreteStateA14 woc:implements ?StateInterface19 .
+?ConcreteStateB23 woc:implements ?StateInterface19 .
+?Cotext10 woc:hasField ?state7 .
+?Cotext10 woc:hasMethod ?Request9 .
+?ConcreteStateA14 woc:hasMethod ?Handle13 .
+?Handle13 woc:hasAnnotation woc:java.lang.Override .
+?StateInterface19 woc:hasMethod ?Handle18 .
+?ConcreteStateB23 woc:hasMethod ?Handle22 .
+?Handle22 woc:hasAnnotation woc:java.lang.Override .
+
+}

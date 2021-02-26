@@ -111,7 +111,7 @@ public class ModelElementResolverService {
         getSupplierRelations(relationshipItems,modelElement);
         getOwnedOperations(relationshipItems,modelElement);
         getOwnedParameters(relationshipItems,modelElement);
-        getAssociationRelations(relationshipItems,modelElement);
+//        getAssociationRelations(relationshipItems,modelElement);
         getInterfaceImplementationRelations(relationshipItems,modelElement);
         getOwnedAttributes(relationshipItems,modelElement);
 //        getSequenceDiagramRelations(relationshipItems,modelElement);
@@ -147,14 +147,14 @@ public class ModelElementResolverService {
                 relationshipItems.add(relationshipItem);
             }
         }
-        if(type.equals(Relationships.realization.name())){
-            ModelElement client = (ModelElement) modelElement.getSetAttribute("client").iterator().next();
-            ModelElement owner = (ModelElement) modelElement.getSetAttribute("supplier").iterator().next();
-            Component fromItem = new Component(client,client.getType().getName(),false);
-            Component toItem = new Component(owner,owner.getType().getName(),false);
-            RelationshipItem relationshipItem = new RelationshipItem(type,fromItem,toItem);
-            relationshipItems.add(relationshipItem);
-        }
+//        if(type.equals(Relationships.realization.name())){
+//            ModelElement client = (ModelElement) modelElement.getSetAttribute("client").iterator().next();
+//            ModelElement owner = (ModelElement) modelElement.getSetAttribute("supplier").iterator().next();
+//            Component fromItem = new Component(client,client.getType().getName(),false);
+//            Component toItem = new Component(owner,owner.getType().getName(),false);
+//            RelationshipItem relationshipItem = new RelationshipItem(type,fromItem,toItem);
+//            relationshipItems.add(relationshipItem);
+//        }
     }
 
     private void getGeneralizationRelations(List<RelationshipItem> relationshipItems, ModelElement modelElement) {
@@ -207,45 +207,58 @@ public class ModelElementResolverService {
     }
 
     List<Component> resolveComponents(List<Component> components, ModelElement modelElement, Boolean suppressVisibility){
-        if(isQueryObject(modelElement) && !modelElement.getName().isEmpty()){
-            String modelElementType = modelElement.getType().getName();
-            if(isConstructor(modelElement)){
-                modelElementType = Stereotypes.constructor.name();
-            }
-            Component component = new Component(modelElement, modelElementType,true);
-            List<String> modifiers = new ArrayList<>();
-            if(!suppressVisibility){
-                if(modelElement.getType().hasAttribute("visibility")){
-                    String visibility = modelElement.getPlainAttribute("visibility");
-                    if(visibility != null){
-                        modifiers.add(visibility);
+        if(isQueryObject(modelElement) && !modelElement.getName().isEmpty()) {
+            if (sanityChecked(modelElement)) {
+                String modelElementType = modelElement.getType().getName();
+                if (isConstructor(modelElement)) {
+                    modelElementType = Stereotypes.constructor.name();
+                }
+                Component component = new Component(modelElement, modelElementType, true);
+                List<String> modifiers = new ArrayList<>();
+                if (!suppressVisibility) {
+                    if (modelElement.getType().hasAttribute("visibility")) {
+                        String visibility = modelElement.getPlainAttribute("visibility");
+                        if (visibility != null) {
+                            modifiers.add(visibility);
+                        }
                     }
                 }
-            }
 
-            if(modelElement.getType().hasAttribute("abstract")){
-                String isAbstract = modelElement.getPlainAttribute("abstract");
-                if(isAbstract.equals("true")){
-                    modifiers.add("abstract");
+                if (modelElement.getType().hasAttribute("abstract")) {
+                    String isAbstract = modelElement.getPlainAttribute("abstract");
+                    if (isAbstract.equals("true")) {
+                        modifiers.add("abstract");
+                    }
                 }
-            }
-            if(modelElement.getType().hasAttribute("static")){
-                String isStatic = modelElement.getPlainAttribute("static");
-                if(isStatic.equals("true")){
-                    modifiers.add("static");
+                if (modelElement.getType().hasAttribute("static")) {
+                    String isStatic = modelElement.getPlainAttribute("static");
+                    if (isStatic.equals("true")) {
+                        modifiers.add("static");
+                    }
                 }
-            }
-            if(modelElement.getType().hasAttribute("final")){
-                String isFinal = modelElement.getPlainAttribute("final");
-                if(isFinal.equals("true")){
-                    modifiers.add("final");
+                if (modelElement.getType().hasAttribute("final")) {
+                    String isFinal = modelElement.getPlainAttribute("final");
+                    if (isFinal.equals("true")) {
+                        modifiers.add("final");
+                    }
                 }
+                component.setModifiers(modifiers);
+                if (!components.contains(component))
+                    components.add(component);
             }
-            component.setModifiers(modifiers);
-            if(!components.contains(component))
-                components.add(component);
         }
         return components;
+    }
+
+    private boolean sanityChecked(ModelElement modelElement) {
+//        check association property
+        if(modelElement.getType().getName().equals(Relationships.property.name())){
+            modelElement.getType();
+            if(modelElement.getRelations("memberends") != null ||modelElement.getRelations("ownedends") != null){
+                return false;
+            }
+        }
+        return true;
     }
 
     private boolean isConstructor(ModelElement modelElement) {

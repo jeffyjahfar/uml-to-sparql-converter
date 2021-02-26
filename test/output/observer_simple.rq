@@ -1,0 +1,27 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?Subject13 ?Observer16 ?ConcreteObserver21 ?observers4 ?Attach7 ?Detach10 ?Notify12 ?Update15 ?Update19 
+ WHERE {
+ ?Subject13  a woc:Class .
+?Observer16  a woc:Class .
+?ConcreteObserver21  a woc:Class .
+?observers4  a woc:Field .
+?Attach7  a woc:Method .
+?Detach10  a woc:Method .
+?Notify12  a woc:Method .
+?Update15  a woc:Method .
+?Update19  a woc:Method .
+?Subject13 woc:hasField ?observers4 .
+?ConcreteObserver21 woc:extends ?Observer16 .
+?Subject13 woc:hasMethod ?Attach7 .
+?Attach7 woc:hasParameter ?observer6 .
+?observer6 woc:hasType ?Observer16 .
+?Subject13 woc:hasMethod ?Detach10 .
+?Detach10 woc:hasParameter ?observer9 .
+?observer9 woc:hasType ?Observer16 .
+?Subject13 woc:hasMethod ?Notify12 .
+?Observer16 woc:hasMethod ?Update15 .
+?ConcreteObserver21 woc:hasMethod ?Update19 .
+?Update19 woc:hasAnnotation woc:java.lang.Override .
+
+}

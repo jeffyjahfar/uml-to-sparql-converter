@@ -1,0 +1,19 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?Cotext10 ?State13 ?ConcreteStateA17 ?state7 ?Request9 ?Handle12 ?Handle15 
+ WHERE {
+ ?Cotext10  a woc:Class .
+?State13  a woc:Class .
+?State13 woc:hasModifier woc:Abstract .
+?ConcreteStateA17  a woc:Class .
+?state7  a woc:Field .
+?Request9  a woc:Method .
+?Handle12  a woc:Method .
+?Handle15  a woc:Method .
+?Cotext10 woc:hasField ?state7 .
+?ConcreteStateA17 woc:extends ?State13 .
+?Cotext10 woc:hasMethod ?Request9 .
+?State13 woc:hasMethod ?Handle12 .
+?ConcreteStateA17 woc:hasMethod ?Handle15 .
+
+}

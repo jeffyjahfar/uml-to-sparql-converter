@@ -1,0 +1,22 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?observers4 ?Attach7 ?Detach10 ?Notify12 ?Update15 ?Subject13 ?Observer16 
+ WHERE {
+ ?observers4  a woc:Field .
+?Attach7  a woc:Method .
+?Detach10  a woc:Method .
+?Notify12  a woc:Method .
+?Update15  a woc:Method .
+?Subject13  a woc:Class .
+?Observer16  a woc:Class .
+?Subject13 woc:hasMethod ?Attach7 .
+?Attach7 woc:hasParameter ?observer6 .
+?observer6 woc:hasType ?Observer16 .
+?Subject13 woc:hasMethod ?Detach10 .
+?Detach10 woc:hasParameter ?observer9 .
+?observer9 woc:hasType ?Observer16 .
+?Subject13 woc:hasMethod ?Notify12 .
+?Observer16 woc:hasMethod ?Update15 .
+?Subject13 woc:hasField ?observers4 .
+
+}

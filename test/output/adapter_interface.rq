@@ -1,0 +1,16 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?Target17 ?SpecificRequest8 ?Request11 ?Request16 ?Adaptee9 ?Adapter12 
+ WHERE {
+ ?Target17  a woc:Interface .
+?SpecificRequest8  a woc:Method .
+?Request11  a woc:Method .
+?Request16  a woc:Method .
+?Adaptee9  a woc:Class .
+?Adapter12  a woc:Class .
+?Adapter12 woc:implements ?Target17 .
+?Adaptee9 woc:hasMethod ?SpecificRequest8 .
+?Adapter12 woc:hasMethod ?Request11 .
+?Target17 woc:hasMethod ?Request16 .
+
+}

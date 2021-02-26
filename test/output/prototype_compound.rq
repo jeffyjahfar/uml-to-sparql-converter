@@ -1,0 +1,32 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?operation5 ?Clone9 ?Clone13 ?Clone18 ?Clone40 ?PrototypeInterface41 ?Client6 ?Prototype10 ?ConcretePrototypeA15 ?ConcretePrototypeB20 
+ WHERE {
+ ?operation5  a woc:Method .
+?Clone9  a woc:Method .
+?Clone9 woc:hasModifier woc:Abstract .
+?Clone13  a woc:Method .
+?Clone18  a woc:Method .
+?Clone40  a woc:Method .
+?PrototypeInterface41  a woc:Interface .
+?Client6  a woc:Class .
+?Prototype10  a woc:Class .
+?Prototype10 woc:hasModifier woc:Abstract .
+?ConcretePrototypeA15  a woc:Class .
+?ConcretePrototypeB20  a woc:Class .
+?Client6 woc:hasMethod ?operation5 .
+?Prototype10 woc:hasMethod ?Clone9 .
+?Clone9 woc:hasAnnotation woc:java.lang.Override .
+?Clone9 woc:hasReturnType ?Prototype10 .
+?ConcretePrototypeA15 woc:hasMethod ?Clone13 .
+?Clone13 woc:hasAnnotation woc:java.lang.Override .
+?Clone13 woc:hasReturnType ?ConcretePrototypeA15 .
+?ConcretePrototypeB20 woc:hasMethod ?Clone18 .
+?Clone18 woc:hasAnnotation woc:java.lang.Override .
+?Clone18 woc:hasReturnType ?ConcretePrototypeB20 .
+?PrototypeInterface41 woc:hasMethod ?Clone40 .
+?Prototype10 woc:implements ?PrototypeInterface41 .
+?ConcretePrototypeA15 woc:extends ?Prototype10 .
+?ConcretePrototypeB20 woc:extends ?Prototype10 .
+
+}

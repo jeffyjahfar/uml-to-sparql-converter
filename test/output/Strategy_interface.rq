@@ -1,0 +1,23 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?Context2 ?ConcreteStrategyA6 ?ConcreteStrategyB10 ?Class13 ?Strategy18 ?ContextInterface1 ?AlgorithmInterface5 ?AlgorithmInterface9 ?AlgorithmInterface17 
+ WHERE {
+ ?Context2  a woc:Class .
+?ConcreteStrategyA6  a woc:Class .
+?ConcreteStrategyB10  a woc:Class .
+?Class13  a woc:Interface .
+?Strategy18  a woc:Interface .
+?ContextInterface1  a woc:Method .
+?AlgorithmInterface5  a woc:Method .
+?AlgorithmInterface9  a woc:Method .
+?AlgorithmInterface17  a woc:Method .
+?AlgorithmInterface5 woc:implements ?Strategy18 .
+?AlgorithmInterface9 woc:implements ?Strategy18 .
+?Context2 woc:hasMethod ?ContextInterface1 .
+?ConcreteStrategyA6 woc:hasMethod ?AlgorithmInterface5 .
+?AlgorithmInterface5 woc:hasAnnotation woc:java.lang.Override .
+?ConcreteStrategyB10 woc:hasMethod ?AlgorithmInterface9 .
+?AlgorithmInterface9 woc:hasAnnotation woc:java.lang.Override .
+?Strategy18 woc:hasMethod ?AlgorithmInterface17 .
+
+}

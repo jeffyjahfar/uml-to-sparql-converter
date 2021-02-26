@@ -1,0 +1,40 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?makeProduct236 ?makeProduct139 ?ConcreteProduct244 ?Product249 ?makeProduct255 ?makeProduct157 ?Product161 ?ConcreteProduct165 ?ConcreteCreator41 ?ConcreteProduct246 ?Product250 ?Client53 ?Creator58 ?Product162 ?ConcreteProduct167 
+ WHERE {
+ ?makeProduct236  a woc:Method .
+?makeProduct139  a woc:Method .
+?ConcreteProduct244  a woc:Constructor .
+?Product249  a woc:Constructor .
+?makeProduct255  a woc:Method .
+?makeProduct157  a woc:Method .
+?Product161  a woc:Constructor .
+?ConcreteProduct165  a woc:Constructor .
+?ConcreteCreator41  a woc:Class .
+?ConcreteProduct246  a woc:Class .
+?Product250  a woc:Class .
+?Product250 woc:hasModifier woc:Abstract .
+?Client53  a woc:Class .
+?Creator58  a woc:Class .
+?Creator58 woc:hasModifier woc:Abstract .
+?Product162  a woc:Class .
+?ConcreteProduct167  a woc:Class .
+?ConcreteCreator41 woc:hasMethod ?makeProduct236 .
+?makeProduct236 woc:hasAnnotation woc:java.lang.Override .
+?makeProduct236 woc:hasReturnType ?Product250 .
+?ConcreteCreator41 woc:hasMethod ?makeProduct139 .
+?makeProduct139 woc:hasAnnotation woc:java.lang.Override .
+?makeProduct139 woc:hasReturnType ?Product250 .
+?ConcreteProduct246 woc:hasConstructor ?ConcreteProduct244 .
+?Product250 woc:hasConstructor ?Product249 .
+?Creator58 woc:hasMethod ?makeProduct255 .
+?makeProduct255 woc:hasReturnType ?Product250 .
+?Creator58 woc:hasMethod ?makeProduct157 .
+?makeProduct157 woc:hasReturnType ?Product250 .
+?Product162 woc:hasConstructor ?Product161 .
+?ConcreteProduct167 woc:hasConstructor ?ConcreteProduct165 .
+?ConcreteProduct246 woc:extends ?Product250 .
+?ConcreteCreator41 woc:extends ?Creator58 .
+?ConcreteProduct167 woc:extends ?Product162 .
+
+}

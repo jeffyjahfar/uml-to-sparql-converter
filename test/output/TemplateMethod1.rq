@@ -1,0 +1,12 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?AbstractClass8 ?TemplateMethod5 ?PrimitiveOperation17 
+ WHERE {
+ ?AbstractClass8  a woc:Class .
+?AbstractClass8 woc:hasModifier woc:Abstract .
+?TemplateMethod5  a woc:Method .
+?PrimitiveOperation17  a woc:Method .
+?AbstractClass8 woc:hasMethod ?TemplateMethod5 .
+?AbstractClass8 woc:hasMethod ?PrimitiveOperation17 .
+
+}

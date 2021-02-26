@@ -132,7 +132,7 @@ public class PatternUMLParser {
                 query.components = modelElementResolverService.resolveComponents(query.components,modelElement, suppressVisibility);
                 query.relationshipItems = modelElementResolverService.resolveRelations(query.relationshipItems,modelElement);
             }
-            modelElementResolverService.getInteractionDiagramRelations(fromActivations,toActivations,query.relationshipItems);
+//            modelElementResolverService.getInteractionDiagramRelations(fromActivations,toActivations,query.relationshipItems);
             query.constructQuery();
 //            patternUMLParser.saveOutputAsText(query.query,filename.replaceFirst(".xmi",".rq"));
             patternUMLParser.saveOutputAsText(query.query,filename.concat(".rq"));

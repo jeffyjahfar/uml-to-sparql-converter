@@ -1,0 +1,27 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?Client6 ?Prototype9 ?ConcretePrototypeA14 ?ConcretePrototypeB19 ?operation5 ?Clone8 ?Clone12 ?Clone17 
+ WHERE {
+ ?Client6  a woc:Class .
+?Prototype9  a woc:Class .
+?Prototype9 woc:hasModifier woc:Abstract .
+?ConcretePrototypeA14  a woc:Class .
+?ConcretePrototypeB19  a woc:Class .
+?operation5  a woc:Method .
+?Clone8  a woc:Method .
+?Clone8 woc:hasModifier woc:Abstract .
+?Clone12  a woc:Method .
+?Clone17  a woc:Method .
+?ConcretePrototypeB19 woc:extends ?Prototype9 .
+?ConcretePrototypeA14 woc:extends ?Prototype9 .
+?Client6 woc:hasMethod ?operation5 .
+?Prototype9 woc:hasMethod ?Clone8 .
+?Clone8 woc:hasReturnType ?Prototype9 .
+?ConcretePrototypeA14 woc:hasMethod ?Clone12 .
+?Clone12 woc:hasAnnotation woc:java.lang.Override .
+?Clone12 woc:hasReturnType ?ConcretePrototypeA14 .
+?ConcretePrototypeB19 woc:hasMethod ?Clone17 .
+?Clone17 woc:hasAnnotation woc:java.lang.Override .
+?Clone17 woc:hasReturnType ?ConcretePrototypeB19 .
+
+}

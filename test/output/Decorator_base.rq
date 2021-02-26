@@ -1,0 +1,35 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?addedState18 ?Operation5 ?Operation9 ?Operation14 ?Operation21 ?Operation26 ?AddedBehavior28 ?Component6 ?ConcreteComponent11 ?Decorator16 ?ConcreteDecoratorA23 ?ConcreteDecoratorB30 ?Client76 ?Client277 
+ WHERE {
+ ?addedState18  a woc:Field .
+?Operation5  a woc:Method .
+?Operation9  a woc:Method .
+?Operation14  a woc:Method .
+?Operation21  a woc:Method .
+?Operation26  a woc:Method .
+?AddedBehavior28  a woc:Method .
+?Component6  a woc:Class .
+?ConcreteComponent11  a woc:Class .
+?Decorator16  a woc:Class .
+?ConcreteDecoratorA23  a woc:Class .
+?ConcreteDecoratorB30  a woc:Class .
+?Client76  a woc:Class .
+?Client277  a woc:Class .
+?Component6 woc:hasMethod ?Operation5 .
+?ConcreteComponent11 woc:hasMethod ?Operation9 .
+?Operation9 woc:hasAnnotation woc:java.lang.Override .
+?Decorator16 woc:hasMethod ?Operation14 .
+?Operation14 woc:hasAnnotation woc:java.lang.Override .
+?ConcreteDecoratorA23 woc:hasMethod ?Operation21 .
+?Operation21 woc:hasAnnotation woc:java.lang.Override .
+?ConcreteDecoratorB30 woc:hasMethod ?Operation26 .
+?Operation26 woc:hasAnnotation woc:java.lang.Override .
+?ConcreteDecoratorB30 woc:hasMethod ?AddedBehavior28 .
+?Decorator16 woc:extends ?Component6 .
+?ConcreteComponent11 woc:extends ?Component6 .
+?ConcreteDecoratorA23 woc:extends ?Decorator16 .
+?ConcreteDecoratorB30 woc:extends ?Decorator16 .
+?ConcreteDecoratorA23 woc:hasField ?addedState18 .
+
+}

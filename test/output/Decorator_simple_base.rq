@@ -1,0 +1,17 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?Operation5 ?Operation10 ?addedState7 ?Component6 ?Decorator12 
+ WHERE {
+ ?Operation5  a woc:Method .
+?Operation10  a woc:Method .
+?addedState7  a woc:Field .
+?Component6  a woc:Class .
+?Component6 woc:hasModifier woc:Abstract .
+?Decorator12  a woc:Class .
+?Component6 woc:hasMethod ?Operation5 .
+?Decorator12 woc:hasMethod ?Operation10 .
+?Operation10 woc:hasAnnotation woc:java.lang.Override .
+?Decorator12 woc:extends ?Component6 .
+?Decorator12 woc:hasField ?addedState7 .
+
+}

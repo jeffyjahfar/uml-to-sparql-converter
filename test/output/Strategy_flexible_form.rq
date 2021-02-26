@@ -1,0 +1,46 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?setDisplayBehavior3 ?setHandleBehavior5 ?display9 ?display13 ?display21 ?execute25 ?execute29 ?execute33 ?Class17 ?DisplayStrategy22 ?HandleStrategy26 ?DisplayStrategy0 ?HandleStrategy1 ?Element6 ?ConcreteStrategyA10 ?ConcreteStrategyB14 ?ConcreteStrategyC30 ?ConcreteStrategyD34 ?ConcreteElementA36 ?ConcreteElementB38 
+ WHERE {
+ ?setDisplayBehavior3  a woc:Method .
+?setHandleBehavior5  a woc:Method .
+?display9  a woc:Method .
+?display13  a woc:Method .
+?display21  a woc:Method .
+?execute25  a woc:Method .
+?execute29  a woc:Method .
+?execute33  a woc:Method .
+?Class17  a woc:Interface .
+?DisplayStrategy22  a woc:Interface .
+?HandleStrategy26  a woc:Interface .
+?DisplayStrategy0  a woc:Field .
+?HandleStrategy1  a woc:Field .
+?Element6  a woc:Class .
+?ConcreteStrategyA10  a woc:Class .
+?ConcreteStrategyB14  a woc:Class .
+?ConcreteStrategyC30  a woc:Class .
+?ConcreteStrategyD34  a woc:Class .
+?ConcreteElementA36  a woc:Class .
+?ConcreteElementB38  a woc:Class .
+?Element6 woc:hasMethod ?setDisplayBehavior3 .
+?Element6 woc:hasMethod ?setHandleBehavior5 .
+?ConcreteStrategyA10 woc:hasMethod ?display9 .
+?display9 woc:hasAnnotation woc:java.lang.Override .
+?ConcreteStrategyB14 woc:hasMethod ?display13 .
+?display13 woc:hasAnnotation woc:java.lang.Override .
+?DisplayStrategy22 woc:hasMethod ?display21 .
+?HandleStrategy26 woc:hasMethod ?execute25 .
+?ConcreteStrategyC30 woc:hasMethod ?execute29 .
+?execute29 woc:hasAnnotation woc:java.lang.Override .
+?ConcreteStrategyD34 woc:hasMethod ?execute33 .
+?execute33 woc:hasAnnotation woc:java.lang.Override .
+?ConcreteStrategyA10 woc:implements ?DisplayStrategy22 .
+?ConcreteStrategyB14 woc:implements ?DisplayStrategy22 .
+?ConcreteStrategyC30 woc:implements ?HandleStrategy26 .
+?ConcreteStrategyD34 woc:implements ?HandleStrategy26 .
+?ConcreteElementA36 woc:extends ?Element6 .
+?ConcreteElementB38 woc:extends ?Element6 .
+?Element6 woc:hasField ?DisplayStrategy0 .
+?Element6 woc:hasField ?HandleStrategy1 .
+
+}

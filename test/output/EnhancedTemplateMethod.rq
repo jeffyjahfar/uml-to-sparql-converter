@@ -1,0 +1,35 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?AbstractClass10 ?ConcreteClass18 ?ChildClass26 ?equals5 ?localEquals7 ?getTypeEquiv9 ?localEquals13 ?getTypeEquiv16 ?localEquals21 ?getTypeEquiv24 
+ WHERE {
+ ?AbstractClass10  a woc:Class .
+?AbstractClass10 woc:hasModifier woc:Abstract .
+?ConcreteClass18  a woc:Class .
+?ChildClass26  a woc:Class .
+?equals5  a woc:Method .
+?localEquals7  a woc:Method .
+?getTypeEquiv9  a woc:Method .
+?getTypeEquiv9 woc:hasModifier woc:Abstract .
+?localEquals13  a woc:Method .
+?getTypeEquiv16  a woc:Method .
+?localEquals21  a woc:Method .
+?getTypeEquiv24  a woc:Method .
+?ConcreteClass18 woc:extends ?AbstractClass10 .
+?ChildClass26 woc:extends ?ConcreteClass18 .
+?AbstractClass10 woc:hasMethod ?equals5 .
+?equals5 woc:hasReturnType ?boolean28 .
+?AbstractClass10 woc:hasMethod ?localEquals7 .
+?localEquals7 woc:hasReturnType ?boolean28 .
+?AbstractClass10 woc:hasMethod ?getTypeEquiv9 .
+?ConcreteClass18 woc:hasMethod ?localEquals13 .
+?localEquals13 woc:hasAnnotation woc:java.lang.Override .
+?localEquals13 woc:hasReturnType ?boolean28 .
+?ConcreteClass18 woc:hasMethod ?getTypeEquiv16 .
+?getTypeEquiv16 woc:hasAnnotation woc:java.lang.Override .
+?ChildClass26 woc:hasMethod ?localEquals21 .
+?localEquals21 woc:hasAnnotation woc:java.lang.Override .
+?localEquals21 woc:hasReturnType ?boolean28 .
+?ChildClass26 woc:hasMethod ?getTypeEquiv24 .
+?getTypeEquiv24 woc:hasAnnotation woc:java.lang.Override .
+
+}

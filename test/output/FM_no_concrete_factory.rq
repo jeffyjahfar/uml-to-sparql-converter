@@ -1,0 +1,21 @@
+PREFIX woc: <http://rdf.webofcode.org/woc/>
+
+SELECT DISTINCT ?ConcreteProduct9 ?Product13 ?Client16 ?Creator20 ?ConcreteProduct7 ?Product12 ?makeProduct19 
+ WHERE {
+ ?ConcreteProduct9  a woc:Class .
+?Product13  a woc:Class .
+?Product13 woc:hasModifier woc:Abstract .
+?Client16  a woc:Class .
+?Creator20  a woc:Class .
+?Creator20 woc:hasModifier woc:Abstract .
+?ConcreteProduct7  a woc:Constructor .
+?Product12  a woc:Constructor .
+?makeProduct19  a woc:Method .
+?ConcreteProduct9 woc:extends ?Product13 .
+?ConcreteProduct9 woc:hasConstructor ?ConcreteProduct7 .
+?Product13 woc:hasConstructor ?Product12 .
+?Creator20 woc:hasMethod ?makeProduct19 .
+?makeProduct19 woc:hasParameter ?prodType18 .
+?makeProduct19 woc:hasReturnType ?Product13 .
+
+}
