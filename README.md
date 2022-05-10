@@ -2,6 +2,8 @@
 
 An automated SPARQL query generation tool that parses UML diagrams of design patterns to construct SPARQL queries to mine patterns in source code by incorporating all necessary constraints and features of the pattern. 
 
+![Approach Overview](https://github.com/jeffyjahfar/uml-to-sparql-converter/blob/master/approachOverview.png)
+
 ## SPARQL query Generation
 1. Place the XMI file for the design pattern in the uml-to-sparql-converter/test/uml directory. 
 2. Execute PatternUMLParser.java main by passing the filename of the xmi file (exclude .xmi, for example, if the file name is builder.xmi, argument should be "builder"
