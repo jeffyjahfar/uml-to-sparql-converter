@@ -7,6 +7,12 @@ import java.util.List;
 
 public class QueryConstructionService {
 
+    private boolean includeMethodParamsSelect = false;
+
+    public QueryConstructionService(boolean includeMethodParamsSelect) {
+        this.includeMethodParamsSelect = includeMethodParamsSelect;
+    }
+
     String setPrefix(){
         return "PREFIX woc: <"+ Ontology.WOC + ">\n\n";
     }
@@ -99,10 +105,10 @@ public class QueryConstructionService {
         switch (r){
             case generalization:
                 return Ontology.EXTENDS_PROPERTY.toString().replace(Ontology.WOC,"woc:");
-//            case dependency:
-//                return Ontology.DEPENDENCY_PROPERTY.toString().replace(Ontology.WOC,"woc:");
-//            case association:
-//                return Ontology.DEPENDENCY_PROPERTY.toString().replace(Ontology.WOC,"woc:");
+            case dependency:
+                return Ontology.DEPENDENCY_PROPERTY.toString().replace(Ontology.WOC,"woc:");
+            case association:
+                return Ontology.DEPENDENCY_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case operation:
                 return Ontology.HAS_METHOD_PROPERTY.toString().replace(Ontology.WOC,"woc:");
             case constructor:
@@ -143,8 +149,10 @@ public class QueryConstructionService {
                 return Ontology.INTERFACE_ENTITY.toString().replace(Ontology.WOC,"woc:");
             case "property":
                 return replaceInlinePrefix(Ontology.FIELD_ENTITY.toString());
-//            case "parameter":
-//                return replaceInlinePrefix(Ontology.PARAMETER_ENTITY.toString());
+            case "parameter":
+                if(includeMethodParamsSelect){
+                    return replaceInlinePrefix(Ontology.PARAMETER_ENTITY.toString());
+                }
             default:
                 throw new IllegalStateException("Unexpected value: " + typename);
         }

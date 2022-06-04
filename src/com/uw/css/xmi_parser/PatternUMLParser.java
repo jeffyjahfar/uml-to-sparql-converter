@@ -3,11 +3,16 @@ package com.uw.css.xmi_parser;
 import com.sdmetrics.model.*;
 import com.sdmetrics.util.XMLParser;
 import com.uw.css.utils.Utils;
+import org.apache.commons.io.FilenameUtils;
 
 import java.io.*;
 import java.util.*;
 
 public class PatternUMLParser {
+    private static boolean includeSequenceDiagramRelations = true;
+    private static boolean includeAssociationRelations = false;
+    private static boolean includeAnnotationRelations = false;
+    private static boolean isFileInput;
     String dirBase = Utils.UTIL_DIR;
     String umlDirBase= Utils.TEST_UML_DIR;
     MetaModel mm;
@@ -17,6 +22,7 @@ public class PatternUMLParser {
     XMIReader reader;
     String outputDir;
     static Map<String,ModelElement> entityMap = new HashMap<>();
+    private static boolean includeMethodParamsInSelect = false;
 
     public PatternUMLParser(String outputDir) {
         this.outputDir = outputDir;
@@ -71,12 +77,37 @@ public class PatternUMLParser {
         if(args!=null && args.length>0) {
             for (int i = 0; i < args.length; i++) {
                 if(args[i].equals("--input")){
+                    resolveInputType(args[i+1]);
                     directory = args[i+1];
                     i+=1;
-                }
-                if(args[i].equals("--output")){
+                }if(args[i].equals("--file-input")){
+                    isFileInput = true;
+                    i+=1;
+                }if(args[i].equals("--directory-input")){
+                    isFileInput = false;
+                    i+=1;
+                }else if(args[i].equals("--output")){
                     outputDir = args[i+1];
                     i+=1;
+                }else if(args[i].equals("--no-sequence")){
+                    includeSequenceDiagramRelations = false;
+                    i+=1;
+                }else if(args[i].equals("--include-association")){
+                    includeAssociationRelations = true;
+                    i+=1;
+                }else if(args[i].equals("--include-annotation")){
+                    includeAnnotationRelations = true;
+                    i+=1;
+                }else if(args[i].equals("--include-method-params-select")){
+                    includeMethodParamsInSelect = true;
+                    i+=1;
+                }else if(args[i].equals("--help")){
+                    printHelpManual();
+                    return;
+                }else {
+                    System.out.println("ERROR: illegal option");
+                    printHelpManual();
+                    return;
                 }
             }
             if(args[0].length()>0)
@@ -84,6 +115,45 @@ public class PatternUMLParser {
         }
         PatternUMLParser patternUMLParser = new PatternUMLParser(outputDir);
         patternUMLParser.generateRQandReport(directory);
+    }
+
+    private static void resolveInputType(String input) {
+        File file = new File(input);
+        boolean exists =      file.exists();
+        if(!exists){
+            System.out.println("ERROR: Input Path does not exist");
+        }
+        boolean isDirectory = file.isDirectory();
+        if(isDirectory){
+            isFileInput = false;
+            System.out.println("INFO: Input Path resolved as directory");
+        }
+        boolean isFile =      file.isFile();
+        if(isFile){
+            System.out.println("INFO: Input Path is as a single file");
+            String extension = FilenameUtils.getExtension(input);
+            if(!extension.equals("xmi")){
+                System.out.println("WARN: Input file is not in XMI format");
+            }
+            isFileInput = true;
+        }
+    }
+
+    private static void printHelpManual() {
+        System.out.println("============");
+        System.out.println("PatternScout");
+        System.out.println("============");
+        System.out.println("usage:");
+        System.out.println("--file-input \t specify if the input is a single XMI File");
+        System.out.println("--directory-input \t specify if the input is a directory with multiple XMI Files");
+        System.out.println("--input INPUT_PATH");
+        System.out.println("--output OUTPUT_PATH \t path to write generated .rq files");
+        System.out.println("--help \t print help manual");
+        System.out.println("--no-sequence \t specify to NOT include Sequence diagram relationships in generated query");
+        System.out.println("--include-association \t specify to include assciation relationships in generated query");
+        System.out.println("--include-annotation \t specify to include annotation relationships in generated query");
+        System.out.println("--include-method-params-select \t specify to include method parameters in SELECT Clause of the query");
+        System.out.println("DEFAULT BEHAVIOR: \t annotation relationships and association relationships are excluded");
     }
 
     private void generateRQandReport(String directory){
@@ -96,7 +166,7 @@ public class PatternUMLParser {
             }
         }
         printReport(report);
-        writeReport(directory, report);
+        writeReport(outputDir, report);
     }
 
     private static void printReport(HashMap<String, Integer> report){
@@ -123,13 +193,13 @@ public class PatternUMLParser {
     }
 
     private void parseFile(String filenameIn, HashMap<String, Integer> report){
-        ModelElementResolverService modelElementResolverService = new ModelElementResolverService();
+        ModelElementResolverService modelElementResolverService = new ModelElementResolverService(includeSequenceDiagramRelations,includeAssociationRelations,includeAnnotationRelations);
         try {
             String filename = filenameIn;
 //            String filename = args[0];
             parseTestXMIFile(filename.concat(".xmi"));
 //            patternUMLParser.parseTestXMIFile(filename);
-            SparqlQuery query = new SparqlQuery();
+            SparqlQuery query = new SparqlQuery(includeMethodParamsInSelect);
             Boolean suppressVisibility = false;
 
 //            patternUMLParser.model.getMetaModel();

@@ -12,6 +12,16 @@ import java.util.List;
 
 public class ModelElementResolverService {
 
+    private boolean includeSegenceDiagramRelationships;
+    private boolean includeAssociationRelationships;
+    private boolean includeAnnotationRelations;
+
+    public ModelElementResolverService(boolean includeSegenceDiagramRelationships, boolean includeAssociationRelationships, boolean includeAnnotationRelations) {
+        this.includeSegenceDiagramRelationships = includeSegenceDiagramRelationships;
+        this.includeAssociationRelationships = includeAssociationRelationships;
+        this.includeAnnotationRelations = includeAnnotationRelations;
+    }
+
     Boolean isRelationship(ModelElement modelElement){
         String type = modelElement.getType().getName();
         for( Relationships rel : Relationships.values()){
@@ -51,7 +61,9 @@ public class ModelElementResolverService {
                    }
                    RelationshipItem relationshipItem = new RelationshipItem(modelElementType, owner,child);
                    relationshipItems.add(relationshipItem);
-                   getAnnotationRelations(relationshipItems,modelElement);
+                   if(includeAnnotationRelations){
+                       getAnnotationRelations(relationshipItems,modelElement);
+                   }
                }
            }
        }
@@ -111,10 +123,14 @@ public class ModelElementResolverService {
         getSupplierRelations(relationshipItems,modelElement);
         getOwnedOperations(relationshipItems,modelElement);
         getOwnedParameters(relationshipItems,modelElement);
-//        getAssociationRelations(relationshipItems,modelElement);
+        if(includeAssociationRelationships){
+            getAssociationRelations(relationshipItems,modelElement);
+        }
         getInterfaceImplementationRelations(relationshipItems,modelElement);
         getOwnedAttributes(relationshipItems,modelElement);
-//        getSequenceDiagramRelations(relationshipItems,modelElement);
+        if(includeSegenceDiagramRelationships){
+            getSequenceDiagramRelations(relationshipItems,modelElement);
+        }
     }
 
     private void getOwnedAttributes(List<RelationshipItem> relationshipItems, ModelElement modelElement) {
