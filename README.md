@@ -25,3 +25,36 @@ In order to create the xmi file for a design pattern from Visual Paradigm:
 1. to open .mfj use the File>Import>Fragment option in StarUML
 2. To install XMI extension go to Tools>Extensions Manager and search for "XMI". Install the extension and reload starUML. After reload, File>Export window will have XMI Export as an option
 
+### Usage
+`
+java -jar uml-to-sparql-converter.jar --help
+`
+
+============
+
+PatternScout
+
+============
+
+usage:
+
+`--file-input` 	 specify if the input is a single XMI File
+
+`--directory-input` 	 specify if the input is a directory with multiple XMI Files
+
+`--input INPUT_PATH`
+
+`--output OUTPUT_PATH` 	 path to write generated .rq files
+
+`--help` 	 print help manual
+
+`--no-sequence` 	 specify to NOT include Sequence diagram relationships in generated query
+
+`--include-association` 	 specify to include assciation relationships in generated query
+
+`--include-annotation` 	 specify to include annotation relationships in generated query
+
+`--include-method-params-select` 	 specify to include method parameters in SELECT Clause of the query
+
+DEFAULT BEHAVIOR: 	 annotation relationships and association relationships are excluded
+
