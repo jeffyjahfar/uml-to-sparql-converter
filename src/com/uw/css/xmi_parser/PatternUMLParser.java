@@ -15,7 +15,13 @@ public class PatternUMLParser {
     Model model;
     XMITransformations trans;
     XMIReader reader;
+    String outputDir;
     static Map<String,ModelElement> entityMap = new HashMap<>();
+
+    public PatternUMLParser(String outputDir) {
+        this.outputDir = outputDir;
+    }
+
     private void parseFiles(String meta, String xmitrans, String xmi)
             throws Exception {
         if (meta != null) {
@@ -40,10 +46,13 @@ public class PatternUMLParser {
                 filename);
     }
 
-    public void saveOutputAsText(String query, String filename){
+    public void saveOutputAsText(String query, String filename, String outputDir){
         try {
+            if(outputDir.isEmpty()){
+                outputDir = Utils.TEST_OUTPUT_DIR;
+            }
             //create an print writer for writing to a file
-            PrintWriter out = new PrintWriter(new FileWriter(Utils.TEST_OUTPUT_DIR + filename));
+            PrintWriter out = new PrintWriter(new FileWriter( outputDir+ filename));
 
             //output to the file a line
             out.println(query);
@@ -58,10 +67,26 @@ public class PatternUMLParser {
 
     public static void main(String[] args) {
         String directory = Utils.TEST_UML_DIR;
-        generateRQandReport(directory);
+        String outputDir = Utils.TEST_OUTPUT_DIR;
+        if(args!=null && args.length>0) {
+            for (int i = 0; i < args.length; i++) {
+                if(args[i].equals("--input")){
+                    directory = args[i+1];
+                    i+=1;
+                }
+                if(args[i].equals("--output")){
+                    outputDir = args[i+1];
+                    i+=1;
+                }
+            }
+            if(args[0].length()>0)
+            directory = args[0];
+        }
+        PatternUMLParser patternUMLParser = new PatternUMLParser(outputDir);
+        patternUMLParser.generateRQandReport(directory);
     }
 
-    private static void generateRQandReport(String directory){
+    private void generateRQandReport(String directory){
         HashMap<String, Integer> report = new HashMap<>();
         for(File f : new File(directory).listFiles()){
             String name = f.getName();
@@ -97,19 +122,18 @@ public class PatternUMLParser {
         System.out.println("Report written to " + f.getName());
     }
 
-    private static void parseFile(String filenameIn, HashMap<String, Integer> report){
-        PatternUMLParser patternUMLParser = new PatternUMLParser();
+    private void parseFile(String filenameIn, HashMap<String, Integer> report){
         ModelElementResolverService modelElementResolverService = new ModelElementResolverService();
         try {
             String filename = filenameIn;
 //            String filename = args[0];
-            patternUMLParser.parseTestXMIFile(filename.concat(".xmi"));
+            parseTestXMIFile(filename.concat(".xmi"));
 //            patternUMLParser.parseTestXMIFile(filename);
             SparqlQuery query = new SparqlQuery();
-            Boolean suppressVisibility = true;
+            Boolean suppressVisibility = false;
 
 //            patternUMLParser.model.getMetaModel();
-            Iterator<ModelElement> iterator = patternUMLParser.model.iterator();
+            Iterator<ModelElement> iterator = model.iterator();
             List<ModelElement> fromActivations = new ArrayList<>();
             List<ModelElement> toActivations = new ArrayList<>();
 
@@ -132,10 +156,10 @@ public class PatternUMLParser {
                 query.components = modelElementResolverService.resolveComponents(query.components,modelElement, suppressVisibility);
                 query.relationshipItems = modelElementResolverService.resolveRelations(query.relationshipItems,modelElement);
             }
-//            modelElementResolverService.getInteractionDiagramRelations(fromActivations,toActivations,query.relationshipItems);
+            modelElementResolverService.getInteractionDiagramRelations(fromActivations,toActivations,query.relationshipItems);
             query.constructQuery();
 //            patternUMLParser.saveOutputAsText(query.query,filename.replaceFirst(".xmi",".rq"));
-            patternUMLParser.saveOutputAsText(query.query,filename.concat(".rq"));
+            saveOutputAsText(query.query,filename.concat(".rq"), outputDir);
             report.put(filenameIn, query.getRDFLines());
         } catch (Exception e) {
             e.printStackTrace();
