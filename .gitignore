@@ -9,4 +9,5 @@ target
 input
 *.nt
 out
-
+test/output/*.rq
+test/uml/*.xmi
