@@ -1,7 +1,6 @@
 package com.uw.css.xmi_parser;
 
 import com.uw.css.utils.Relationships;
-import org.codeontology.Ontology;
 
 import java.util.List;
 

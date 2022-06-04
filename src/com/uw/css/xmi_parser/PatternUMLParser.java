@@ -28,28 +28,30 @@ public class PatternUMLParser {
         this.outputDir = outputDir;
     }
 
-    private void parseFiles(String meta, String xmitrans, String xmi)
+    private void parseFiles(String meta, String xmitrans, String xmiFilePath)
             throws Exception {
         if (meta != null) {
             mm = new MetaModel();
             parser = new XMLParser();
-            parser.parse(dirBase + meta, mm.getSAXParserHandler());
+            String metaPath = getClass().getClassLoader().getResource(dirBase + meta).toString();
+            parser.parse(metaPath, mm.getSAXParserHandler());
         }
         if (xmitrans != null) {
             trans = new XMITransformations(mm);
-            parser.parse(dirBase + xmitrans, trans.getSAXParserHandler());
+            String metaPath = getClass().getClassLoader().getResource(dirBase + xmitrans).toString();
+            parser.parse(metaPath, trans.getSAXParserHandler());
         }
-        if (xmi != null) {
+        if (xmiFilePath != null) {
             model = new Model(mm);
             reader = new XMIReader(trans, model);
-            parser.parse(umlDirBase + xmi, reader);
+            parser.parse(xmiFilePath, reader);
         }
 
     }
-    public void parseTestXMIFile(String filename) throws Exception {
+    public void parseTestXMIFile(String filepath) throws Exception {
         parser = new XMLParser();
         parseFiles("metamodel2.xml", "xmiTrans2_0_visual_paradigm.xml",
-                filename);
+                filepath);
     }
 
     public void saveOutputAsText(String query, String filename, String outputDir){
@@ -72,18 +74,22 @@ public class PatternUMLParser {
     }
 
     public static void main(String[] args) {
+        System.out.println(args.toString());
+        System.out.println(args.length);
         String directory = Utils.TEST_UML_DIR;
         String outputDir = Utils.TEST_OUTPUT_DIR;
         if(args!=null && args.length>0) {
             for (int i = 0; i < args.length; i++) {
+                System.out.println("i: " + i);
+                System.out.println(args[i]);
                 if(args[i].equals("--input")){
                     resolveInputType(args[i+1]);
                     directory = args[i+1];
                     i+=1;
-                }if(args[i].equals("--file-input")){
+                }else if(args[i].equals("--file-input")){
                     isFileInput = true;
                     i+=1;
-                }if(args[i].equals("--directory-input")){
+                }else if(args[i].equals("--directory-input")){
                     isFileInput = false;
                     i+=1;
                 }else if(args[i].equals("--output")){
@@ -105,13 +111,11 @@ public class PatternUMLParser {
                     printHelpManual();
                     return;
                 }else {
-                    System.out.println("ERROR: illegal option");
+                    System.out.println("ERROR: illegal option" + args[i]);
                     printHelpManual();
                     return;
                 }
             }
-            if(args[0].length()>0)
-            directory = args[0];
         }
         PatternUMLParser patternUMLParser = new PatternUMLParser(outputDir);
         patternUMLParser.generateRQandReport(directory);
@@ -119,7 +123,7 @@ public class PatternUMLParser {
 
     private static void resolveInputType(String input) {
         File file = new File(input);
-        boolean exists =      file.exists();
+        boolean exists = file.exists();
         if(!exists){
             System.out.println("ERROR: Input Path does not exist");
         }
@@ -156,13 +160,23 @@ public class PatternUMLParser {
         System.out.println("DEFAULT BEHAVIOR: \t annotation relationships and association relationships are excluded");
     }
 
-    private void generateRQandReport(String directory){
+    private void generateRQandReportForFile(String file,HashMap<String, Integer> report ){
+        System.out.println("====Parsing File: " + file+"====");
+        parseFile(file, report);
+        System.out.println("====Completed Parsing File: " + file+"====");
+    }
+
+    private void generateRQandReport(String input){
         HashMap<String, Integer> report = new HashMap<>();
-        for(File f : new File(directory).listFiles()){
-            String name = f.getName();
-            if(name.indexOf(".xmi") != -1){
-                parseFile(name.substring(0, name.indexOf(".xmi")), report);
-                System.out.println("Filename: " + name);
+        if(isFileInput){
+            generateRQandReportForFile(input, report);
+        }else{
+            for(File f : new File(input).listFiles()){
+                String name = f.getPath();
+                if(name.indexOf(".xmi") != -1){
+//                parseFile(name.substring(0, name.indexOf(".xmi")), report);
+                    generateRQandReportForFile(name, report);
+                }
             }
         }
         printReport(report);
@@ -192,12 +206,12 @@ public class PatternUMLParser {
         System.out.println("Report written to " + f.getName());
     }
 
-    private void parseFile(String filenameIn, HashMap<String, Integer> report){
+    private void parseFile(String filepath, HashMap<String, Integer> report){
         ModelElementResolverService modelElementResolverService = new ModelElementResolverService(includeSequenceDiagramRelations,includeAssociationRelations,includeAnnotationRelations);
         try {
-            String filename = filenameIn;
+            String filename = FilenameUtils.getName(filepath);
 //            String filename = args[0];
-            parseTestXMIFile(filename.concat(".xmi"));
+            parseTestXMIFile(filepath);
 //            patternUMLParser.parseTestXMIFile(filename);
             SparqlQuery query = new SparqlQuery(includeMethodParamsInSelect);
             Boolean suppressVisibility = false;
@@ -230,7 +244,7 @@ public class PatternUMLParser {
             query.constructQuery();
 //            patternUMLParser.saveOutputAsText(query.query,filename.replaceFirst(".xmi",".rq"));
             saveOutputAsText(query.query,filename.concat(".rq"), outputDir);
-            report.put(filenameIn, query.getRDFLines());
+            report.put(filename, query.getRDFLines());
         } catch (Exception e) {
             e.printStackTrace();
         }
