@@ -1,14 +1,11 @@
-package com.uw.css.xmi_parser;
+package com.uw.css.uml.parser;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+
 import java.io.InputStream;
-import java.net.URL;
 
 public class Ontology {
     public static final String RDF = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";

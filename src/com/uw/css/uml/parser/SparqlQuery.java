@@ -1,7 +1,6 @@
-package com.uw.css.xmi_parser;
+package com.uw.css.uml.parser;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class SparqlQuery {

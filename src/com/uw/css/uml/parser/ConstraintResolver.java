@@ -1,4 +1,4 @@
-package com.uw.css.xmi_parser;
+package com.uw.css.uml.parser;
 
 public interface ConstraintResolver {
     String visitCommon();

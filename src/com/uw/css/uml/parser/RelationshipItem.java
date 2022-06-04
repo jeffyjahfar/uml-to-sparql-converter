@@ -1,4 +1,4 @@
-package com.uw.css.xmi_parser;
+package com.uw.css.uml.parser;
 
 public class RelationshipItem {
     String name;

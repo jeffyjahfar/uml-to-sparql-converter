@@ -1,7 +1,6 @@
-package com.uw.css.xmi_parser;
+package com.uw.css.uml.parser;
 
 import com.sdmetrics.model.ModelElement;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.uw.css.utils.Relationships;
 import com.uw.css.utils.Stereotypes;
 

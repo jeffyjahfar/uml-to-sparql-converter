@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: com.uw.css.xmi_parser.PatternUMLParser
+Main-Class: com.uw.css.uml.parser.PatternUMLParser
 
