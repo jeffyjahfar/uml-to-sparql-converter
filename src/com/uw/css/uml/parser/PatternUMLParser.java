@@ -74,14 +74,13 @@ public class PatternUMLParser {
     }
 
     public static void main(String[] args) {
-        System.out.println(args.toString());
-        System.out.println(args.length);
+        System.out.println("Number of Arguments Received: " + args.length);
         String directory = Utils.TEST_UML_DIR;
         String outputDir = Utils.TEST_OUTPUT_DIR;
         if(args!=null && args.length>0) {
             for (int i = 0; i < args.length; i++) {
-                System.out.println("i: " + i);
-                System.out.println(args[i]);
+//                System.out.println("i: " + i);
+//                System.out.println(args[i]);
                 if(args[i].equals("--input")){
                     resolveInputType(args[i+1]);
                     directory = args[i+1];
